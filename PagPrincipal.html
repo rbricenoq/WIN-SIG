@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WIN-SIG</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="shortcut icon" href="WIN-SIG/img/agua.ico" >
+	<link rel="stylesheet" type="text/css" href="css/LayoutCSS.css">
+	<link href="css\index.css" rel="stylesheet">
+	<script type="text/javascript" src="js/map.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz1qiEOcBOfBZJujmvJC7MPe5l-ihNr8&callback=initMap" async defer> </script>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<img src="img/logo.png" style="width:200px;height:200x;">
+		</header>
+		<nav>
+			<div>
+				<button type="button">Log In</button>
+				<button type="button" style="align-content: right;">Agregar Fuente</button>
+			</div>
+			<ul>
+				<form>
+					<label><h4>Filtros</h4></label>
+					<h5>Funte Hídrica</h5>
+					<label><input type="checkbox" id="cbox1" value="pozo_checkbox">Pozo</label><br>
+					<label><input type="checkbox" id="cbox2" value="jaguey_checkbox">Jagüey</label><br>
+					<label><input type="checkbox" id="cbox3" value="reservorio_checkbox">Reservorio</label><br>
+					<h5>Municipio</h5>
+					<label><input type="checkbox" id="cbox4" value="manaure_checkbox">Manaure</label><br>
+					<label><input type="checkbox" id="cbox5" value="maicao_checkbox">Maicao</label><br>
+				</form>
+			</ul>			
+		</nav>
+		<section>
+			<div id="map"></div>
+		</section>
+		<footer> Versión beta</footer>
+	</div>
+	<div id="particles-js"></div>
+	<script src="js\particles.js"></script>
+	<script src="js\index.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
