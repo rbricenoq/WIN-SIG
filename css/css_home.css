@@ -1,0 +1,210 @@
+#bar_nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+footer {    
+    padding: 1em;
+    clear: left;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+#button{
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 20px;
+    width: 100%;
+    margin-bottom: 4px;
+    color: white;
+    background: rgb(81,165,250);
+    -moz-border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;      
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}
+
+#lsita_bar_nav {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: rgb(81,165,250);
+}
+
+input[type=text] {
+    width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+div.container {
+    width: 100%;
+}
+
+nav {
+    border: 1px solid rgb(81,165,250);
+    float: left;
+    max-width: 220px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none;
+}
+#map {
+    position: relative;
+    padding-bottom: 65%;
+    height: 0;
+    overflow: hidden;
+}
+
+input[type="checkbox"]{
+   appearance: none;
+   -moz-appearance: none;
+   -webkit-appearance: none;
+   border: 1px solid rgb(81,165,250);
+   width: 15px;
+   height: 15px;
+   border-radius: 2px;
+   margin: 0 5px 0 0;
+}
+
+input[type="checkbox"]#cbox1:checked{
+   background: solid blue;
+}
+
+</pre>
+
+<pre>input[type="checkbox"]#cbox1:focus{
+   outline: none;
+}
+
+button{
+    float: left;
+}
+
+.form-wrapper {
+    width: 200px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: #444;
+    background: rgba(0,0,0,.2);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+}
+
+.form-wrapper input {
+    width: 100px;
+    height: 20px;
+    padding: 10px 5px;
+    border: 0;
+    background: #eee;
+    -moz-border-radius: 3px 0 0 3px;
+    -webkit-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;      
+}
+
+.form-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+    -moz-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.form-wrapper input::-webkit-input-placeholder {
+   color: #999;
+   font-style: italic;
+}
+
+.form-wrapper input:-moz-placeholder {
+    color: rgb(81,165,250);
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}    
+
+.form-wrapper button {
+    overflow: visible;
+    position: absolute;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 20px;
+    width: 70px;
+    color: white;
+    background: rgb(81,165,250);
+    -moz-border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;      
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}   
+
+.form-wrapper button:hover{     
+    background: rgb(81,165,250);
+}   
+
+.form-wrapper button:active,
+.form-wrapper button:focus{   
+    background: rgb(81,165,250);    
+}
+
+.form-wrapper button:hover:before{
+    border-right-color: rgb(81,165,250);
+}
+
+.form-wrapper button:focus:before{
+    border-right-color: rgb(81,165,250);
+}    
+
+.form-wrapper button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}

@@ -5,44 +5,62 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="shortcut icon" href="WIN-SIG/img/agua.ico" >
-	<link rel="stylesheet" type="text/css" href="css/LayoutCSS.css">
+	<link rel="stylesheet" type="text/css" href="css/css_home.css">
 	<link href="css\index.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="js/map.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz1qiEOcBOfBZJujmvJC7MPe5l-ihNr8&callback=initMap" async defer> </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<ul id="bar_nav">
+		<li id="lsita_bar_nav"><a class="active" href="#login">Log in</a></li>
+		<li id="lsita_bar_nav"><a href="#contacto">Contacto</a></li>
+		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
+	</ul>
 	<div class="container">
 		<header>
-			<img src="img/logo.png" style="width:200px;height:200x;">
-		</header>
-		<nav>
+			<img src="img/LOGO.png" height="18%" width="18%">
+		</header>	
+		<nav>	
 			<div>
-				<button type="button">Log In</button>
-				<button type="button" style="align-content: right;">Agregar Fuente</button>
-			</div>
+				<form class="form-wrapper cf">
+					<input type="text" placeholder="Busqueda..." required>
+					<button type="submit">Search</button>
+				</form>
+			</div>		
+			<button id="button" type="button" style="align-content: right;">Agregar Fuente Hídrica</button><br>
+			<button id="button" type="button" style="align-content: right;">Editar Fuente Hídrica</button>
 			<ul>
 				<form>
 					<label><h4>Filtros</h4></label>
 					<h5>Funte Hídrica</h5>
-					<label><input type="checkbox" id="cbox1" value="pozo_checkbox">Pozo</label><br>
-					<label><input type="checkbox" id="cbox2" value="jaguey_checkbox">Jagüey</label><br>
-					<label><input type="checkbox" id="cbox3" value="reservorio_checkbox">Reservorio</label><br>
+					<label><input type="checkbox" id="cbox1" value="pozo_checkbox"> Pozo</label><br>
+					<label><input type="checkbox" id="cbox2" value="jaguey_checkbox"> Jagüey</label><br>
+					<label><input type="checkbox" id="cbox3" value="reservorio_checkbox"> Reservorio</label><br>
 					<h5>Municipio</h5>
-					<label><input type="checkbox" id="cbox4" value="manaure_checkbox">Manaure</label><br>
-					<label><input type="checkbox" id="cbox5" value="maicao_checkbox">Maicao</label><br>
-				</form>
+					<label><input type="checkbox" id="cbox4" value="manaure_checkbox"> Manaure</label><br>
+					<label><input type="checkbox" id="cbox5" value="maicao_checkbox"> Maicao</label><br>
+					<h5>Indicador Calidad del Agua</h5>
+					<label><input type="checkbox" id="cbox6" value="indicador_1_checkbox"> Indicador_1</label><br>
+					<label><input type="checkbox" id="cbox7" value="indicador_2_checkbox"> Indicador_2</label><br>
+					<label><input type="checkbox" id="cbox8" value="indicador__checkbox"> Indicador_3</label><br>
+					<h5>Capacidad</h5>
+					<label><input type="checkbox" id="cbox9" value="min_checkbox"> 5-10 personas</label><br>
+					<label><input type="checkbox" id="cbox10" value="med_checkbox"> 10-20 personas</label><br>
+					<label><input type="checkbox" id="cbox11" value="max_checkbox"> Superior a 20</label><br>
+					<h5>Diagnostico</h5>
+					<label><input type="checkbox" id="cbox12" value="Bueno_checkbox"> Bueno</label><br>
+					<label><input type="checkbox" id="cbox13" value="Regular_checkbox"> Regular</label><br>
+					<label><input type="checkbox" id="cbox14" value="Malo_checkbox"> Malo</label>
+				</form>				
 			</ul>			
 		</nav>
 		<section>
 			<div id="map"></div>
 		</section>
 		<footer> Versión beta</footer>
-	</div>
-	<div id="particles-js"></div>
-	<script src="js\particles.js"></script>
-	<script src="js\index.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</div>	
 </body>
 </html>
