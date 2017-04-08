@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="shortcut icon" href="WIN-SIG/img/agua.ico" >
 	<link rel="stylesheet" type="text/css" href="css/css_home.css">
+	<link href="css\login.css" rel="stylesheet">
 	<link href="css\index.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="js/map.js"></script>
@@ -15,52 +16,215 @@
 </head>
 <body>
 	<ul id="bar_nav">
-		<li id="lsita_bar_nav"><a class="active" href="#login">Log in</a></li>
+		<li id="lsita_bar_nav"><a class="active" href="C:/xampp/htdocs/WIN-SIG/Login.html"> Log in</a></li>
 		<li id="lsita_bar_nav"><a href="#contacto">Contacto</a></li>
 		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
 	</ul>
 	<div class="container">
-		<header>
-			<img src="img/LOGO.png" height="18%" width="18%">
-		</header>	
+		<div id="logo_WINSIG">
+			<a href="C:/xampp/htdocs/WIN-SIG/PagPrincipal.html">
+				<img src="img/LOGO.png" height="18%" width="18%">
+			</a>
+		</div>
 		<nav>	
 			<div>
 				<form class="form-wrapper cf">
 					<input type="text" placeholder="Busqueda..." required>
-					<button type="submit">Search</button>
+					<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 				</form>
+			</div>
+			<div>
+				<button type="submit"  class="btn btn-primary" href="#form_variables" data-toggle="modal"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
+				<br><br>
+				<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídirca</button>
+				<br><br>
+				<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-edit"></i> Editar Usuarios</button>
+				<br><br>
+			</div>
+			<div>
+				<ul>
+					<form>
+						<label><h4>Filtros</h4></label>
+						<h5>Funte Hídrica</h5>
+						<label><input type="checkbox" id="cbox1" value="pozo_checkbox"> Pozo</label><br>
+						<label><input type="checkbox" id="cbox2" value="jaguey_checkbox"> Jagüey</label><br>
+						<label><input type="checkbox" id="cbox3" value="reservorio_checkbox"> Reservorio</label><br>
+						<h5>Municipio</h5>
+						<label><input type="checkbox" id="cbox4" value="manaure_checkbox"> Manaure</label><br>
+						<label><input type="checkbox" id="cbox5" value="maicao_checkbox"> Maicao</label><br>
+						<h5>Indicador Calidad del Agua</h5>
+						<label><input type="checkbox" id="cbox6" value="indicador_1_checkbox"> Indicador_1</label><br>
+						<label><input type="checkbox" id="cbox7" value="indicador_2_checkbox"> Indicador_2</label><br>
+						<label><input type="checkbox" id="cbox8" value="indicador__checkbox"> Indicador_3</label><br>
+						<h5>Capacidad</h5>
+						<label><input type="checkbox" id="cbox9" value="min_checkbox"> 5-10 personas</label><br>
+						<label><input type="checkbox" id="cbox10" value="med_checkbox"> 10-20 personas</label><br>
+						<label><input type="checkbox" id="cbox11" value="max_checkbox"> Superior a 20</label><br>
+						<h5>Diagnostico</h5>
+						<label><input type="checkbox" id="cbox12" value="Bueno_checkbox"> Bueno</label><br>
+						<label><input type="checkbox" id="cbox13" value="Regular_checkbox"> Regular</label><br>
+						<label><input type="checkbox" id="cbox14" value="Malo_checkbox"> Malo</label>
+					</form>				
+				</ul>	
 			</div>		
-			<button id="button" type="button" style="align-content: right;">Agregar Fuente Hídrica</button><br>
-			<button id="button" type="button" style="align-content: right;">Editar Fuente Hídrica</button>
-			<ul>
-				<form>
-					<label><h4>Filtros</h4></label>
-					<h5>Funte Hídrica</h5>
-					<label><input type="checkbox" id="cbox1" value="pozo_checkbox"> Pozo</label><br>
-					<label><input type="checkbox" id="cbox2" value="jaguey_checkbox"> Jagüey</label><br>
-					<label><input type="checkbox" id="cbox3" value="reservorio_checkbox"> Reservorio</label><br>
-					<h5>Municipio</h5>
-					<label><input type="checkbox" id="cbox4" value="manaure_checkbox"> Manaure</label><br>
-					<label><input type="checkbox" id="cbox5" value="maicao_checkbox"> Maicao</label><br>
-					<h5>Indicador Calidad del Agua</h5>
-					<label><input type="checkbox" id="cbox6" value="indicador_1_checkbox"> Indicador_1</label><br>
-					<label><input type="checkbox" id="cbox7" value="indicador_2_checkbox"> Indicador_2</label><br>
-					<label><input type="checkbox" id="cbox8" value="indicador__checkbox"> Indicador_3</label><br>
-					<h5>Capacidad</h5>
-					<label><input type="checkbox" id="cbox9" value="min_checkbox"> 5-10 personas</label><br>
-					<label><input type="checkbox" id="cbox10" value="med_checkbox"> 10-20 personas</label><br>
-					<label><input type="checkbox" id="cbox11" value="max_checkbox"> Superior a 20</label><br>
-					<h5>Diagnostico</h5>
-					<label><input type="checkbox" id="cbox12" value="Bueno_checkbox"> Bueno</label><br>
-					<label><input type="checkbox" id="cbox13" value="Regular_checkbox"> Regular</label><br>
-					<label><input type="checkbox" id="cbox14" value="Malo_checkbox"> Malo</label>
-				</form>				
-			</ul>			
 		</nav>
 		<section>
 			<div id="map"></div>
 		</section>
-		<footer> Versión beta</footer>
+
+
+
+		<!-- Formularios variables  -->
+
+		<div class="modal fade" id="form_variables" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>	
+						<center><h4 class="modal-title">AÑADIR VARIABLES DE UBICACIÓN</h4></center>
+					</div>
+					<div class="modal-body">
+						<p id="p-regis"><b> Añadir variables de ubicación:</b></p>
+						<button type="submit"  class="btn btn-primary" href="#form_ubi" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Ubicación</button><br><br>
+						<p id="p-regis"><b> Añadir variables de acceso:</b></p>
+						<button type="submit"  class="btn btn-primary" href="#form_acce" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Acceso</button><br><br>
+						<p id="p-regis"><b> Añadir variables de capacidad:</b></p>
+						<button type="submit"  class="btn btn-primary" href="#form_capa" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Capacidad</button><br><br>
+						<p id="p-regis"><b> Añadir variables de calidad:</b></p>
+						<button type="submit"  class="btn btn-primary" href="#form_cali" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Calidad</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<button type="button"  class="btn btn-primary" data-dismiss="modal"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
+					</div>
+				</div>  
+			</div>
+		</div>
+
+
+		<!-- Formulario variables de ubicación -->
+		<div class="modal fade" id="form_ubi" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>	
+						<center><h4 class="modal-title">AÑADIR VARIABLES DE UBICACIÓN</h4></center>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								Latitud:<br>
+								<input type="text" class="form-control" name="Latitud"><br>
+								Longitud:<br>
+								<input type="text" class="form-control" name="Longitud"><br>
+								Comunidad:
+								<input type="text" class="form-control" name="Comunidad"><br>
+							</div>
+						</form> 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
+					</div>
+				</div>  
+			</div>
+		</div>
+
+		<!-- Formulario variables de acceso -->
+		<div class="modal fade" id="form_acce" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>	
+						<center><h4 class="modal-title">AÑADIR VARIABLES DE ACCESO</h4></center>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								% de población con acceso a agua limpia:<br>
+								<input type="text" class="form-control" name="acc_agua"><br>
+								% de población con acceso a sanidad:<br>
+								<input type="text" class="form-control" name="acce_sani"><br>
+								% de población con acceso a irrigación ajustada por recursos de agua per capita:
+								<input type="text" class="form-control" name="acc_irri"><br>
+							</div>
+						</form> 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
+					</div>
+				</div>  
+			</div>
+		</div>
+
+		<!-- Formulario variables de capacidad -->
+		<div class="modal fade" id="form_capa" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>	
+						<center><h4 class="modal-title">AÑADIR VARIABLES DE CAPACIDAD</h4></center>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								Ingreso per capita:<br>
+								<input type="text" class="form-control" name="ingre_per_capi"><br>
+								Tasas de mortalidad debajo de 5:<br>
+								<input type="text" class="form-control" name="tasa_morta"><br>
+								Tasas de inscripción en educación:
+								<input type="text" class="form-control" name="tasa_inscri_edu"><br>
+								Coeficiente Gini de la distribución del ingreso:
+								<input type="text" class="form-control" name="coefi_gini"><br>
+							</div>
+						</form> 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
+					</div>
+				</div>  
+			</div>
+		</div>
+
+		<!-- Formulario variables de calidad -->
+		<div class="modal fade" id="form_cali" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>	
+						<center><h4 class="modal-title">AÑADIR VARIABLES DE CALIDAD</h4></center>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								Oxígeno disuelto (OD):<br>
+								<input type="text" class="form-control" name="va_od"><br>
+								Sólidos  suspendidos totales (SST):<br>
+								<input type="text" class="form-control" name="va_sst"><br>
+								Demanda química de oxígeno (DQO):
+								<input type="text" class="form-control" name="va_dqo"><br>
+								Conductividad eléctrica (C.E):
+								<input type="text" class="form-control" name="va_ce"><br>
+								Nivel de acidez PH:
+								<input type="text" class="form-control" name="va_ph"><br>
+							</div>
+						</form> 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
+					</div>
+				</div>  
+			</div>
+		</div>
+
+
+		<div id="particles-js"></div>
+		<script src="js\particles.js"></script>
+		<script src="js\login.js"></script>
+		<footer id="footer"> Versión beta</footer>
 	</div>	
 </body>
 </html>

@@ -6,8 +6,8 @@
     border: 1px solid #e7e7e7;
     background-color: #f3f3f3;
 }
-
-footer {    
+#footer {    
+    padding: 0;  
     padding: 1em;
     clear: left;
     text-align: center;
@@ -16,6 +16,7 @@ footer {
     border: 1px solid #e7e7e7;
     background-color: #f3f3f3;
 }
+
 #button{
     border: 0;
     padding: 0;
@@ -24,7 +25,7 @@ footer {
     width: 100%;
     margin-bottom: 4px;
     color: white;
-    background: rgb(81,165,250);
+    background: rgb(51, 122, 183);
     -moz-border-radius: 0 3px 3px 0;
     -webkit-border-radius: 0 3px 3px 0;
     border-radius: 0 3px 3px 0;      
@@ -49,7 +50,7 @@ li a:hover:not(.active) {
 
 li a.active {
     color: white;
-    background-color: rgb(81,165,250);
+    background-color: rgb(51, 122, 183);
 }
 
 input[type=text] {
@@ -73,12 +74,16 @@ div.container {
 nav {
     border: 1px solid rgb(81,165,250);
     float: left;
+    width: 232px;
+    height: 845px;
     max-width: 220px;
     margin: 0;
     padding: 1em;
 }
 
 nav ul {
+    list-style-type: none;    
+    height: 100%;
     list-style-type: none;
     padding: 0;
 }
@@ -159,7 +164,6 @@ button{
 }
 
 .form-wrapper input:-moz-placeholder {
-    color: rgb(81,165,250);
     font-weight: normal;
     font-style: italic;
 }
@@ -177,10 +181,10 @@ button{
     border: 0;
     padding: 0;
     cursor: pointer;
-    height: 20px;
+    height: 21px;
     width: 70px;
     color: white;
-    background: rgb(81,165,250);
+    background: rgb(51, 122, 183);
     -moz-border-radius: 0 3px 3px 0;
     -webkit-border-radius: 0 3px 3px 0;
     border-radius: 0 3px 3px 0;      
@@ -188,23 +192,20 @@ button{
 }   
 
 .form-wrapper button:hover{     
-    background: rgb(81,165,250);
 }   
 
 .form-wrapper button:active,
-.form-wrapper button:focus{   
-    background: rgb(81,165,250);    
+.form-wrapper button:focus{     
 }
 
 .form-wrapper button:hover:before{
-    border-right-color: rgb(81,165,250);
 }
 
 .form-wrapper button:focus:before{
-    border-right-color: rgb(81,165,250);
 }    
 
 .form-wrapper button::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
+
