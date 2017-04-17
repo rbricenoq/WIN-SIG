@@ -91,6 +91,7 @@ nav ul {
 nav ul a {
     text-decoration: none;
 }
+
 #map {
     position: relative;
     padding-bottom: 65%;
@@ -109,18 +110,14 @@ input[type="checkbox"]{
    margin: 0 5px 0 0;
 }
 
-input[type="checkbox"]#cbox1:checked{
+input[type="checkbox"]:checked{
    background: solid blue;
 }
 
 </pre>
 
-<pre>input[type="checkbox"]#cbox1:focus{
-   outline: none;
-}
-
-button{
-    float: left;
+<pre>input[type="checkbox"]:focus{
+ outline: none;
 }
 
 .form-wrapper {
@@ -159,8 +156,8 @@ button{
 }
 
 .form-wrapper input::-webkit-input-placeholder {
-   color: #999;
-   font-style: italic;
+ color: #999;
+ font-style: italic;
 }
 
 .form-wrapper input:-moz-placeholder {
