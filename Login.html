@@ -33,7 +33,7 @@
 	<div class="container"> 
 		<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 			<div id="logo_WINSIG">
-				<a href="C:/xampp/htdocs/WIN-SIG/Home.html">
+				<a href="/WIN-SIG/Home.html">
 					<img src="img/LOGO.png" height="50%" width="50%">
 				</a>				
 			</div>
@@ -56,18 +56,6 @@
 								<br><br>
 								<p id="p-regis"><b>¿No tienes cuenta?</b></p><a href="#form_regis" id="fo-regis" data-toggle="modal">Registrarse</a>
 								<br><br>
-
-								<!--
-								<p id="p-regis"><b> Añadir variables de ubicación:</b></p>
-								<button type="submit"  class="btn btn-primary" href="#form_ubi" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Ubicación</button><br><br>
-								<p id="p-regis"><b> Añadir variables de acceso:</b></p>
-								<button type="submit"  class="btn btn-primary" href="#form_acce" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Acceso</button><br><br>
-								<p id="p-regis"><b> Añadir variables de capacidad:</b></p>
-								<button type="submit"  class="btn btn-primary" href="#form_capa" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Capacidad</button><br><br>
-								<p id="p-regis"><b> Añadir variables de calidad:</b></p>
-								<button type="submit"  class="btn btn-primary" href="#form_cali" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Calidad</button>
-
-								-->
 							</div>
 						</div>
 					</form>
@@ -77,7 +65,7 @@
 			</div>
 		</div>
 
-		<!-- Formulario registro de usuario 
+		<!-- Formulario registro de usuario -->
 		<div class="modal fade" id="form_regis" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -108,124 +96,6 @@
 				</div>  
 			</div>
 		</div>
-
-		<!-- Formulario variables de ubicación 
-		<div class="modal fade" id="form_ubi" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE UBICACIÓN</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								Latitud:<br>
-								<input type="text" class="form-control" name="Latitud"><br>
-								Longitud:<br>
-								<input type="text" class="form-control" name="Longitud"><br>
-								Comunidad:
-								<input type="text" class="form-control" name="Comunidad"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
-					</div>
-				</div>  
-			</div>
-		</div>
-
-		<!-- Formulario variables de acceso
-		<div class="modal fade" id="form_acce" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE ACCESO</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								% de población con acceso a agua limpia:<br>
-								<input type="text" class="form-control" name="acc_agua"><br>
-								% de población con acceso a sanidad:<br>
-								<input type="text" class="form-control" name="acce_sani"><br>
-								% de población con acceso a irrigación ajustada por recursos de agua per capita:
-								<input type="text" class="form-control" name="acc_irri"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
-					</div>
-				</div>  
-			</div>
-		</div>
-
-		<!-- Formulario variables de capacidad 
-		<div class="modal fade" id="form_capa" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE CAPACIDAD</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								Ingreso per capita:<br>
-								<input type="text" class="form-control" name="ingre_per_capi"><br>
-								Tasas de mortalidad debajo de 5:<br>
-								<input type="text" class="form-control" name="tasa_morta"><br>
-								Tasas de inscripción en educación:
-								<input type="text" class="form-control" name="tasa_inscri_edu"><br>
-								Coeficiente Gini de la distribución del ingreso:
-								<input type="text" class="form-control" name="coefi_gini"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
-					</div>
-				</div>  
-			</div>
-		</div>
-
-		<!-- Formulario variables de calidad 
-		<div class="modal fade" id="form_cali" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE CALIDAD</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								Oxígeno disuelto (OD):<br>
-								<input type="text" class="form-control" name="va_od"><br>
-								Sólidos  suspendidos totales (SST):<br>
-								<input type="text" class="form-control" name="va_sst"><br>
-								Demanda química de oxígeno (DQO):
-								<input type="text" class="form-control" name="va_dqo"><br>
-								Conductividad eléctrica (C.E):
-								<input type="text" class="form-control" name="va_ce"><br>
-								Nivel de acidez PH:
-								<input type="text" class="form-control" name="va_ph"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
-					</div>
-				</div>  
-			</div>
-		</div> -->
 		<div id="particles-js"></div>
 		<script src="js\particles.js"></script>
 		<script src="js\login.js"></script>
