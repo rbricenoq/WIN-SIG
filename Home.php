@@ -14,17 +14,28 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
+<?php 
+//Creamos la conexión con la BD en postgresql
+$conexion = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root") 
+or die("Ha sucedido un error inexperado en la conexion de la base de datos");
+//desconectamos la base de datos
+$close = pg_close($conexion) 
+or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
+//pg_set_client_encoding($conexion, "utf8");
+?>
+
 <body>
 	<!--Barra Navegacion-->
 	<ul id="bar_nav">
-		<li id="lsita_bar_nav"><a class="active" href="/WIN-SIG/Login.html"> Log in</a></li>
+		<li id="lsita_bar_nav"><a class="active" href="/WIN-SIG/Login.php"> Log in</a></li>
 		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
 	</ul>
 	<!--Contenedor-->
 	<div class="container">
 		<div id="logo_WINSIG">
-			<a href="/WIN-SIG/Home.html">
+			<a href="/WIN-SIG/Home.php">
 				<img src="img/LOGO.png" height="20%" width="20%">
 			</a>
 		</div>

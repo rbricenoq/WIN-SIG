@@ -29,11 +29,22 @@
 	</script>
 	<title>Login</title>
 </head>
+
+<?php 
+	//Creamos la conexión con la BD en postgresql
+$conexion = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root") 
+or die("Ha sucedido un error inexperado en la conexion de la base de datos");
+	//desconectamos la base de datos
+$close = pg_close($conexion) 
+or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
+	//pg_set_client_encoding($conexion, "utf8");
+?>
+
 <body>
 	<div class="container"> 
 		<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 			<div id="logo_WINSIG">
-				<a href="/WIN-SIG/Home.html">
+				<a href="/WIN-SIG/Home.php">
 					<img src="img/LOGO.png" height="50%" width="50%">
 				</a>				
 			</div>
