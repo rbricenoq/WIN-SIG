@@ -50,10 +50,10 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 			</div>
 			<div class="panel panel-default" >
 				<div class="panel-body" >
-					<form name="formulario" id="form" class="form-horizontal" enctype="multipart/form-data" onsubmit= "redireccion()" action="">
+					<form name="formulario" id="form" class="form-horizontal" enctype="multipart/form-data" onsubmit= "redireccion()" action="validar_usuario.php" method="post">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input id="user" type="text" class="form-control" name="user" value="" placeholder="Usuario" required>
+							<input id="user" type="text" class="form-control" name="usuario" value="" placeholder="Usuario" required>
 						</div>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -85,14 +85,18 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 						<center><h4 class="modal-title">REGISTRO WIN-SIG</h4></center>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form name="insert" action="insert.php" method="POST"> 
 							<div class="form-group">
 								Nombre:<br>
-								<input type="text" class="form-control" name="nombres"><br>
+								<input type="text" class="form-control" name="nombre"><br>
 								Apellidos:<br>
-								<input type="text" class="form-control" name="apellidos"><br>
+								<input type="text" class="form-control" name="apellido"><br>
+								Telefono:
+								<input type="text" class="form-control" name="telefono"><br>
 								Correo Electrónico:
 								<input type="text" class="form-control" name="correo" placeholder="ej: winsig2017@correoelec.com"><br>
+								Nombre de Usuario:
+								<input type="text" class="form-control" name="nom_usuario"><br>
 								Contraseña:
 								<input type="password" class="form-control" name="contra1"><br>
 								Confirmar contraseña:
@@ -102,7 +106,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Registrar</button>      
+						<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Registrar</button>     
 					</div>
 				</div>  
 			</div>

@@ -19,6 +19,11 @@
 //Creamos la conexión con la BD en postgresql
 $conexion = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root") 
 or die("Ha sucedido un error inexperado en la conexion de la base de datos");
+
+session_start();
+?>
+<?php
+
 //desconectamos la base de datos
 $close = pg_close($conexion) 
 or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
@@ -32,6 +37,15 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
 	</ul>
+	<?php
+
+	echo 'Bienvenido ';
+	if (isset($_SESSION['username'])) {
+		echo '<b>'.$_SESSION['username'].'</b>.';
+		echo '<p><a href="logout.php">Logout</a></p>';
+
+	}
+	?>
 	<!--Contenedor-->
 	<div class="container">
 		<div id="logo_WINSIG">
