@@ -65,8 +65,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 								<br><br>
 								<a href="indexContrasena.html" id="olvido_contra" data-transition="flow">¿Has olvidado tu contraseña?</a>
 								<br><br>
-								<p id="p-regis"><b>¿No tienes cuenta?</b></p><a href="#form_regis" id="fo-regis" data-toggle="modal">Registrarse</a>
-								<br><br>
+								<p id="p-regis"><b>¿No tienes cuenta?</b></p><a href="#form_regis" id="registro" data-toggle="modal">Registrarse</a>
 							</div>
 						</div>
 					</form>
@@ -85,7 +84,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 						<center><h4 class="modal-title">REGISTRO WIN-SIG</h4></center>
 					</div>
 					<div class="modal-body">
-						<form name="insert" action="insert.php" method="POST"> 
+						<form name="insertar" action="insertar_usuario.php" method="post"> 
 							<div class="form-group">
 								Nombre:<br>
 								<input type="text" class="form-control" name="nombre"><br>
@@ -101,12 +100,19 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 								<input type="password" class="form-control" name="contra1"><br>
 								Confirmar contraseña:
 								<input type="password" class="form-control" name="contra2">
+								<button type="submit"  class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Registrar</button>  
+								<script>
+									$(document).ready(function(){
+										$("#registro").onclick(function(){
+											$("#form_regis").modal();
+										});
+									});
+								</script> 
 							</div>
 						</form> 
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Registrar</button>     
 					</div>
 				</div>  
 			</div>

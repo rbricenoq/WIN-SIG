@@ -11,7 +11,7 @@
 <body>  
 	<h2>Test</h2>  
 	<ul>  
-		<form name="insert" action="" method="POST" >  
+		<form name="insert" action="insertar_usuario.php" method="POST" >  
 			<li>Nombre:</li><li><input type="text" name="nombre" /></li>  
 			<li>Apellido:</li><li><input type="text" name="apellido" /></li>  
 			<li>Telefono:</li><li><input type="text" name="telefono" /></li>  
@@ -25,7 +25,7 @@
 </body>  
 </html>  
 
-<?php  
+<!-- <?php  
 $db = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root"); 
 echo "$_POST[password1] ,";
 echo "$_POST[password2]";
@@ -51,3 +51,4 @@ function insert($nombre, $apellido, $id_tipo_de_usuario, $telefono, $correo, $no
 	';*/
 }
 ?>
+-->
