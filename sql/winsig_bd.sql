@@ -67,8 +67,7 @@ create schema if not exists winsig;
     tel_usuario varchar(45) not null,
     correo_usuario varchar(45) not null,
     nom_usuario varchar(45) not null,
-    password varchar(45) not null,
-    id_fuente_hidrica integer not null);
+    password varchar(45) not null);
 
   alter table winsig.municipio add constraint municipio_departamento_fk foreign key (id_departamento) references winsig.departamento (id_departamento);
   alter table winsig.ubicacion add constraint ubicacion_municipio_fk foreign key (id_municipio) references winsig.municipio (id_municipio);
@@ -81,4 +80,11 @@ create schema if not exists winsig;
   alter table winsig.fuente_hidrica add constraint fuente_hidrica_comunidad_fk foreign key (id_comunidad) references winsig.comunidad (id_comunidad);
 
   alter table winsig.usuario add constraint usuario_tipo_de_usuario_fk foreign key (id_tipo_de_usuario) references winsig.tipo_de_usuario (id_tipo_de_usuario);
-  --alter table winsig.usuario add constraint usuario_fuente_hidrica_fk foreign key (id_fuente_hidrica) references winsig.fuente_hidrica (id_fuente_hidrica);
+  
+  INSERT INTO winsig.tipo_de_usuario (tipo_de_usuario) values ('Administrador');
+  INSERT INTO winsig.tipo_de_usuario (tipo_de_usuario) values ('Recolector');
+  INSERT INTO winsig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Ramiro', 'Briceño', 1, '3208809703', 'rbricenoq@unbosque.edu.co', 'rbricenoq', 'ramiro1234');  
+  INSERT INTO winsig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Sergio', 'Barrero', 1, '3212290107', 'sbarrerof@unbosque.edu.co', 'sbarrerof', 'sergio1234');
+
+
+

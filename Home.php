@@ -50,7 +50,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 	<div class="container">
 		<div id="logo_WINSIG">
 			<a href="/WIN-SIG/Home.php">
-				<img src="img/LOGO.png" height="20%" width="20%">
+				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
 		<!--Filtros-->

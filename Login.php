@@ -85,7 +85,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 						<center><h4 class="modal-title">REGISTRO WIN-SIG</h4></center>
 					</div>
 					<div class="modal-body">
-						<form name="insert" action="insert.php" method="POST"> 
+						<form name="insert" action="insert_usuario.php" method="POST"> 
 							<div class="form-group">
 								Nombre:<br>
 								<input type="text" class="form-control" name="nombre"><br>
