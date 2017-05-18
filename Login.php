@@ -7,26 +7,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script>
-		function redireccion(){
-			var usuario = $('#user').val();
-			var pass = $('#password').val();
-			if(usuario.toLowerCase()==pass.toLowerCase()){
-				if(usuario.toLowerCase() == "a"){
-					$('#form').attr('action', 'indexAdmin.html');
-				}else if(usuario.toLowerCase() == "c" || usuario.toLowerCase() == "cc" || usuario.toLowerCase() == "ccc"){
-					$('#form').attr('action', 'indexConductor.html');
-				}else if(usuario.toLowerCase() == "p" || usuario.toLowerCase() == "pp" || usuario.toLowerCase() == "ppp"){
-					$('#form').attr('action', 'indexPasajero.html');
-				}
-				return true;
 
-			}else{
-				link="";
-				return false;
-			}
-		}
-	</script>
 	<title>Login</title>
 </head>
 
@@ -50,7 +31,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 			</div>
 			<div class="panel panel-default" >
 				<div class="panel-body" >
-					<form name="formulario" id="form" class="form-horizontal" enctype="multipart/form-data" onsubmit= "redireccion()" action="validar_usuario.php" method="post">
+					<form name="formulario" id="form" class="form-horizontal" enctype="multipart/form-data" action="validar_usuario.php" method="post">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 							<input id="user" type="text" class="form-control" name="usuario" value="" placeholder="Usuario" required>
@@ -61,7 +42,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12 controls menu_botones">
-								<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Iniciar Sesión</button>
+								<button type="submit"  class="btn btn-primary "><i class="glyphicon glyphicon-log-in"></i> Iniciar Sesión</button>
 								<br><br>
 								<a href="indexContrasena.html" id="olvido_contra" data-transition="flow">¿Has olvidado tu contraseña?</a>
 								<br><br>
@@ -84,45 +65,37 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 						<center><h4 class="modal-title">REGISTRO WIN-SIG</h4></center>
 					</div>
 					<div class="modal-body">
-<<<<<<< HEAD
 						<form name="insert" action="insert_usuario.php" method="POST"> 
-=======
-						<form name="insertar" action="insertar_usuario.php" method="post"> 
->>>>>>> origin/master
-							<div class="form-group">
-								Nombre:<br>
-								<input type="text" class="form-control" name="nombre"><br>
-								Apellidos:<br>
-								<input type="text" class="form-control" name="apellido"><br>
-								Telefono:
-								<input type="text" class="form-control" name="telefono"><br>
-								Correo Electrónico:
-								<input type="text" class="form-control" name="correo" placeholder="ej: winsig2017@correoelec.com"><br>
-								Nombre de Usuario:
-								<input type="text" class="form-control" name="nom_usuario"><br>
-								Contraseña:
-								<input type="password" class="form-control" name="contra1"><br>
-								Confirmar contraseña:
-								<input type="password" class="form-control" name="contra2">
-								<button type="submit"  class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Registrar</button>  
-								<script>
-									$(document).ready(function(){
-										$("#registro").onclick(function(){
-											$("#form_regis").modal();
+
+							<form name="insertar" action="insertar_usuario.php" method="post"> 
+
+								<div class="form-group">
+									Nombre:<br>
+									Apellidos:<br>
+									Telefono:
+									Correo Electrónico:
+									Nombre de Usuario:
+									Contraseña:
+									Confirmar contraseña:
+									<button type="submit"  class="btn btn-primary  btn-lg center-block"><span class="glyphicon glyphicon-save"></span> Registrar</button>  
+									<script>
+										$(document).ready(function(){
+											$("#registro").onclick(function(){
+												$("#form_regis").modal();
+											});
 										});
-									});
-								</script> 
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					</div>
-				</div>  
+									</script> 
+								</div>
+							</form> 
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						</div>
+					</div>  
+				</div>
 			</div>
-		</div>
-		<div id="particles-js"></div>
-		<script src="js\particles.js"></script>
-		<script src="js\login.js"></script>
-	</body>
-	</html>  
+			<div id="particles-js"></div>
+			<script src="js\particles.js"></script>
+			<script src="js\login.js"></script>
+		</body>
+		</html>  

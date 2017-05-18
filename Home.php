@@ -289,14 +289,14 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 													<h3>FUENTE HÍDRICA</h3>
 													<form>
 														<div class="form-group">
-															<select class="custom-select">
+															<select class="custom-select" required>
 																<option selected>Tipo de fuente hídrica</option>
 																<option value="1">Pozo</option>
 																<option value="2">Jagüey</option>
 																<option value="3">Reservorio</option>
 															</select><br><br>
 															Capacidad:<br>
-															<input type="text" class="form-control" name="capacidad"><br>
+															<input type="text" class="form-control" name="capacidad" pattern="[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 														</div>
 													</form> 
 												</div>
@@ -310,11 +310,11 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 													<form>
 														<div class="form-group">
 															Latitud:<br>
-															<input type="text" class="form-control" name="Latitud"><br>
+															<input type="text" class="form-control" name="Latitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
 															Longitud:<br>
-															<input type="text" class="form-control" name="Longitud"><br>
+															<input type="text" class="form-control" name="Longitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
 															Comunidad:
-															<input type="text" class="form-control" name="Comunidad"><br>
+															<input type="text" class="form-control" name="Comunidad" pattern="[0-9a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required><br>
 														</div>
 													</form> 
 												</div>
@@ -329,15 +329,15 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 													<form>
 														<div class="form-group">
 															Oxígeno disuelto (OD):<br>
-															<input type="text" class="form-control" name="va_od"><br>
+															<input type="text" class="form-control" name="va_od" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 															Sólidos  suspendidos totales (SST):<br>
-															<input type="text" class="form-control" name="va_sst"><br>
+															<input type="text" class="form-control" name="va_sst" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 															Demanda química de oxígeno (DQO):
-															<input type="text" class="form-control" name="va_dqo"><br>
+															<input type="text" class="form-control" name="va_dqo" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 															Conductividad eléctrica (C.E):
-															<input type="text" class="form-control" name="va_ce"><br>
+															<input type="text" class="form-control" name="va_ce" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 															Nivel de acidez PH:
-															<input type="text" class="form-control" name="va_ph"><br>
+															<input type="text" class="form-control" name="va_ph" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 														</div>
 													</form> 
 												</div>
@@ -353,11 +353,11 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 													<form>
 														<div class="form-group">
 															% de población con acceso a agua limpia:<br>
-															<input type="text" class="form-control" name="acc_agua"><br>
+															<input type="text" class="form-control" name="acc_agua" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 															% de población con acceso a sanidad:<br>
-															<input type="text" class="form-control" name="acce_sani"><br>
+															<input type="text" class="form-control" name="acce_sani" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 															% de población con acceso a irrigación ajustada por recursos de agua per capita:
-															<input type="text" class="form-control" name="acc_irri"><br>
+															<input type="text" class="form-control" name="acc_irri" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 														</div>
 													</form> 
 												</div>
@@ -373,11 +373,11 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 													<form>
 														<div class="form-group">
 															Nombre de la comunidad:<br>
-															<input type="text" class="form-control" name="nom_comunidad"><br>
+															<input type="text" class="form-control" name="nom_comunidad" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 															Cantidad de personas:<br>
-															<input type="text" class="form-control" name="cantidad_personas"><br>
+															<input type="text" class="form-control" name="cantidad_personas" pattern="[0-9]+" title="Ingresa un número válido" required><br>
 															Representante:
-															<input type="text" class="form-control" name="representante"><br>
+															<input type="text" class="form-control" name="representante" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 														</div>
 													</form> 
 												</div>
@@ -389,7 +389,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 
 											<div class="tab-pane" role="tabpanel" id="complete">
 												<h3>FORMULARIO COMPLETO</h3>
-												<p>Usted ha llenado todos los campos de los formularios satisfactorioamente</p>
+												<p>Usted ha llenado todos los campos de los formularios satisfactoriamente</p>
 												<ul class="list-inline pull-right">
 													<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
 													<li><button type="button" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>
