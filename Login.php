@@ -71,12 +71,19 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 
 								<div class="form-group">
 									Nombre:<br>
+									<input type="text" class="form-control" name="nombre" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 									Apellidos:<br>
+									<input type="text" class="form-control" name="apellido" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 									Telefono:
+									<input type="text" class="form-control" name="telefono" pattern="[0-9]{7,10}+" title="Ingresa un número válido: 7 dígitos para casa u oficina, 10 dígitos para celulares" required><br>
 									Correo Electrónico:
+									<input type="email" class="form-control" name="email" title="Agregue una dirección de correo electrónico como user@example.com" required><br>
 									Nombre de Usuario:
+									<input type="text" class="form-control" name="nom_usuario"  pattern="[0-9a-zA-ZñÑáéíóúÁÉÍÓÚ@_-&\s]+" title="Ingresa el nombre de usuario con el que serás identificad@" required><br>
 									Contraseña:
+									<input type="password" class="form-control" name="contra1" required><br>
 									Confirmar contraseña:
+									<input type="password" class="form-control" name="contra2" required><br>
 									<button type="submit"  class="btn btn-primary  btn-lg center-block"><span class="glyphicon glyphicon-save"></span> Registrar</button>  
 									<script>
 										$(document).ready(function(){
