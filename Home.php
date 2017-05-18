@@ -5,14 +5,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="shortcut icon" href="WIN-SIG/img/agua.ico" >
-	<link rel="stylesheet" type="text/css" href="css/css_home.css">
+	<link href="css/css_home.css" rel="stylesheet">
 	<link href="css\login.css" rel="stylesheet">
 	<link href="css\index.css" rel="stylesheet">
+	<link href="css\form_var.css" rel="stylesheet">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script type="text/javascript" src="js/map.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz1qiEOcBOfBZJujmvJC7MPe5l-ihNr8&callback=initMap" async defer> </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/map.js"></script>
+	<script src="js/form_var.js"></script>
 </head>
 
 <?php 
@@ -221,139 +223,187 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE UBICACIÓN</h4></center>
+						<center><h4 class="modal-title">AÑADIR NUEVA FUENTE HÍDRICA</h4></center>
 					</div>
-					<div class="modal-body">
-						<p id="p-regis"><b> Añadir variables de ubicación:</b></p>
-						<button type="submit"  class="btn btn-primary" href="#form_ubi" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Ubicación</button><br><br>
-						<p id="p-regis"><b> Añadir variables de acceso:</b></p>
-						<button type="submit"  class="btn btn-primary" href="#form_acce" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Acceso</button><br><br>
-						<p id="p-regis"><b> Añadir variables de capacidad:</b></p>
-						<button type="submit"  class="btn btn-primary" href="#form_capa" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Capacidad</button><br><br>
-						<p id="p-regis"><b> Añadir variables de calidad:</b></p>
-						<button type="submit"  class="btn btn-primary" href="#form_cali" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Calidad</button>
+					<div>
+						<div class="row">
+							<section>
+								<div class="wizard">
+									<div class="wizard-inner">
+										<div class="connecting-line"></div>
+										<ul class="nav nav-tabs" role="tablist">
+
+											<li role="presentation" class="active">
+												<a href="#fuente_hidirica" data-toggle="tab" aria-controls="fuente_hidirica" role="tab" title="Fuente Hídrica">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon glyphicon-tint"></i>
+													</span>
+												</a>
+											</li>
+
+											<li role="presentation" class="disabled">
+												<a href="#ubicación" data-toggle="tab" aria-controls="ubicación" role="tab" title="Ubicación">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon glyphicon-map-marker"></i>
+													</span>
+												</a>
+											</li>
+											<li role="presentation" class="disabled">
+												<a href="#calidad" data-toggle="tab" aria-controls="calidad" role="tab" title="Step 3">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon glyphicon-heart-empty"></i>
+													</span>
+												</a>
+											</li>
+
+											<li role="presentation" class="disabled">
+												<a href="#acceso" data-toggle="tab" aria-controls="acceso" role="tab" title="Step 3">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-home"></i>
+													</span>
+												</a>
+											</li>
+
+											<li role="presentation" class="disabled">
+												<a href="#comunidad" data-toggle="tab" aria-controls="comunidad" role="tab" title="Step 3">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-user"></i>
+													</span>
+												</a>
+											</li>
+
+											<li role="presentation" class="disabled">
+												<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-ok"></i>
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+
+									<form role="form">
+										<div class="tab-content">
+											<div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
+												<div class="modal-body">
+													<h3>FUENTE HÍDRICA</h3>
+													<form>
+														<div class="form-group">
+															<select class="custom-select">
+																<option selected>Tipo de fuente hídrica</option>
+																<option value="1">Pozo</option>
+																<option value="2">Jagüey</option>
+																<option value="3">Reservorio</option>
+															</select><br><br>
+															Capacidad:<br>
+															<input type="text" class="form-control" name="capacidad"><br>
+														</div>
+													</form> 
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="ubicación">
+												<h3>Ubicación</h3>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															Latitud:<br>
+															<input type="text" class="form-control" name="Latitud"><br>
+															Longitud:<br>
+															<input type="text" class="form-control" name="Longitud"><br>
+															Comunidad:
+															<input type="text" class="form-control" name="Comunidad"><br>
+														</div>
+													</form> 
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+													<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="calidad">
+												<h3>CALIDAD</h3>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															Oxígeno disuelto (OD):<br>
+															<input type="text" class="form-control" name="va_od"><br>
+															Sólidos  suspendidos totales (SST):<br>
+															<input type="text" class="form-control" name="va_sst"><br>
+															Demanda química de oxígeno (DQO):
+															<input type="text" class="form-control" name="va_dqo"><br>
+															Conductividad eléctrica (C.E):
+															<input type="text" class="form-control" name="va_ce"><br>
+															Nivel de acidez PH:
+															<input type="text" class="form-control" name="va_ph"><br>
+														</div>
+													</form> 
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+													<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+												</ul>
+											</div>
+
+											<div class="tab-pane" role="tabpanel" id="acceso">
+												<h3>ACCESO</h3>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															% de población con acceso a agua limpia:<br>
+															<input type="text" class="form-control" name="acc_agua"><br>
+															% de población con acceso a sanidad:<br>
+															<input type="text" class="form-control" name="acce_sani"><br>
+															% de población con acceso a irrigación ajustada por recursos de agua per capita:
+															<input type="text" class="form-control" name="acc_irri"><br>
+														</div>
+													</form> 
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+													<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+												</ul>
+											</div>	
+
+											<div class="tab-pane" role="tabpanel" id="comunidad">
+												<h3>Comunidad</h3>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															Nombre de la comunidad:<br>
+															<input type="text" class="form-control" name="nom_comunidad"><br>
+															Cantidad de personas:<br>
+															<input type="text" class="form-control" name="cantidad_personas"><br>
+															Representante:
+															<input type="text" class="form-control" name="representante"><br>
+														</div>
+													</form> 
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+													<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+												</ul>
+											</div>									
+
+											<div class="tab-pane" role="tabpanel" id="complete">
+												<h3>FORMULARIO COMPLETO</h3>
+												<p>Usted ha llenado todos los campos de los formularios satisfactorioamente</p>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+													<li><button type="button" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>
+												</ul>	
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</form>
+								</div>
+							</section>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
-					</div>
-				</div>  
-			</div>
-		</div>
-
-
-		<!-- Formulario variables de ubicación -->
-		<div class="modal fade" id="form_ubi" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE UBICACIÓN</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								Latitud:<br>
-								<input type="text" class="form-control" name="Latitud"><br>
-								Longitud:<br>
-								<input type="text" class="form-control" name="Longitud"><br>
-								Comunidad:
-								<input type="text" class="form-control" name="Comunidad"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
-					</div>
-				</div>  
-			</div>
-		</div>
-
-		<!-- Formulario variables de acceso -->
-		<div class="modal fade" id="form_acce" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE ACCESO</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								% de población con acceso a agua limpia:<br>
-								<input type="text" class="form-control" name="acc_agua"><br>
-								% de población con acceso a sanidad:<br>
-								<input type="text" class="form-control" name="acce_sani"><br>
-								% de población con acceso a irrigación ajustada por recursos de agua per capita:
-								<input type="text" class="form-control" name="acc_irri"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
-					</div>
-				</div>  
-			</div>
-		</div>
-
-		<!-- Formulario variables de capacidad -->
-		<div class="modal fade" id="form_capa" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE CAPACIDAD</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								Ingreso per capita:<br>
-								<input type="text" class="form-control" name="ingre_per_capi"><br>
-								Tasas de mortalidad debajo de 5:<br>
-								<input type="text" class="form-control" name="tasa_morta"><br>
-								Tasas de inscripción en educación:
-								<input type="text" class="form-control" name="tasa_inscri_edu"><br>
-								Coeficiente Gini de la distribución del ingreso:
-								<input type="text" class="form-control" name="coefi_gini"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
-					</div>
-				</div>  
-			</div>
-		</div>
-
-		<!-- Formulario variables de calidad -->
-		<div class="modal fade" id="form_cali" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR VARIABLES DE CALIDAD</h4></center>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								Oxígeno disuelto (OD):<br>
-								<input type="text" class="form-control" name="va_od"><br>
-								Sólidos  suspendidos totales (SST):<br>
-								<input type="text" class="form-control" name="va_sst"><br>
-								Demanda química de oxígeno (DQO):
-								<input type="text" class="form-control" name="va_dqo"><br>
-								Conductividad eléctrica (C.E):
-								<input type="text" class="form-control" name="va_ce"><br>
-								Nivel de acidez PH:
-								<input type="text" class="form-control" name="va_ph"><br>
-							</div>
-						</form> 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Añadir</button>      
 					</div>
 				</div>  
 			</div>
