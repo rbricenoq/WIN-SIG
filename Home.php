@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>WIN-SIG</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link rel="shortcut icon" href="WIN-SIG/img/agua.ico" >
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" >
 	<link href="css/css_home.css" rel="stylesheet">
 	<link href="css\login.css" rel="stylesheet">
 	<link href="css\index.css" rel="stylesheet">
