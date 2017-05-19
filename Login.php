@@ -81,9 +81,9 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 									Nombre de Usuario:
 									<input type="text" class="form-control" name="nom_usuario"  pattern="[0-9a-zA-ZñÑáéíóúÁÉÍÓÚ@_-&\s]+" title="Ingresa el nombre de usuario con el que serás identificad@" required><br>
 									Contraseña:
-									<input type="password" class="form-control" name="contra1" required><br>
+									<input type="password" class="form-control" name="contra1" minlength="8" maxlength="13" title="La contraseña debe tener entre 8 y 13 caracteres" required><br>
 									Confirmar contraseña:
-									<input type="password" class="form-control" name="contra2" required><br>
+									<input type="password" class="form-control" name="contra2" required><br><br>
 									<button type="submit"  class="btn btn-primary  btn-lg center-block"><span class="glyphicon glyphicon-save"></span> Registrar</button>  
 									<script>
 										$(document).ready(function(){
@@ -92,6 +92,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 											});
 										});
 									</script> 
+									<script src="js/comparar_contra.js"></script>
 								</div>
 							</form> 
 						</div>
@@ -100,6 +101,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 						</div>
 					</div>  
 				</div>
+
 			</div>
 			<div id="particles-js"></div>
 			<script src="js\particles.js"></script>
