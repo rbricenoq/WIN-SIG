@@ -23,30 +23,30 @@ create schema if not exists winsig;
 
   create table if not exists winsig.ubicacion (
    id_ubicacion serial primary key not null, 
-   geom GEOMETRY(point, 26913),
+   geom GEOMETRY(point, 4326),
    id_municipio integer);
 
   create table if not exists winsig.calidad (
     id_calidad serial primary key not null,
-    oxigeno_disuelto integer(45) not null,
-    solidos_suspendidos integer(45) not null,
-    demanda_quimica_oxigeno integer(45) not null,
-    conductividad_electrica integer(45) not null,
-    ph integer(45) not null,
-    nitrogeno integer(45) not null,
-    fosforo integer(45) not null);
+    oxigeno_disuelto integer not null,
+    solidos_suspendidos integer not null,
+    demanda_quimica_oxigeno integer not null,
+    conductividad_electrica integer not null,
+    ph integer not null,
+    nitrogeno integer not null,
+    fosforo integer not null);
 
   create table if not exists winsig.accesibilidad (
     id_accesibilidad serial primary key not null,
-    poblacion_acceso_agua_limpia integer(45) not null,
-    poblacion_acceso_sanidad integer(45) not null,
-    poblacion_acceso_agua_per_capita integer(45) not null,
+    poblacion_acceso_agua_limpia integer not null,
+    poblacion_acceso_sanidad integer not null,
+    poblacion_acceso_agua_per_capita integer not null,
     uso_fuente_hidrica varchar(45) not null);
 
   create table if not exists winsig.comunidad (
     id_comunidad serial primary key not null,
     nom_comunidad varchar(45) not null,
-    cantidad_personas integer(45) not null,
+    cantidad_personas integer not null,
     representante varchar(45) not null);
 
   create table if not exists winsig.fuente_hidrica (
@@ -98,12 +98,13 @@ create schema if not exists winsig;
   INSERT INTO winsig.municipio (nom_municipio, id_departamento) VALUES ('Maicao', 1);  
 
   INSERT INTO winsig.capacidad (capacidad_fuente) VALUES (5000);  
-  INSERT INTO winsig.ubicacion (id_municipio, geom) VALUES (1, ST_Geom_FromText('POINT(-72794138888 105058056)',4326));
+  INSERT INTO winsig.ubicacion (id_municipio, geom) VALUES (1, ST_GeomFromText('POINT(-72794138888 105058056)',4326));
   INSERT INTO winsig.calidad (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph, nitrogeno, fosforo ) VALUES (11,12,13,14,15,16,17);
   INSERT INTO winsig.accesibilidad (poblacion_acceso_agua_limpia, poblacion_acceso_sanidad, poblacion_acceso_agua_per_capita, uso_fuente_hidrica) VALUES (15, 25, 30, 'Aseo');   
   INSERT INTO winsig.comunidad (nom_comunidad, cantidad_personas, representante) VALUES ('comunidad-test1', 14, 'Martina');
 
   INSERT INSERT winsig.fuente_hidrica (id_tipo_fuente_hidrica) VALUES (1);
+
 
 
 
