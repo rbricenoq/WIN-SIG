@@ -23,41 +23,40 @@ create schema if not exists winsig;
 
   create table if not exists winsig.ubicacion (
    id_ubicacion serial primary key not null, 
-   latitud varchar(45) not null,
-   longitud varchar(45) not null,
+   geom GEOMETRY(point, 26913),
    id_municipio integer);
 
   create table if not exists winsig.calidad (
     id_calidad serial primary key not null,
-    oxigeno_disuelto varchar(45) not null,
-    solidos_suspendidos varchar(45) not null,
-    demanda_quimica_oxigeno varchar(45) not null,
-    conductividad_electrica varchar(45) not null,
-    ph varchar(45) not null,
-    nitrogeno varchar(45) not null,
-    fosforo varchar(45) not null);
+    oxigeno_disuelto integer(45) not null,
+    solidos_suspendidos integer(45) not null,
+    demanda_quimica_oxigeno integer(45) not null,
+    conductividad_electrica integer(45) not null,
+    ph integer(45) not null,
+    nitrogeno integer(45) not null,
+    fosforo integer(45) not null);
 
   create table if not exists winsig.accesibilidad (
     id_accesibilidad serial primary key not null,
-    poblacion_acceso_agua_limpia varchar(45) not null,
-    poblacion_acceso_sanidad varchar(45) not null,
-    poblacion_acceso_agua_per_capita varchar(45) not null,
+    poblacion_acceso_agua_limpia integer(45) not null,
+    poblacion_acceso_sanidad integer(45) not null,
+    poblacion_acceso_agua_per_capita integer(45) not null,
     uso_fuente_hidrica varchar(45) not null);
 
   create table if not exists winsig.comunidad (
     id_comunidad serial primary key not null,
     nom_comunidad varchar(45) not null,
-    cantidad_personas varchar(45) not null,
+    cantidad_personas integer(45) not null,
     representante varchar(45) not null);
 
   create table if not exists winsig.fuente_hidrica (
     id_fuente_hidrica serial primary key,
     id_tipo_fuente_hidrica integer not null,
-    id_capacidad integer not null,
-    id_ubicacion integer not null,
-    id_calidad integer not null,
-    id_accesibilidad integer not null,
-    id_comunidad integer not null);
+    id_capacidad serial not null,
+    id_ubicacion serial not null,
+    id_calidad serial not null,
+    id_accesibilidad serial not null,
+    id_comunidad serial not null);
 
   create table if not exists winsig.usuario (
     id_usuario serial primary key not null,
@@ -80,11 +79,33 @@ create schema if not exists winsig;
   alter table winsig.fuente_hidrica add constraint fuente_hidrica_comunidad_fk foreign key (id_comunidad) references winsig.comunidad (id_comunidad);
 
   alter table winsig.usuario add constraint usuario_tipo_de_usuario_fk foreign key (id_tipo_de_usuario) references winsig.tipo_de_usuario (id_tipo_de_usuario);
-  
+
+
   INSERT INTO winsig.tipo_de_usuario (tipo_de_usuario) values ('Administrador');
   INSERT INTO winsig.tipo_de_usuario (tipo_de_usuario) values ('Recolector');
+
   INSERT INTO winsig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Ramiro', 'Briceño', 1, '3208809703', 'rbricenoq@unbosque.edu.co', 'rbricenoq', 'ramiro1234');  
   INSERT INTO winsig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Sergio', 'Barrero', 1, '3212290107', 'sbarrerof@unbosque.edu.co', 'sbarrerof', 'sergio1234');
+  INSERT INTO winsig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Daniela', 'Pico', 1, '3166190924', 'dpico@unbosque.edu.co', 'dpico', 'dpico1234');
+
+  INSERT INTO winsig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) values ('Pozo');
+  INSERT INTO winsig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) values ('Jagüey');
+  INSERT INTO winsig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) values ('Reservorio');
+
+  INSERT INTO winsig.departamento (nom_departamento) VALUES ('Guajira');  
+
+  INSERT INTO winsig.municipio (nom_municipio, id_departamento) VALUES ('Manaure', 1);  
+  INSERT INTO winsig.municipio (nom_municipio, id_departamento) VALUES ('Maicao', 1);  
+
+  INSERT INTO winsig.capacidad (capacidad_fuente) VALUES (5000);  
+  INSERT INTO winsig.ubicacion (id_municipio, geom) VALUES (1, ST_Geom_FromText('POINT(-72794138888 105058056)',4326));
+  INSERT INTO winsig.calidad (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph, nitrogeno, fosforo ) VALUES (11,12,13,14,15,16,17);
+  INSERT INTO winsig.accesibilidad (poblacion_acceso_agua_limpia, poblacion_acceso_sanidad, poblacion_acceso_agua_per_capita, uso_fuente_hidrica) VALUES (15, 25, 30, 'Aseo');   
+  INSERT INTO winsig.comunidad (nom_comunidad, cantidad_personas, representante) VALUES ('comunidad-test1', 14, 'Martina');
+
+  INSERT INSERT winsig.fuente_hidrica (id_tipo_fuente_hidrica) VALUES (1);
+
+
 
 
 

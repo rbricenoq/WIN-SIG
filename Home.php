@@ -281,7 +281,6 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 											</li>
 										</ul>
 									</div>
-
 									<form role="form">
 										<div class="tab-content">
 											<div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
@@ -289,12 +288,27 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 													<h3>FUENTE HÍDRICA</h3>
 													<form>
 														<div class="form-group">
-															<select class="custom-select" required>
-																<option selected>Tipo de fuente hídrica</option>
-																<option value="1">Pozo</option>
-																<option value="2">Jagüey</option>
-																<option value="3">Reservorio</option>
-															</select><br><br>
+															Seleccione el tipo de fuente hídrica:        
+															<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFH(this)">  
+																<option value="" selected disabled>Tipo</option> 
+																<?php
+																$fuente = pg_query($conexion, "SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM winsig.tipo_fuente_hidrica");
+																while($row_list=pg_fetch_assoc($fuente)){
+																	?>                              
+																	<option value=<?php echo $row_list["id_tipo_fuente_hidrica"]; ?>>
+																		<?php echo $row_list["nom_tipo_fuente_hidrica"];?>  
+																	</option>
+																	<?php
+																}                        
+																?>
+															</select>
+															<div id="id_fh"></div>
+															<script>
+																function getIdFH(thisValue){
+																	document.getElementById('id_fh').innerHTML=thisValue.options[thisValue.selectedIndex].value;
+																}
+															</script>
+															<br>				
 															Capacidad:<br>
 															<input type="text" class="form-control" name="capacidad" pattern="[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
 														</div>
@@ -313,8 +327,26 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 															<input type="text" class="form-control" name="Latitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
 															Longitud:<br>
 															<input type="text" class="form-control" name="Longitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
-															Comunidad:
-															<input type="text" class="form-control" name="Comunidad" pattern="[0-9a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required><br>
+															Seleccione el municipio:
+															<select name="selectid_municipio" id="s_municipio" class="form-control" onChange="getIdMunicipio(this)">
+																<option value="" selected disabled>Municipio</option> 
+																<?php    
+																$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM winsig.municipio");
+																while($row_list=pg_fetch_assoc($municipio)){
+																	?>
+																	<option value=<?php echo $row_list["id_municipio"]; ?>>
+																		<?php echo $row_list["nom_municipio"]; ?> 
+																	</option>
+																	<?php
+																}
+																?>
+															</select> 
+															<div id="id_municipio"></div>
+															<script>
+																function getIdMunicipio(thisValue){
+																	document.getElementById('id_municipio').innerHTML=thisValue.options[thisValue.selectedIndex].value;
+																}
+															</script> 
 														</div>
 													</form> 
 												</div>
@@ -398,6 +430,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 											<div class="clearfix"></div>
 										</div>
 									</form>
+									
 								</div>
 							</section>
 						</div>

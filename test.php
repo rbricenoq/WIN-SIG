@@ -85,7 +85,7 @@ session_start();
                 </ul>
               </div>
 
-              <form role="form"  method="POST">
+              <form role="form"  action="insertar_datos.php" method="POST">
                 <div class="tab-content">
                   <div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
                     <div class="modal-body">
@@ -108,9 +108,21 @@ session_start();
                           </select>
                           <div id="id_fh"></div>
                           <script>
-                            function getIdFH(thisValue){                              
-                              var  x =  document.getElementById('id_fh').innerHTML=thisValue.options[thisValue.selectedIndex].value;
-                            }
+                            function getIdFH(thisValue){
+                              var x = thisValue.options[thisValue.selectedIndex].value;
+                              document.getElementById("id_fh").innerHTML = x;
+                              ALERT('Llega aqui');
+                              $.ajax({
+                                type: 'POST',
+                                url: 'insertar_datos.php',
+                                data: {fh:"TEST"},
+                                cache: false,
+                                success: function(data){
+                                  $('#results').html(data);
+                                }
+                              }); 
+                              return false;
+                            };
                           </script>
                           <br>        
                           Capacidad:<br>
@@ -148,7 +160,8 @@ session_start();
                           <div id="id_municipio"></div>
                           <script>
                             function getIdMunicipio(thisValue){
-                              document.getElementById('id_municipio').innerHTML=thisValue.options[thisValue.selectedIndex].value;
+                              document.getElementById('id_municipio').innerHTML = thisValue.options[thisValue.selectedIndex].value;
+
                             }
                           </script>
                         </div>
@@ -226,17 +239,15 @@ session_start();
                   <div class="tab-pane" role="tabpanel" id="complete">
                     <h3>FORMULARIO COMPLETO</h3>
                     <p>Usted ha llenado todos los campos de los formularios satisfactoriamente</p>
-                    <ul class="list-inline pull-right">
-                      <li><button type="button" class="btn btn-default prev-step">Atras</button></li>
-                      <li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>                                           
-                    </ul> 
+                    <button type="button" class="btn btn-default prev-step">Atras</button>
+                    <button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button>                                      
                     <script>
                       $(document).ready(function(){
                         $("#registro").onclick(function(){
                           $("#form_insertar_fh").modal();
                         });
                       });
-                    </script>  
+                    </script> 
                   </div>
                   <div class="clearfix"></div>
                 </div>
@@ -251,10 +262,10 @@ session_start();
     </div>  
   </div>
 
-  <?php 
-  //echo "Capacidad" . " " . $_POST[capacidad];
-  echo $id_fuente;
-  ?> 
+<!--   <?php 
+  echo "Capacidad" . " " . $_POST[capacidad];
+  echo ( $_GET['x'] );
+  ?>  -->
 
 
 </body>
