@@ -4,17 +4,24 @@
 	<title>WIN-SIG</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="mobile-web-app-capable" content="yes">
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" >
 	<link href="css/css_home.css" rel="stylesheet">
 	<link href="css\login.css" rel="stylesheet">
 	<link href="css\index.css" rel="stylesheet">
 	<link href="css\form_var.css" rel="stylesheet">	
+	<link rel="stylesheet" href="css/ol.css" />
+	<link rel="stylesheet" href="css/horsey.min.css">
+	<link rel="stylesheet" href="css/ol3-search-layer.min.css">
+	<link rel="stylesheet" href="css/ol3-layerswitcher.css">
+	<link rel="stylesheet" href="css/qgis2web.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz1qiEOcBOfBZJujmvJC7MPe5l-ihNr8&callback=initMap" async defer> </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/map.js"></script>
 	<script src="js/form_var.js"></script>
+
+
 </head>
 
 <?php 
@@ -24,14 +31,6 @@ or die("Ha sucedido un error inexperado en la conexion de la base de datos");
 
 session_start();
 ?>
-<?php
-
-//desconectamos la base de datos
-$close = pg_close($conexion) 
-or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
-//pg_set_client_encoding($conexion, "utf8");
-?>
-
 <body>
 	<!--Barra Navegacion-->
 	<ul id="bar_nav">
@@ -194,7 +193,24 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 		</nav>
 		<!--Mapa-->
 		<section>
-			<div id="map"></div>
+			<div id="map">
+				<div id="popup" class="ol-popup">
+					<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+					<div id="popup-content"></div>
+				</div>
+			</div>
+			<script src="js/qgis2web_expressions.js"></script>
+			<script src="js/polyfills.js"></script>
+			<script src="js/ol.js"></script>
+			<script src="http://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList,URL"></script>
+			<script src="js/horsey.min.js"></script>
+			<script src="js/ol3-search-layer.min.js"></script>
+			<script src="js/ol3-layerswitcher.js"></script>
+			<script src="js/ubicacion0.js"></script>
+			<script src="js/ubicacion0_style.js"></script>
+			<script src="js/layers.js" type="text/javascript"></script> 
+			<script src="js/qgis2web.js"></script>
+			<script src="js/Autolinker.min.js"></script>
 		</section>
 
 		<!-- Pop-up Contacto  -->
@@ -281,7 +297,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 											</li>
 										</ul>
 									</div>
-									<form role="form">
+									<form role="form" name="insertar" action="insertar_datos.php" method="post">
 										<div class="tab-content">
 											<div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
 												<div class="modal-body">
@@ -302,12 +318,6 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 																}                        
 																?>
 															</select>
-															<div id="id_fh"></div>
-															<script>
-																function getIdFH(thisValue){
-																	document.getElementById('id_fh').innerHTML=thisValue.options[thisValue.selectedIndex].value;
-																}
-															</script>
 															<br>				
 															Capacidad:<br>
 															<input type="text" class="form-control" name="capacidad" pattern="[0-9]+(\.[0-9]*)?$" title="Ingresa un número válido" required><br>
@@ -324,9 +334,9 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 													<form>
 														<div class="form-group">
 															Latitud:<br>
-															<input type="text" class="form-control" name="Latitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
+															<input type="text" class="form-control" name="latitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
 															Longitud:<br>
-															<input type="text" class="form-control" name="Longitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
+															<input type="text" class="form-control" name="longitud" pattern="^-?[0-9]+(\.[0-9]*)?$" title="Ingrese con formato de coordenadas" required><br>
 															Seleccione el municipio:
 															<select name="selectid_municipio" id="s_municipio" class="form-control" onChange="getIdMunicipio(this)">
 																<option value="" selected disabled>Municipio</option> 
@@ -341,12 +351,6 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 																}
 																?>
 															</select> 
-															<div id="id_municipio"></div>
-															<script>
-																function getIdMunicipio(thisValue){
-																	document.getElementById('id_municipio').innerHTML=thisValue.options[thisValue.selectedIndex].value;
-																}
-															</script> 
 														</div>
 													</form> 
 												</div>
@@ -424,7 +428,14 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 												<p>Usted ha llenado todos los campos de los formularios satisfactoriamente</p>
 												<ul class="list-inline pull-right">
 													<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
-													<li><button type="button" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>
+													<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>
+													<script>
+														$(document).ready(function(){
+															$("#registro").onclick(function(){
+																$("#form_variables").modal();
+															});
+														});
+													</script>
 												</ul>	
 											</div>
 											<div class="clearfix"></div>
