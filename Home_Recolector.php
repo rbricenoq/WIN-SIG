@@ -63,14 +63,13 @@ session_start();
 				</form>
 			</div>
 			<div>
-				<button type="submit" id="btn_ag_fh"  class="btn btn-primary" href="#variables" data-toggle="modal" style="display: none;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
+				<button type="submit" id="btn_ag_fh"  class="btn btn-primary" href="#variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
 				<br><br>
-				<button type="submit" id="btn_edi_fh"  class="btn btn-primary" style="display: none;><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
+				<button type="submit" id="btn_edi_fh"  class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
 				<br><br>
 				<button type="submit" id="btn_edi_usu"  class="btn btn-primary" style="display: none;"><i class="glyphicon glyphicon glyphicon-edit"></i> Editar Usuarios</button>
 				<br><br>
 			</div>
-
 			<div class="filtros">
 				<div class="panel panel_filtros">
 					<div class="panel_heading">Fuente Hídrica</div>
@@ -232,6 +231,10 @@ session_start();
 				</div>  
 			</div>
 		</div>
+
+		
+	
+
 		<!--Filtros-->
 		
 		<div id="particles-js"></div>

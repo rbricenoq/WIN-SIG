@@ -9,22 +9,39 @@ if(trim($_POST["usuario"]) != "" && trim($_POST["password"]) != ""){
 
   $usuario = strtolower(htmlentities($_POST["usuario"], ENT_QUOTES));
   $password = $_POST["password"];
-  $result = pg_query('SELECT nom_usuario, password FROM winsig.usuario WHERE nom_usuario=\''.$usuario.'\'');
+  $result = pg_query('SELECT nom_usuario, password, id_tipo_de_usuario FROM winsig.usuario WHERE nom_usuario=\''.$usuario.'\'');
   if($row = pg_fetch_array($result)){
     if($row["password"] == $password){
      $_SESSION["username"] = $row['nom_usuario'];
      echo 'Has sido logueado correctamente '.$_SESSION['username'].' <p>';
-     echo '
-     <SCRIPT LANGUAGE="javascript">
-       location.href = "/WIN-SIG/Home.php";
-     </SCRIPT>';
-   }
-   else{
+     if($row["id_tipo_de_usuario"] == 1){
+       echo '
+       <SCRIPT LANGUAGE="javascript">
+        location.href = "/WIN-SIG/Home_Admin.php";
+      </SCRIPT>';
+    }
+    else{
+      echo '
+      <SCRIPT LANGUAGE="javascript">
+        location.href = "/WIN-SIG/Home_Recolector.php";
+      </SCRIPT>';
+    }
+    
+  }
+  else{
     echo 'Password incorrecto';
+    echo '
+      <SCRIPT LANGUAGE="javascript">
+        location.href = "/WIN-SIG/Login.php";
+      </SCRIPT>';
   }
 }
 else{
   echo 'Usuario no existente en la base de datos';
+  echo '
+      <SCRIPT LANGUAGE="javascript">
+        location.href = "/WIN-SIG/Login.php";
+      </SCRIPT>';
 }
 pg_free_result($result);
 }
