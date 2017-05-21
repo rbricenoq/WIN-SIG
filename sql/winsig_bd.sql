@@ -1,3 +1,4 @@
+create database winsig;
 create schema if not exists winsig;
 
   create table if not exists winsig.tipo_de_usuario (

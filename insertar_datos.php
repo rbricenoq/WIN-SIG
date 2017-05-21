@@ -1,39 +1,25 @@
 <?php  
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $db = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root"); 
-echo 'Capacidad: ' . $_POST[capacidad];
-echo "<br>";
-$id_fh = $_POST['selectid_fh'];
-echo "Tipo FH: " . $id_fh;
-echo "<br>";
-echo 'latitud: ' . $_POST[latitud];
-echo "<br>";
-echo 'longitud: ' . $_POST[longitud];
-echo "<br>";
-echo 'selectid_municipio: ' . $_POST[selectid_municipio];
-echo "<br>";
-$id_m = $_POST['selectid_municipio'];
-echo "id Minicipio: " . $id_m;
-echo "<br>";
-echo 'va_od: ' . $_POST[va_od];
-echo "<br>";
-echo 'va_sst: ' . $_POST[va_sst];
-echo "<br>";
-echo 'va_dqo: ' . $_POST[va_dqo];
-echo "<br>";
-echo 'va_ce: ' . $_POST[va_ce];
-echo "<br>";
-echo 'va_ph: ' . $_POST[va_ph];
-echo "<br>";
-echo 'acc_agua: ' . $_POST[acc_agua];
-echo "<br>";
-echo 'acce_sani: ' . $_POST[acce_sani];
-echo "<br>";
-echo 'acc_irri: ' . $_POST[acc_irri];
-echo "<br>";
-echo 'nom_comunidad: ' . $_POST[nom_comunidad];
-echo "<br>";
-echo 'cantidad_personas: ' . $_POST[cantidad_personas];
-echo "<br>";
-echo 'representante: ' . $_POST[representante];
+
+$query1 = "INSERT INTO winsig.capacidad (capacidad_fuente) VALUES ('$_POST[capacidad]')"; 
+$query2 = "INSERT INTO winsig.ubicacion (id_municipio, geom) VALUES ('$_POST[selectid_municipio]', ST_GeomFromText('POINT(-8057243 1319861)',4326))"; 
+
+$query3 = "INSERT INTO winsig.calidad (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph, nitrogeno, fosforo ) VALUES ('$_POST[va_od]','$_POST[va_sst]',$_POST[va_dqo],'$_POST[va_ce]','$_POST[va_ph]', '$_POST[va_nitro]','$_POST[va_p]')"; 
+
+$query4 = "INSERT INTO winsig.accesibilidad (poblacion_acceso_agua_limpia, poblacion_acceso_sanidad, poblacion_acceso_agua_per_capita, uso_fuente_hidrica) VALUES ('$_POST[acc_agua]','$_POST[acce_sani]', '$_POST[acc_irri]','$_POST[uso]')";
+$query5 = "INSERT INTO winsig.comunidad (nom_comunidad, cantidad_personas, representante) VALUES ('$_POST[nom_comunidad]','$_POST[cantidad_personas]','$_POST[representante]')";
+$query6 = "INSERT INTO winsig.fuente_hidrica (id_tipo_fuente_hidrica) VALUES ('$_POST[selectid_fh]')";  
+
+$result = pg_query($query1); 
+$result = pg_query($query2); 
+$result = pg_query($query3); 
+$result = pg_query($query4); 
+$result = pg_query($query5); 
+$result = pg_query($query6); 
+echo '
+<SCRIPT LANGUAGE="javascript">
+	location.href = "/WIN-SIG/Home_Admin.php";
+</SCRIPT>
+';
 ?>
