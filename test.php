@@ -48,37 +48,6 @@
 									</a>
 								</li>
 
-								<!--<li role="presentation" class="disabled">
-									<a href="#ubicación" data-toggle="tab" aria-controls="ubicación" role="tab" title="Ubicación">
-										<span class="round-tab">
-											<i class="glyphicon glyphicon glyphicon-map-marker"></i>
-										</span>
-									</a>
-								</li>
-								<li role="presentation" class="disabled">
-									<a href="#calidad" data-toggle="tab" aria-controls="calidad" role="tab" title="Calidad">
-										<span class="round-tab">
-											<i class="glyphicon glyphicon glyphicon-heart-empty"></i>
-										</span>
-									</a>
-								</li>
-
-								<li role="presentation" class="disabled">
-									<a href="#acceso" data-toggle="tab" aria-controls="acceso" role="tab" title="Acceso">
-										<span class="round-tab">
-											<i class="glyphicon glyphicon-home"></i>
-										</span>
-									</a>
-								</li>
-
-								<li role="presentation" class="disabled">
-									<a href="#comunidad" data-toggle="tab" aria-controls="comunidad" role="tab" title="Comunidad">
-										<span class="round-tab">
-											<i class="glyphicon glyphicon-user"></i>
-										</span>
-									</a>
-								</li>-->
-
 								<li role="presentation" class="disabled">
 									<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="" data-original-title="Complete">
 										<span class="round-tab">
