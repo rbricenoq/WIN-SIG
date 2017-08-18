@@ -116,6 +116,7 @@ nav ul a {
 #map {
     position: relative;
     padding-bottom: 50%;
+    width: 74%
     height: 0;
     overflow: hidden;
 }

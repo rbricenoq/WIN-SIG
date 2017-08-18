@@ -13,7 +13,7 @@ th, td {
 
 #map {
     position: relative;
-    width: 80%;
+    /*width: 80%;*/
     height: 100%;
 }
 
