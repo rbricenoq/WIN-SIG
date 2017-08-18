@@ -39,7 +39,7 @@ var map = new ol.Map({
     });
 
     map.addControl(searchLayer);
-map.getView().fit([-8145477.498466, 989403.842805, -7912311.168033, 1674771.541351], map.getSize());
+map.getView().fit([-8064114.846371, 1316966.151733, -8056822.153629, 1320788.848267], map.getSize());
 
 var NO_POPUP = 0
 var ALL_FIELDS = 1

@@ -12,9 +12,9 @@ th, td {
 }
 
 #map {
-    width: 80%;
-    height: 115%;
     position: relative;
+    width: 80%;
+    height: 100%;
 }
 
 .ol-popup {

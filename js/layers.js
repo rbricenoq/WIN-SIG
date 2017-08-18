@@ -22,9 +22,9 @@ jsonSource_ubicacion0.addFeatures(features_ubicacion0);var lyr_ubicacion0 = new 
 
 lyr_ubicacion0.setVisible(true);
 var layersList = [baseLayer,lyr_ubicacion0];
-lyr_ubicacion0.set('fieldAliases', {'id_ubicacion': 'id_ubicacion', 'id_municipio': 'id_municipio', 'nombre': 'Nombre:', 'tipo': 'Tipo Fuente:', 'Parametros_hidraulicos': 'Parámetros', 'area_superficial': 'Área', });
+lyr_ubicacion0.set('fieldAliases', {'id_ubicacion': 'id_ubicacion', 'id_municipio': 'id_municipio', 'nombre': 'Nombre', 'tipo': 'Tipo de Fuente', 'Parametros_hidraulicos': 'Parámetros Hidráulicos', 'area_superficial': 'Área superficial (Km2)', });
 lyr_ubicacion0.set('fieldImages', {'id_ubicacion': 'Hidden', 'id_municipio': 'Hidden', 'nombre': 'TextEdit', 'tipo': 'TextEdit', 'Parametros_hidraulicos': 'TextEdit', 'area_superficial': 'TextEdit', });
-lyr_ubicacion0.set('fieldLabels', {'nombre': 'no label', 'tipo': 'no label', 'Parametros_hidraulicos': 'no label', 'area_superficial': 'no label', });
+lyr_ubicacion0.set('fieldLabels', {'nombre': 'header label', 'tipo': 'header label', 'Parametros_hidraulicos': 'header label', 'area_superficial': 'header label', });
 lyr_ubicacion0.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';
 });

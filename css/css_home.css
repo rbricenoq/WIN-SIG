@@ -119,7 +119,6 @@ nav ul a {
     height: 0;
     overflow: hidden;
 }
-
 .material-switch > input[type="checkbox"] {
     display: none;   
 }
