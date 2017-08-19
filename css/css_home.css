@@ -114,11 +114,8 @@ nav ul a {
 }
 
 #map {
-    position: relative;
-    padding-bottom: 50%;
-    width: 74%
-    height: 0;
-    overflow: hidden;
+    height: 700px;
+    width: 85%;
 }
 .material-switch > input[type="checkbox"] {
     display: none;   
@@ -201,8 +198,8 @@ nav ul a {
 }
 
 .form-wrapper input::-webkit-input-placeholder {
-   color: #999;
-   font-style: italic;
+ color: #999;
+ font-style: italic;
 }
 
 .form-wrapper input:-moz-placeholder {

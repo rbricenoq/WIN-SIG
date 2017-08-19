@@ -8,20 +8,12 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" >
 	<link href="css/css_home.css" rel="stylesheet">
 	<link href="css\login.css" rel="stylesheet">
-	<link href="css\index.css" rel="stylesheet">
 	<link href="css\form_var.css" rel="stylesheet">	
-	<link rel="stylesheet" href="css/ol.css" />
-	<link rel="stylesheet" href="css/horsey.min.css">
-	<link rel="stylesheet" href="css/ol3-search-layer.min.css">
-	<link rel="stylesheet" href="css/ol3-layerswitcher.css">
-	<link rel="stylesheet" href="css/qgis2web.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz1qiEOcBOfBZJujmvJC7MPe5l-ihNr8&callback=initMap" async defer> </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="js/form_var.js"></script>
-
-
+	<script src="js/google_Map.js"></script>
 </head>
 
 <?php 
@@ -50,7 +42,7 @@ session_start();
 	<!--Contenedor-->
 	<div class="container">
 		<div id="logo_WINSIG">
-			<a href="/WIN-SIG/Home.php">
+			<a href="/WIN-SIG/Home_Admin.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
@@ -189,24 +181,8 @@ session_start();
 		</nav>
 		<!--Mapa-->
 		<section>
-			<div id="map">
-				<div id="popup" class="ol-popup">
-					<a href="#" id="popup-closer" class="ol-popup-closer"></a>
-					<div id="popup-content"></div>
-				</div>
-			</div>
-			<script src="js/qgis2web_expressions.js"></script>
-			<script src="js/polyfills.js"></script>
-			<script src="js/ol.js"></script>
-			<script src="http://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList,URL"></script>
-			<script src="js/horsey.min.js"></script>
-			<script src="js/ol3-search-layer.min.js"></script>
-			<script src="js/ol3-layerswitcher.js"></script>
-			<script src="js/ubicacion0.js"></script>
-			<script src="js/ubicacion0_style.js"></script>
-			<script src="js/layers.js" type="text/javascript"></script> 
-			<script src="js/qgis2web.js"></script>
-			<script src="js/Autolinker.min.js"></script>
+			<div id="map"></div>
+			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
 		</section>
 
 		<!-- Pop-up Contacto  -->
