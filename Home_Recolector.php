@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>WIN-SIG</title>
+	<title>WIN-TIG</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="mobile-web-app-capable" content="yes">
@@ -18,32 +18,30 @@
 </head>
 
 <?php 
-//Creamos la conexión con la BD en postgresql
-$conexion = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root") 
-or die("Ha sucedido un error inexperado en la conexion de la base de datos");
+	//Creamos la conexión con la BD en postgresql
+	$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+	or die("Ha sucedido un error inexperado en la conexion de la base de datos");
 
-session_start();
-?>
-<body>
-	<!--Barra Navegacion-->
-	<ul id="bar_nav">
-		<li id="lsita_bar_nav"><a class="active" href="/WIN-SIG/Login.php"> Log in</a></li>
-		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
-	</ul>
-	<?php
-
-	echo 'Bienvenido ';
-	if (isset($_SESSION['username'])) {
-		echo '<b>'.$_SESSION['username'].'</b>.';
-		echo '<p><a href="logout.php">Logout</a></p>';
-
+	session_start();
+	?>
+	<body>
+		<!--Barra Navegacion-->
+		<ul id="bar_nav">
+			<?php
+			if (isset($_SESSION['username'])) {
+				?>
+			<li id="lsita_bar_nav"><a class="active"> <?php echo $_SESSION['username']	?></a></li>
+			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
+			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
+			<li id="lsita_bar_nav"><a href="logout.php" style="align-content: right">Logout</a></li>
+		</ul>
+		<?php
 	}
 	?>
 	<!--Contenedor-->
 	<div class="container">
-		<div id="logo_WINSIG">
-			<a href="/WIN-SIG/Home_Recolector.php">
+		<div id="logo_wintig">
+			<a href="/WIN-TIG/Home_Recolector.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
@@ -284,7 +282,7 @@ session_start();
 											<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFH(this)">  
 												<option value="" selected disabled>Tipo</option> 
 												<?php
-												$fuente = pg_query($conexion, "SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM winsig.tipo_fuente_hidrica");
+												$fuente = pg_query($conexion, "SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM wintig.tipo_fuente_hidrica");
 												while($row_list=pg_fetch_assoc($fuente)){
 													?>                              
 													<option value=<?php echo $row_list["id_tipo_fuente_hidrica"]; ?>>
@@ -309,7 +307,7 @@ session_start();
 											<select name="selectid_municipio" id="s_municipio" class="form-control" onChange="getIdMunicipio(this)">
 												<option value="" selected disabled>Municipio</option> 
 												<?php    
-												$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM winsig.municipio");
+												$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
 												while($row_list=pg_fetch_assoc($municipio)){
 													?>
 													<option value=<?php echo $row_list["id_municipio"]; ?>>

@@ -15,11 +15,11 @@
     </tr> 
 
     <?php
-    $conexion = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root") 
+    $conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
     or die("Ha sucedido un error inexperado en la conexion de la base de datos");
 
     session_start();
-    $sql = "SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM winsig.usuario where id_tipo_de_usuario = 2";
+    $sql = "SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM wintig.usuario where id_tipo_de_usuario = 2";
     $result = pg_query($conexion, $sql);
     if (!$result) {
       echo "An error occurred.\n";

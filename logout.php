@@ -3,5 +3,5 @@ session_start();
 session_destroy();
 ?>
 <SCRIPT LANGUAGE="javascript">
-	location.href = "/WIN-SIG/Home.php";
+	location.href = "/WIN-TIG/Home.php";
 </SCRIPT>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>WIN-SIG</title>
+	<title>WIN-TIG</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="mobile-web-app-capable" content="yes">
@@ -16,33 +16,32 @@
 	<script src="js/google_Map.js"></script>
 </head>
 
-<?php 
-//Creamos la conexión con la BD en postgresql
-$conexion = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root") 
-or die("Ha sucedido un error inexperado en la conexion de la base de datos");
+	<?php 
+	//Creamos la conexión con la BD en postgresql
+	$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+	or die("Ha sucedido un error inexperado en la conexion de la base de datos");
 
-session_start();
-?>
-<body>
-	<!--Barra Navegacion-->
-	<ul id="bar_nav">
-		<li id="lsita_bar_nav"><a class="active" href="/WIN-SIG/Login.php"> Log in</a></li>
-		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
-	</ul>
-	<?php
-
-	echo 'Bienvenido ';
-	if (isset($_SESSION['username'])) {
-		echo '<b>'.$_SESSION['username'].'</b>.';
-		echo '<p><a href="logout.php">Logout</a></p>';
-
+	session_start();
+	?>
+	<body>
+		<!--Barra Navegacion-->
+		<ul id="bar_nav">
+			<?php
+			if (isset($_SESSION['username'])) {
+				?>
+			<li id="lsita_bar_nav"><a class="active" > <?php echo $_SESSION['username']?></a></li>
+			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
+			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
+			<li id="lsita_bar_nav"><a href="logout.php" style="align-content: right">Logout</a></li>
+		</ul>
+		<?php
 	}
 	?>
+
 	<!--Contenedor-->
 	<div class="container">
-		<div id="logo_WINSIG">
-			<a href="/WIN-SIG/Home_Admin.php">
+		<div id="logo_wintig">
+			<a href="/WIN-TIG/Home_Admin.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
@@ -225,7 +224,7 @@ session_start();
 							</tr> 
 
 							<?php
-							$result = pg_query($conexion, "SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM winsig.usuario where id_tipo_de_usuario = 2");
+							$result = pg_query($conexion, "SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM wintig.usuario where id_tipo_de_usuario = 2");
 							if ($result->num_rows > 0) {
 								while($registro = $result->pg_fetch_assoc()) 
 								{      

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>WIN-SIG</title>
+	<title>WIN-TIG</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="mobile-web-app-capable" content="yes">
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" >
 	<link href="css/css_home.css" rel="stylesheet">
-	<link href="css\login.css" rel="stylesheet">
-	<link href="css\form_var.css" rel="stylesheet">	
+	<link href="css/login.css" rel="stylesheet">
+	<link href="css/form_var.css" rel="stylesheet">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,7 +17,7 @@
 
 <?php 
 //Creamos la conexión con la BD en postgresql
-$conexion = pg_connect("host=localhost port=5432 dbname=winsig user=postgres password=root") 
+$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
 or die("Ha sucedido un error inexperado en la conexion de la base de datos");
 
 session_start();
@@ -25,23 +25,23 @@ session_start();
 <body>
 	<!--Barra Navegacion-->
 	<ul id="bar_nav">
-		<li id="lsita_bar_nav"><a class="active" href="/WIN-SIG/Login.php"> Log in</a></li>
+		<li id="lsita_bar_nav"><a class="active" href="/WIN-TIG/Login.php"> <?php echo 'Log in '?></a></li>
+		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
 	</ul>
-	<?php
 
-	echo 'Bienvenido ';
+	<?php
 	if (isset($_SESSION['username'])) {
 		echo '<b>'.$_SESSION['username'].'</b>.';
 		echo '<p><a href="logout.php">Logout</a></p>';
-
 	}
 	?>
+
 	<!--Contenedor-->
 	<div class="container">
-		<div id="logo_WINSIG">
-			<a href="/WIN-SIG/Home.php">
+		<div id="logo_wintig">
+			<a href="/WIN-TIG/Home.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
@@ -209,7 +209,7 @@ session_start();
 			</div>
 		</div>
 		<!--Filtros-->
-		
+
 		<div id="particles-js"></div>
 		<script src="js\particles.js"></script>
 		<script src="js\login.js"></script>
