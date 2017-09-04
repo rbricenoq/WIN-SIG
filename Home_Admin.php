@@ -16,19 +16,19 @@
 	<script src="js/google_Map.js"></script>
 </head>
 
-	<?php 
+<?php 
 	//Creamos la conexión con la BD en postgresql
-	$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-	or die("Ha sucedido un error inexperado en la conexion de la base de datos");
+$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+session_start();
 
-	session_start();
-	?>
-	<body>
-		<!--Barra Navegacion-->
-		<ul id="bar_nav">
-			<?php
-			if (isset($_SESSION['username'])) {
-				?>
+?>
+<body>
+	<!--Barra Navegacion-->
+	<ul id="bar_nav">
+		<?php
+		if (isset($_SESSION['username'])) {
+			?>
 			<li id="lsita_bar_nav"><a class="active" > <?php echo $_SESSION['username']?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
@@ -213,48 +213,57 @@
 						<center><h4 class="modal-title">EDITAR USUARIOS</h4></center>
 					</div>
 					<div class="modal-body" >
-						<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+						<table width="100%" border="0" text-align="center" cellpadding="1" cellspacing="1">
 							<tr>
-								<td width="100" align="center"><strong>Nombre</strong></td>
-								<td width="100" align="center"><strong>Apellido</strong></td>
-								<td width="100" align="center"><strong>Telefono</strong></td>
-								<td width="100" align="center"><strong>Correo</strong></td>
-								<td width="100" align="center"><strong>Usuario</strong></td>
+								<td style="text-align: center;"><strong>Acción</strong></td>
+								<td style="text-align: center;"><strong>Nombre</strong></td>
+								<td style="text-align: center;"><strong>Apellido</strong></td>
+								<td style="text-align: center;"><strong>Telefono</strong></td>
+								<td width="30%" style="text-align: center;"><strong>Correo</strong></td>
+								<td style="text-align: center;"><strong>Usuario</strong></td>
 								<br>
 							</tr> 
-
 							<?php
-							$result = pg_query($conexion, "SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM wintig.usuario where id_tipo_de_usuario = 2");
-							if ($result->num_rows > 0) {
-								while($registro = $result->pg_fetch_assoc()) 
-								{      
-									?> 
-									<tr>
-										<td class="" align="center"><?=$registro['nombre']?></td>
-										<td class="" align="center"><?=$registro['apellido']?></td>
-										<td class="" align="center"><?=$registro['telefono']?></td>
-										<td class="" align="center"><?=$registro['correo']?></td>
-										<td class="" align="center"><?=$registro['usuario']?></td>
-									</tr> 
+							$conn = pg_Connect('host=localhost port=5432 dbname=wintig user=postgres password=root');
+							if (!$conn) {echo 'Ha ocurrido un erro de conexión con la base de datos.\n'; exit;}
+							$result = pg_Exec($conn,'SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM wintig.usuario where id_tipo_de_usuario = 2 ORDER BY nombre');
 
-									<?php 
-       } //fin blucle
-   }
-   ?>
-</table>
-</div>
-<div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
-</div>
-</div>  
-</div>
-</div>
+							if (!$result) {echo 'Erro en la consulta.\n'; exit;}
+							$num_result = pg_NumRows($result);
+							$i = 0;
+							while ($i < $num_result) {
+								$nom[$i] = pg_Result($result, $i, 'nombre');
+								$apellido[$i] = pg_Result($result, $i, 'apellido');
+								$telefono[$i] = pg_Result($result, $i, 'tel_usuario');
+								$correo[$i] = pg_Result($result, $i, 'correo_usuario');
+								$usuario[$i] = pg_Result($result, $i, 'nom_usuario');
+								echo '<TR><TD style="text-align: center;"><A href=editform.php?>[Editar]</A>';
+								echo '<A href=delete.php?>[Borrar]</A></TD>';
+								echo '<TD style="text-align: center;">'.$nom[$i].'</TD>';
+								echo '<TD style="text-align: center;">'.$apellido[$i].'</TD>';
+								echo '<TD style="text-align: center;">'.$telefono[$i].'</TD>';
+								echo '<TD style="text-align: center;">'.$correo[$i].'</TD>';
+								echo '<TD style="text-align: center;">'.$usuario[$i].'</TD></TR>';
+								$i++;
+							}
+							pg_Close($conn);
 
-</div>  
-<div id="particles-js"></div>
-<script src="js\particles.js"></script>
-<script src="js\login.js"></script>
-<footer id="footer"> Versión beta</footer>
+							?>
+
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+					</div>
+				</div>  
+			</div>
+		</div>
+
+	</div>  
+	<div id="particles-js"></div>
+	<script src="js\particles.js"></script>
+	<script src="js\login.js"></script>
+	<footer id="footer"> Versión beta</footer>
 </div>	
 </body>
 </html>
