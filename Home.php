@@ -40,7 +40,7 @@ session_start();
 
 	<!--Contenedor-->
 	<div class="container">
-		<div id="logo_wintig">
+		<div id="logo_wintig" style="text-align: center;">
 			<a href="/WIN-TIG/Home.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
