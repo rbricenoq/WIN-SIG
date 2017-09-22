@@ -25,7 +25,7 @@ session_start();
 <body>
 	<!--Barra Navegacion-->
 	<ul id="bar_nav">
-		<li id="lsita_bar_nav"><a class="active" href="/WIN-TIG/Login.php"> <?php echo 'Log in '?></a></li>
+		<li id="lsita_bar_nav"><a class="active" href="/WIN-TIG/login.php"> <?php echo 'Log in '?></a></li>
 		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
@@ -41,7 +41,7 @@ session_start();
 	<!--Contenedor-->
 	<div class="container">
 		<div id="logo_wintig" style="text-align: center;">
-			<a href="/WIN-TIG/Home.php">
+			<a href="/WIN-TIG/home.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>

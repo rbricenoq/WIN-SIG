@@ -1,0 +1,22 @@
+<?php
+// check request
+if(isset($_POST['id_usuario']) && isset($_POST['id_usuario']) != "")
+{
+    // include Database connection file
+	include("db_connection.php");
+	error_reporting(E_ERROR | E_WARNING | E_PARSE);
+	$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
+	if (!$conexion) {
+		echo 'Ha ocurrido un error de conexión con la base de datos.';
+		exit;
+	}
+
+
+    // get user id
+	$user_id = $_POST['id_usuario'];
+
+    // delete User
+	$query = "DELETE FROM wintig.usuario WHERE id_usuario = '$user_id'";
+	pg_query($conexion,$query);
+}
+?>

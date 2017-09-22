@@ -19,7 +19,7 @@ $result = pg_query($query4);
 $result = pg_query($query5); 
 echo '
 <SCRIPT LANGUAGE="javascript">
-	location.href = "/WIN-SIG/Home_Recolector.php";
+	location.href = "/WIN-SIG/home_recolector.php";
 </SCRIPT>
 ';
 ?>

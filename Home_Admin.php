@@ -10,6 +10,7 @@
 	<link href="css\login.css" rel="stylesheet">
 	<link href="css\form_var.css" rel="stylesheet">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="js/form_var.js"></script>
@@ -41,7 +42,7 @@ session_start();
 	<!--Contenedor-->
 	<div class="container">
 		<div id="logo_wintig" style="text-align: center;">
-			<a href="/WIN-TIG/Home_Admin.php">
+			<a href="/WIN-TIG/home_admin.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
@@ -54,7 +55,7 @@ session_start();
 				</form>
 			</div>
 			<div>
-				<button type="submit" id="btn_edi_usu" class="btn btn-primary" href="#editar_usuarios" data-toggle="modal" ><i class="glyphicon glyphicon glyphicon-edit"></i> Editar Usuarios</button>
+				<button type="submit" id="btn_edi_usu" class="btn btn-primary" href="#editar_usuarios" data-toggle="modal" ><i class="glyphicon glyphicon-edit"></i> Editar Usuarios</button>
 				<br><br>
 			</div>
 			<!-- Filtros -->
@@ -207,62 +208,97 @@ session_start();
 		<!-- Pop.up Editar Usuarios -->
 		<div class="modal fade" id="editar_usuarios" role="dialog">
 			<div class="modal-dialog">
-				<div class="modal-content">
+				<div class="modal-content" style="width: 150%; margin: inherit;">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">EDITAR USUARIOS</h4></center>
+						<center><h3 class="modal-title">EDITAR USUARIOS</h3></center>
 					</div>
 					<div class="modal-body" >
-						<table width="100%" border="0" text-align="center" cellpadding="1" cellspacing="1">
-							<tr>
-								<td style="text-align: center;"><strong>Acción</strong></td>
-								<td style="text-align: center;"><strong>Nombre</strong></td>
-								<td style="text-align: center;"><strong>Apellido</strong></td>
-								<td style="text-align: center;"><strong>Telefono</strong></td>
-								<td width="30%" style="text-align: center;"><strong>Correo</strong></td>
-								<td style="text-align: center;"><strong>Usuario</strong></td>
-								<br>
-							</tr> 
-							<?php
-							$conn = pg_Connect('host=localhost port=5432 dbname=wintig user=postgres password=root');
-							if (!$conn) {echo 'Ha ocurrido un erro de conexión con la base de datos.\n'; exit;}
-							$result = pg_Exec($conn,'SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM wintig.usuario where id_tipo_de_usuario = 2 ORDER BY nombre');
+						<div class="container">	
+							<div class="row">
+								<div class="col-md-12">
+									<h3>Registros:</h3>
+									<div class="records_content"></div>
+								</div>
+							</div>
+						</div>
 
-							if (!$result) {echo 'Erro en la consulta.\n'; exit;}
-							$num_result = pg_NumRows($result);
-							$i = 0;
-							while ($i < $num_result) {
-								$nom[$i] = pg_Result($result, $i, 'nombre');
-								$apellido[$i] = pg_Result($result, $i, 'apellido');
-								$telefono[$i] = pg_Result($result, $i, 'tel_usuario');
-								$correo[$i] = pg_Result($result, $i, 'correo_usuario');
-								$usuario[$i] = pg_Result($result, $i, 'nom_usuario');
-								echo '<TR><TD style="text-align: center;"><A href=editform.php?>[Editar]</A>';
-								echo '<A href=delete.php?>[Borrar]</A></TD>';
-								echo '<TD style="text-align: center;">'.$nom[$i].'</TD>';
-								echo '<TD style="text-align: center;">'.$apellido[$i].'</TD>';
-								echo '<TD style="text-align: center;">'.$telefono[$i].'</TD>';
-								echo '<TD style="text-align: center;">'.$correo[$i].'</TD>';
-								echo '<TD style="text-align: center;">'.$usuario[$i].'</TD></TR>';
-								$i++;
-							}
-							pg_Close($conn);
+						<!-- Modal - Update User details -->
+						<div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="myModalLabel">Actualizar información del Usuario</h4>
+									</div>
+									<div class="modal-body">
 
-							?>
+										<div class="form-group">
+											<label for="update_nombre">Nombre</label>
+											<input type="text" id="update_nombre" placeholder="" class="form-control"/>
+										</div>
 
-						</table>
+										<div class="form-group">
+											<label for="update_apellido">Apellido</label>
+											<input type="text" id="update_apellido" placeholder="" class="form-control"/>
+										</div>
+
+										<div class="form-group">
+											<label for="update_tel_usuario">Telefono</label>
+											<input type="text" id="update_tel_usuario" placeholder="" class="form-control"/>
+										</div>
+
+										<div class="form-group">
+											<label for="update_correo_usuario">Correo</label>
+											<input type="text" id="update_correo_usuario" placeholder="" class="form-control"/>
+										</div>
+
+										<div class="form-group">
+											<label for="update_nom_usuario">Usuario</label>
+											<input type="text" id="update_nom_usuario" placeholder="" class="form-control"/>
+										</div>
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+										<button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Aceptar</button>
+										<input type="hidden" id="hidden_user_id">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
 					</div>
 				</div>  
 			</div>
-		</div>
+		</div>		
+
+		<!-- Pop.up Borar Usuarios -->
+
+		
 
 	</div>  
 	<div id="particles-js"></div>
 	<script src="js\particles.js"></script>
 	<script src="js\login.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<!-- Bootstrap JS file -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- Custom JS file -->
+	<script type="text/javascript" src="js/script.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-75591362-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
 	<footer id="footer"> Versión beta</footer>
 </div>	
 </body>
