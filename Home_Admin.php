@@ -221,52 +221,7 @@ session_start();
 									<div class="records_content"></div>
 								</div>
 							</div>
-						</div>
-
-						<!-- Modal - Update User details -->
-						<div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title" id="myModalLabel">Actualizar información del Usuario</h4>
-									</div>
-									<div class="modal-body">
-
-										<div class="form-group">
-											<label for="update_nombre">Nombre</label>
-											<input type="text" id="update_nombre" placeholder="" class="form-control"/>
-										</div>
-
-										<div class="form-group">
-											<label for="update_apellido">Apellido</label>
-											<input type="text" id="update_apellido" placeholder="" class="form-control"/>
-										</div>
-
-										<div class="form-group">
-											<label for="update_tel_usuario">Telefono</label>
-											<input type="text" id="update_tel_usuario" placeholder="" class="form-control"/>
-										</div>
-
-										<div class="form-group">
-											<label for="update_correo_usuario">Correo</label>
-											<input type="text" id="update_correo_usuario" placeholder="" class="form-control"/>
-										</div>
-
-										<div class="form-group">
-											<label for="update_nom_usuario">Usuario</label>
-											<input type="text" id="update_nom_usuario" placeholder="" class="form-control"/>
-										</div>
-
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Aceptar</button>
-										<input type="hidden" id="hidden_user_id">
-									</div>
-								</div>
-							</div>
-						</div>
+						</div>					
 
 						
 					</div>
@@ -278,6 +233,51 @@ session_start();
 		</div>		
 
 		<!-- Pop.up Borar Usuarios -->
+
+		<!-- Modal - Update User details -->
+		<div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Actualizar información del Usuario</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="update_nombre">Nombre</label>
+							<input type="text" id="update_nombre" placeholder="" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<label for="update_apellido">Apellido</label>
+							<input type="text" id="update_apellido" placeholder="" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<label for="update_tel_usuario">Telefono</label>
+							<input type="text" id="update_tel_usuario" placeholder="" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<label for="update_correo_usuario">Correo</label>
+							<input type="text" id="update_correo_usuario" placeholder="" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<label for="update_nom_usuario">Usuario</label>
+							<input type="text" id="update_nom_usuario" placeholder="" class="form-control"/>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Aceptar</button>
+						<input type="hidden" id="hidden_user_id">
+					</div>
+				</div>
+			</div>
+		</div>
 
 		
 

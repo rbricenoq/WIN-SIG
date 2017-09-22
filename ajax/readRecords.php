@@ -35,7 +35,7 @@ if(pg_Num_Rows($result) > 0){
 	while($row = pg_fetch_assoc($result)){
 		$data .= '<tr>				
 		<td>'.$row['id_usuario'].'</td>
-		<td>'.$row['nom_usuario'].'</td>
+		<td>'.$row['nombre'].'</td>
 		<td>'.$row['apellido'].'</td>
 		<td>'.$row['tel_usuario'].'</td>
 		<td>'.$row['correo_usuario'].'</td>
