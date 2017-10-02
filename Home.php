@@ -23,14 +23,14 @@ or die("Ha sucedido un error inesperado en la conexion de la base de datos");
 session_start();
 ?>
 <body>
-	<!--Barra Navegacion-->
-	<ul id="bar_nav">
-		<li id="lsita_bar_nav"><a class="active" href="/WIN-TIG/login.php"> <?php echo 'Log in '?></a></li>
-		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-		<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-		<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
-	</ul>
-
+	<!-- Barra Navegación -->
+	<div>
+		<ul id="bar_nav">
+			<li id="lsita_bar_nav"><a class="active" href="/WIN-TIG/login.php"> <?php echo 'Log in '?></a></li>
+			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
+			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
+		</ul>	
+	</div>
 	<?php
 	if (isset($_SESSION['username'])) {
 		echo '<b>'.$_SESSION['username'].'</b>.';
@@ -38,7 +38,27 @@ session_start();
 	}
 	?>
 
-	<!--Contenedor-->
+	<!-- Pop-up Contacto  -->
+	<div class="modal fade" id="contacto" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h4 class="modal-title">CONTACTO</h4></center>
+				</div>
+				<div class="modal-body" >
+					<h4 id="p-regis"> Rbricenoq@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> Sbarrerof@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> Dpico@unbosque.edu.co</h4><br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+				</div>
+			</div>  
+		</div>
+	</div>
+
+	<!-- Contenedir Filtro y Mapa-->
 	<div class="container">
 		<div id="logo_wintig" style="text-align: center;">
 			<a href="/WIN-TIG/home.php">
@@ -53,14 +73,7 @@ session_start();
 					<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 				</form>
 			</div>
-			<div>
-				<button type="submit" id="btn_ag_fh"  class="btn btn-primary" href="#variables" data-toggle="modal" style="display: none;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
-				<br><br>
-				<button type="submit" id="btn_edi_fh"  class="btn btn-primary" style="display: none;><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
-				<br><br>
-				<button type="submit" id="btn_edi_usu"  class="btn btn-primary" style="display: none;"><i class="glyphicon glyphicon glyphicon-edit"></i> Editar Usuarios</button>
-				<br><br>
-			</div>
+
 			<!-- Filtros -->
 
 			<div class="filtros">
@@ -181,39 +194,21 @@ session_start();
 						</li>
 					</ul>
 				</div>            
-			</div>
+			</div>			
 		</nav>
+
 		<!--Mapa-->
 		<section>
 			<div id="map"></div>
 			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
 		</section>
+	</div>
 
-		<!-- Pop-up Contacto  -->
-		<div class="modal fade" id="contacto" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">CONTACTO</h4></center>
-					</div>
-					<div class="modal-body" >
-						<h4 id="p-regis"> Rbricenoq@unbosque.edu.co</h4><br>
-						<h4 id="p-regis"> Sbarrerof@unbosque.edu.co</h4><br>
-						<h4 id="p-regis"> Dpico@unbosque.edu.co</h4><br>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
-					</div>
-				</div>  
-			</div>
-		</div>
-		<!--Filtros-->
+	<div id="particles-js"></div>
+	<script src="js\particles.js"></script>
+	<script src="js\login.js"></script>
 
-		<div id="particles-js"></div>
-		<script src="js\particles.js"></script>
-		<script src="js\login.js"></script>
-	</div>	
-	<footer id="footer"> Versión beta</footer>
+	<div id="footer"> Versión beta</div>
+
 </body>
 </html>

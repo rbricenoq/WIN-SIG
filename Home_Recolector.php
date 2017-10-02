@@ -19,17 +19,18 @@
 
 <?php 
 	//Creamos la conexión con la BD en postgresql
-	$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-	or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+or die("Ha sucedido un error inesperado en la conexion de la base de datos");
 
-	session_start();
-	?>
-	<body>
-		<!--Barra Navegacion-->
-		<ul id="bar_nav">
-			<?php
-			if (isset($_SESSION['username'])) {
-				?>
+session_start();
+?>
+<body>
+
+	<!--Barra Navegacion-->
+	<ul id="bar_nav">
+		<?php
+		if (isset($_SESSION['username'])) {
+			?>
 			<li id="lsita_bar_nav"><a class="active"> <?php echo $_SESSION['username']	?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
@@ -38,6 +39,7 @@
 		<?php
 	}
 	?>
+
 	<!--Contenedor-->
 	<div class="container">
 		<div id="logo_wintig" style="text-align: center;">
@@ -45,7 +47,9 @@
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
+
 		<!--Filtros-->
+
 		<nav class="nav_filtros">	
 			<div>
 				<form class="form-wrapper cf">
@@ -179,56 +183,68 @@
 				</div>            
 			</div>
 		</nav>
+
 		<!--Mapa-->
+
 		<section>
 			<div id="map"></div>
 			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
 		</section>
+	</div>
 
-		<!-- Pop-up Contacto  -->
-		<div class="modal fade" id="contacto" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">CONTACTO</h4></center>
-					</div>
-					<div class="modal-body" >
-						<h4 id="p-regis"> Rbricenoq@unbosque.edu.co</h4><br>
-						<h4 id="p-regis"> Sbarrerof@unbosque.edu.co</h4><br>
-						<h4 id="p-regis"> Dpico@unbosque.edu.co</h4><br>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
-					</div>
-				</div>  
-			</div>
+	<!--Footer-->
+
+	<div id="footer"> Versión beta</div>
+
+	<div id="particles-js"></div>
+	<script src="js\particles.js"></script>
+	<script src="js\login.js"></script>
+
+	<!-- Pop-up Contacto  -->
+	<div class="modal fade" id="contacto" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h4 class="modal-title">CONTACTO</h4></center>
+				</div>
+				<div class="modal-body" >
+					<h4 id="p-regis"> Rbricenoq@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> Sbarrerof@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> Dpico@unbosque.edu.co</h4><br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+				</div>
+			</div>  
 		</div>
+	</div>
 
-		<div class="modal fade" id="variables" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>	
-						<center><h4 class="modal-title">AÑADIR NUEVA FUENTE HÍDRICA</h4></center>
-					</div>
-					<div>
-						<div class="row">
-							<section>
-								<div class="wizard">
-									<div class="wizard-inner">
-										<div class="connecting-line"></div>
-										<ul class="nav nav-tabs" role="tablist">
+	<!-- Pop-up Formulario -->
 
-											<li role="presentation" class="active">
-												<a href="#fuente_hidirica" data-toggle="tab" aria-controls="fuente_hidirica" role="tab" title="" data-original-title="Fuente Hídrica">
-													<span class="round-tab">
-														<i class="glyphicon glyphicon glyphicon-tint"></i>
-													</span>
-												</a>
-											</li>
+	<div class="modal fade" id="variables" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h4 class="modal-title">AÑADIR NUEVA FUENTE HÍDRICA</h4></center>
+				</div>
+				<div>
+					<div class="row">
+						<section>
+							<div class="wizard">
+								<div class="wizard-inner">
+									<div class="connecting-line"></div>
+									<ul class="nav nav-tabs" role="tablist">
+										<li role="presentation" class="active">
+											<a href="#fuente_hidirica" data-toggle="tab" aria-controls="fuente_hidirica" role="tab" title="" data-original-title="Fuente Hídrica">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon glyphicon-tint"></i>
+												</span>
+											</a>
+										</li>
 
-								<!--<li role="presentation" class="disabled">
+								<li role="presentation" class="disabled">
 									<a href="#ubicación" data-toggle="tab" aria-controls="ubicación" role="tab" title="Ubicación">
 										<span class="round-tab">
 											<i class="glyphicon glyphicon glyphicon-map-marker"></i>
@@ -257,7 +273,7 @@
 											<i class="glyphicon glyphicon-user"></i>
 										</span>
 									</a>
-								</li>-->
+								</li>
 
 								<li role="presentation" class="disabled">
 									<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="" data-original-title="Complete">
@@ -380,20 +396,14 @@
 					</div>
 				</div>
 			</div>	
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+			</div>
 		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
-		</div>
-	</div>  
-</div>
+		
 
 
-<!--Filtros-->
-
-<div id="particles-js"></div>
-<script src="js\particles.js"></script>
-<script src="js\login.js"></script>
-<footer id="footer"> Versión beta</footer>
-</div>	
+	</div>	
 </body>
 </html>

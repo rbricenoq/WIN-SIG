@@ -13,14 +13,12 @@
     background-color: #f3f3f3;
 }
 #footer {    
-    padding: 0;  
-    padding: 1em;
-    clear: left;
-    text-align: center;
-    margin: 0;
-    overflow: hidden;
-    border: 1px solid #e7e7e7;
-    background-color: #f3f3f3;
+  width:100%; 
+  position:absolute; 
+  bottom:; 
+  box-sizing:border-box;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
 }
 
 #button{
@@ -81,7 +79,7 @@ div.container {
     border: 1px solid rgb(81,165,250);
     float: left;
     width: 270px;
-    height: 670px;
+    height: 100%;
     margin: 0;
     padding: 1em;
     background-color: #fff;

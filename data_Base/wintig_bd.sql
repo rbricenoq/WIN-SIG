@@ -82,7 +82,8 @@ CREATE TABLE IF NOT EXISTS wintig.rancheria (
   nom_rancheria VARCHAR(45) NOT NULL,
   cantidad_personas integer NOT NULL,
   representante VARCHAR(45) NOT NULL,
-  ubicacion_r GEOMETRY(point, 4326) NOT NULL);
+  latitud_r Float NOT NULL,
+  longitud_r Float NOT NULL);
 
 -- -----------------------------------------------------
 -- Table wintig.fuente_hidrica
@@ -95,7 +96,8 @@ CREATE TABLE IF NOT EXISTS wintig.fuente_hidrica (
   id_calidad serial not null,
   id_accesibilidad serial not null,
   id_rancheria serial not null,
-  ubicacion_fh GEOMETRY(point, 4326) NOT NULL);
+  latitud_fh Float NOT NULL,
+  longitud_fh Float NOT NULL);
 
 -- -----------------------------------------------------
 -- Foreign Keys
@@ -135,6 +137,6 @@ INSERT INTO wintig.municipio (nom_municipio, id_departamento) VALUES ('Maicao', 
 INSERT INTO wintig.capacidad (capacidad_fuente) VALUES (5000);  
 INSERT INTO wintig.calidad (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph, nitrogeno, fosforo ) VALUES (11,12,13,14,15,16,17);
 INSERT INTO wintig.accesibilidad (poblacion_acceso_agua_limpia, poblacion_acceso_sanidad, poblacion_acceso_agua_per_capita, uso_fuente_hidrica) VALUES (15, 25, 30, 'Aseo');   
-INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, ubicacion_r) VALUES (1, 'rancheria-test1', 14, 'Martina', ST_GeomFromText('POINT(-72794138888 105058056)',4326));
+INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'rancheria-test1', 14, 'Martina', -72794138888, 105058056);
 
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, ubicacion_fh) VALUES (1, ST_GeomFromText('POINT(-72794138888 105058056)',4326));
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, latitud_fh, longitud_fh) VALUES (1, -72794138888, 105058056);
