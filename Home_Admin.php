@@ -5,10 +5,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" >
+	<link rel="icon" href="img/favicon.ico" >
 	<link href="css/css_home.css" rel="stylesheet">
-	<link href="css\login.css" rel="stylesheet">
-	<link href="css\form_var.css" rel="stylesheet">	
+	<link href="css/login.css" rel="stylesheet">
+	<link href="css/form_var.css" rel="stylesheet">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -181,7 +181,9 @@ session_start();
 		</nav>
 		<!--Mapa-->
 		<section>
-			<div id="map"></div>
+			<div id="map">
+				<?php include("mapa.html");?>
+			</div>
 			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
 		</section>
 		
@@ -288,7 +290,7 @@ session_start();
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<!-- Custom JS file -->
 	<script type="text/javascript" src="js/script.js"></script>
-	<div id="footer"> Versión beta</div>
+
 </div>	
 </body>
 </html>

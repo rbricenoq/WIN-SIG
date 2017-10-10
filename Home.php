@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" >
+	<link rel="icon" href="img/favicon.ico" >
 	<link href="css/css_home.css" rel="stylesheet">
 	<link href="css/login.css" rel="stylesheet">
 	<link href="css/form_var.css" rel="stylesheet">	
@@ -58,14 +58,14 @@ session_start();
 		</div>
 	</div>
 
-	<!-- Contenedir Filtro y Mapa-->
+	<!-- Contenedor Filtro y Mapa-->
 	<div class="container">
 		<div id="logo_wintig" style="text-align: center;">
 			<a href="/WIN-TIG/home.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
-		<!--Filtros-->
+		<!--Navegación Filtros-->
 		<nav class="nav_filtros">	
 			<div>
 				<form class="form-wrapper cf">
@@ -77,10 +77,10 @@ session_start();
 			<!-- Filtros -->
 
 			<div class="filtros">
-				<div class="panel panel_filtros">
+				<div class="panel_filtros">
 					<div class="panel_heading">Fuente Hídrica</div>
 					<ul class="list-group">
-						<li class="list-group-item">
+						<li class="list-group-item" value="pozo">
 							Pozo
 							<div class="material-switch pull-right">
 								<input id="f1" name="Pozo" type="checkbox"/>
@@ -199,7 +199,9 @@ session_start();
 
 		<!--Mapa-->
 		<section>
-			<div id="map"></div>
+			<div id="map">
+				<?php include("mapa.html");?>
+			</div>
 			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
 		</section>
 	</div>
@@ -207,8 +209,6 @@ session_start();
 	<div id="particles-js"></div>
 	<script src="js\particles.js"></script>
 	<script src="js\login.js"></script>
-
-	<div id="footer"> Versión beta</div>
 
 </body>
 </html>

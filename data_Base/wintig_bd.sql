@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS wintig.fuente_hidrica (
   id_calidad serial not null,
   id_accesibilidad serial not null,
   id_rancheria serial not null,
+  nom_fh varchar(45) not null;
   latitud_fh Float NOT NULL,
   longitud_fh Float NOT NULL);
 
