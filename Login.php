@@ -25,14 +25,14 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 <body>
 	<div class="container"> 
 		<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-			<div id="logo_wintig" style="text-align: center;>
+			<div id="logo_wintig" style="text-align: center";>
 			<a href="/WIN-TIG/Home.php">
 				<img src="img/LOGO.png" height="50%" width="50%">
 			</a>				
 		</div>
 		<div class="panel panel-default" >
 			<div class="panel-body" >
-				<form name="formulario" id="form" class="form-horizontal" enctype="multipart/form-data" action="validar_usuario.php" method="post">
+				<form name="formulario" id="form" class="form-horizontal" enctype="multipart/form-data" action="php/validar_usuario.php" method="post">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 						<input id="user" type="text" class="form-control" name="usuario" value="" placeholder="Usuario" required>
@@ -66,7 +66,7 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 					<center><h4 class="modal-title">REGISTRO WIN-TIG</h4></center>
 				</div>
 				<div class="modal-body">
-					<form name="insertar" action="insertar_usuario.php" method="post"> 
+					<form name="insertar" action="php/insertar_usuario.php" method="post"> 
 						<div class="form-group">
 							Nombre:<br>
 							<input type="text" class="form-control" name="nombre" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>

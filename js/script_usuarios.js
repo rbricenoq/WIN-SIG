@@ -1,6 +1,6 @@
 // READ records
 function readRecords() {
-    $.get("ajax/readRecords.php", {}, function (data, status) {
+    $.get("php/readRecords.php", {}, function (data, status) {
         $(".records_content").html(data);
     });
 }
@@ -9,7 +9,7 @@ function readRecords() {
 function DeleteUser(id_usuario) {
     var conf = confirm("¿Esta seguro que desea eliminar este usuario?");
     if (conf == true) {
-        $.post("ajax/deleteUser.php", {
+        $.post("php/deleteUser.php", {
             id_usuario: id_usuario
         },
         function (data, status) {
@@ -23,7 +23,7 @@ function DeleteUser(id_usuario) {
 function GetUserDetails(id_usuario) {
     // Add User ID to the hidden field for furture usage
     $("#hidden_user_id").val(id_usuario);
-    $.post("ajax/readUserDetails.php", {        
+    $.post("php/readUserDetails.php", {        
         id_usuario: id_usuario
     },
     function (data, status) {
@@ -51,8 +51,8 @@ function UpdateUserDetails() {
 
     // get hidden field value
     var id_usuario = $("#hidden_user_id").val();
-    // Update the details by requesting to the server using ajax
-    $.post("ajax/updateUserDetails.php", {
+    // Update the details by requesting to the server using php
+    $.post("php/updateUserDetails.php", {
         id_usuario: id_usuario,
         nombre: nombre,
         apellido: apellido,

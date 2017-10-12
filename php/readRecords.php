@@ -40,19 +40,15 @@ if(pg_Num_Rows($result) > 0){
 		<td>'.$row['tel_usuario'].'</td>
 		<td>'.$row['correo_usuario'].'</td>
 		<td>'.$row['nom_usuario'].'</td>
-		<td>
-		<button onclick="GetUserDetails('.$row['id_usuario'].')" class="btn btn-warning">Editar</button>
-		</td>
-		<td>
-		<button onclick="DeleteUser('.$row['id_usuario'].')" class="btn btn-danger">Eliminar</button>
-		</td>
+		<td><button onclick="GetUserDetails('.$row['id_usuario'].')" class="btn btn-warning">Editar</button></td>
+		<td><button onclick="DeleteUser('.$row['id_usuario'].')" class="btn btn-danger">Eliminar</button></td>
 		</tr>';
 		$number++;
 	}
 }
 else{
     	// records now found 
-	$data .= '<tr><td colspan="6">No hay registros!</td></tr>';
+	$data .= '<tr><td colspan="8">No hay registros!</td></tr>';
 }
 $data .= '</table>';
 echo $data;

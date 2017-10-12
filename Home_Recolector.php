@@ -34,7 +34,7 @@ session_start();
 			<li id="lsita_bar_nav"><a class="active"> <?php echo $_SESSION['username']	?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
-			<li id="lsita_bar_nav"><a href="logout.php" style="align-content: right">Logout</a></li>
+			<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>
 		</ul>
 		<?php
 	}
@@ -48,7 +48,7 @@ session_start();
 			</a>
 		</div>
 
-		<!--Filtros-->
+		<!--Menu-->
 
 		<nav class="nav_filtros">	
 			<div>
@@ -60,9 +60,12 @@ session_start();
 			<div>
 				<button type="submit" id="btn_ag_fh"  class="btn btn-success" href="#variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
 				<br><br>
-				<button type="submit" id="btn_edi_fh"  class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
+				<button type="submit" id="btn_edi_fh"  class="btn btn-primary" href="#editar_variables" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
 				<br><br>
 			</div>
+
+			<!--Filtros-->
+
 			<div class="filtros">
 				<div class="panel panel_filtros">
 					<div class="panel_heading">Fuente Hídrica</div>
@@ -285,12 +288,11 @@ session_start();
 									</ul>
 								</div>
 
-								<form role="form" action="insertar_datos.php" method="post">
+								<form role="form" action="php/insertar_datos.php" method="post">
 									<div class="tab-content">
 										<div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
 											<div class="modal-body">
 												<h3>FUENTE HÍDRICA</h3>
-
 												<div class="form-group">
 													Seleccione el tipo de fuente hídrica:        
 													<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFH(this)">  
@@ -381,7 +383,7 @@ session_start();
 											<ul class="list-inline pull-right">
 												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
 												<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>
-												<script>
+												<script>													
 													$(document).ready(function(){
 														$("#registro").onclick(function(){
 															$("#fuente_hidirica").modal();

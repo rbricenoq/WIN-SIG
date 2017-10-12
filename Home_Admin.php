@@ -33,7 +33,7 @@ session_start();
 			<li id="lsita_bar_nav"><a class="active" > <?php echo $_SESSION['username']?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
-			<li id="lsita_bar_nav"><a href="logout.php" style="align-content: right">Logout</a></li>
+			<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>
 		</ul>
 		<?php
 	}
@@ -289,7 +289,7 @@ session_start();
 	<!-- Bootstrap JS file -->
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<!-- Custom JS file -->
-	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/script_usuarios.js"></script>
 
 </div>	
 </body>
