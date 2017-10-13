@@ -17,8 +17,8 @@ $data = '<table class="table table-bordered table-striped">
 <th>Telefono</th>
 <th>Correo</th>
 <th>Usuario</th>
-<th>Update</th>
-<th>Delete</th>
+<th>Actualizar</th>
+<th>Borrar</th>
 </tr>';
 
 $result = pg_Exec($conexion,'SELECT * FROM wintig.usuario where id_tipo_de_usuario = 2 ORDER BY id_usuario');

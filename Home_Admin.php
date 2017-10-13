@@ -210,10 +210,10 @@ session_start();
 		</div>
 	</div>	
 
-	<!-- Pop.up Editar Usuarios -->
+	<!-- Pop.up ver registros de Usuarios -->
 	<div class="modal fade" id="editar_usuarios" role="dialog">
 		<div class="modal-dialog">
-			<div class="modal-content" style="width: 150%; margin: inherit;">
+			<div class="modal-content" style="display: table; left: -10%;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>	
 					<center><h3 class="modal-title">EDITAR USUARIOS</h3></center>
@@ -286,9 +286,7 @@ session_start();
 	<script src="js\particles.js"></script>
 	<script src="js\login.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	<!-- Bootstrap JS file -->
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<!-- Custom JS file -->
 	<script type="text/javascript" src="js/script_usuarios.js"></script>
 
 </div>	
