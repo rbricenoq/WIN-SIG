@@ -314,10 +314,19 @@ session_start();
 												</span>
 											</a>
 										</li>
+
 										<li role="presentation" class="disabled">
 											<a href="#ica" data-toggle="tab" aria-controls="ica" role="tab" title="ICA (Índice de Calida de Agua)">
 												<span class="round-tab">
 													<i class="glyphicon glyphicon-heart-empty"></i>
+												</span>
+											</a>
+										</li>
+
+										<li role="presentation" class="disabled">
+											<a href="#irca" data-toggle="tab" aria-controls="irca" role="tab" title="IRCA (Índice de Riesgo de la Calidad del Agua para Consumo Humano)">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-heart"></i>
 												</span>
 											</a>
 										</li>
@@ -334,6 +343,7 @@ session_start();
 
 								<form role="form" action="php/insertar_datos_fh.php" method="post">
 									<div class="tab-content">
+										<!-- Formulario Rancheria -->
 										<div class="tab-pane active" role="tabpanel" id="rancheria">
 											<h3>RANCHERIA</h3>
 											<div class="modal-body">
@@ -360,6 +370,7 @@ session_start();
 												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
 											</ul>
 										</div>	
+										<!-- Formulario Fuente Hidrica -->
 										<div class="tab-pane" role="tabpanel" id="fuente_hidirica">
 											<div class="modal-body">
 												<h3>FUENTE HÍDRICA</h3>
@@ -393,6 +404,7 @@ session_start();
 												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
 											</ul>
 										</div>
+										<!-- Formulario Uso y Accesibilidad -->
 										<div class="tab-pane" role="tabpanel" id="uso_accesibilidad">
 											<h3>USO Y ACCESIBILIDAD</h3>
 											<div class="modal-body">
@@ -446,8 +458,9 @@ session_start();
 												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
 											</ul>
 										</div>
+										<!-- Formulario ICA -->
 										<div class="tab-pane" role="tabpanel" id="ica">
-											<h3>ICA (Índice de Calidad de Agua)</h3>
+											<h3>Índice de Calidad de Agua - ICA</h3>
 											<div class="modal-body">
 												<div class="form-group">
 													Oxígeno disuelto (OD):<br>
@@ -472,8 +485,116 @@ session_start();
 												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
 												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
 											</ul>
-										</div>														
-
+										</div>
+										<!-- Formulario IRCA -->
+										<div class="tab-pane" role="tabpanel" id="irca">
+											<h3>Índice de Riesgo de la Calidad del Agua para Consumo Humano -IRCA</h3>
+											<div class="modal-body">
+												<div class="form-group">
+													<h4><b>CARACTERÍSTICAS FÍSICAS</b></h4>
+													Color Aparente (Unidades de PLanito Cobalto - UPC):<br>
+													<input type="text" class="form-control" name="color_aparente"><br>
+													¿Olor aceptable?<br>
+													Aceptable: <input type="checkbox" id="olor_check" name="olor_check" value="0"><br><br>
+													¿Sabor aceptable?<br>
+													Aceptable: <input type="checkbox" id="sabor_check" name="sabor_check" value="0"><br><br>
+													Turbiedad (UNT):
+													<input type="text" class="form-control" name="turbiedad"><br>
+													Conductividad eléctrica (C.E):
+													<input type="text" class="form-control" name="conductividad"><br>
+													Nivel de acidez (PH):
+													<input type="text" class="form-control" name="ph_irca"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN RECONOCIDO EFECTO ADVERSO EN LA SALUD HUMANA</b></h4>
+													Antimonio:
+													<input type="text" class="form-control" name="antimonio"><br>
+													Arsénico:
+													<input type="text" class="form-control" name="arsenico"><br>
+													Barío:
+													<input type="text" class="form-control" name="bario"><br>
+													Cadmio:
+													<input type="text" class="form-control" name="cadmio"><br>
+													Cianuro libre y disociable:
+													<input type="text" class="form-control" name="cianuro_libre_disociable"><br>
+													Cobre:
+													<input type="text" class="form-control" name="cobre"><br>
+													Cromo:
+													<input type="text" class="form-control" name="cromo"><br>
+													Mercurio:
+													<input type="text" class="form-control" name="mercurio"><br>
+													Niquel:
+													<input type="text" class="form-control" name="niquel"><br>
+													Plomo:
+													<input type="text" class="form-control" name="plomo"><br>
+													Selenio:
+													<input type="text" class="form-control" name="selenio"><br>
+													Trihalometanos:
+													<input type="text" class="form-control" name="trihalometanos"><br>
+													Hidrocarburos Aromáticos Policíclicos (HAP):
+													<input type="text" class="form-control" name="hap"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN IMPLICACIONES SOBRE LA SALUD HUMANA</b></h4>
+													Carbono Orgánico Total (COT):
+													<input type="text" class="form-control" name="cot"><br>
+													Nitritos:
+													<input type="text" class="form-control" name="nitritos"><br>
+													Nitratos:
+													<input type="text" class="form-control" name="nitratos"><br>
+													Fluoruros:
+													<input type="text" class="form-control" name="fluoruros"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS QUE TIENEN CONSECUENCIAS ECONÓMICAS E INDIRECTAS SOBRE LA SALUD HUMANA</b></h4>
+													Calcio:
+													<input type="text" class="form-control" name="calcio"><br>
+													Alcalinidad:
+													<input type="text" class="form-control" name="alcalinidad"><br>
+													Cloruros:
+													<input type="text" class="form-control" name="cloruros"><br>
+													Aluminio:
+													<input type="text" class="form-control" name="aluminio"><br>
+													Dureza:
+													<input type="text" class="form-control" name="dureza"><br>
+													Hierro:
+													<input type="text" class="form-control" name="hierro"><br>
+													Magnesio:
+													<input type="text" class="form-control" name="magnesio"><br>
+													Manganeso:
+													<input type="text" class="form-control" name="manganeso"><br>
+													Molibdeno:
+													<input type="text" class="form-control" name="molibdeno"><br>
+													Sulfatos:
+													<input type="text" class="form-control" name="sulfatos"><br>
+													Zinc:
+													<input type="text" class="form-control" name="zinc"><br>
+													Fosfatos:
+													<input type="text" class="form-control" name="fosfatos"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS RELACIONADAS CON LOS PLAGUICIDAS Y OTRAS SUSTANCIAS</b></h4>
+													Cancerígenas, mutagénicas y teratogénicas:
+													<input type="text" class="form-control" name="cmt"><br>
+													Plaguicidas:
+													<input type="text" class="form-control" name="plaguicidas"><br>
+													<h4><b>CARACTERÍSTICAS MICROBIOLÓGICAS</b></h4>
+													Escherichia Coli:
+													<input type="text" class="form-control" name="escherichia_coli"><br>
+													Coliformes:
+													<input type="text" class="form-control" name="coliformes"><br>
+													Microorganismos mesofilicos:
+													<input type="text" class="form-control" name="microorganismos_mesofilicos"><br>
+													Giardia:
+													<input type="text" class="form-control" name="giardia"><br>
+													Cryptosporidium:
+													<input type="text" class="form-control" name="cryptosporidium"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS DE OTRAS SUSTANCIAS UTILIZADAS EN LA POTABILIZACIÓN</b></h4>
+													Detergente: Cloro residual libre:
+													<input type="text" class="form-control" name="detergente"><br>
+													Coagulante: Sales de hierro:
+													<input type="text" class="form-control" name="coagulante_sales_hierro"><br>
+													Coagulante: Aluminio:
+													<input type="text" class="form-control" name="coagulante_aluminio"><br>
+												</div>
+											</div>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+											</ul>
+										</div>
 										<div class="tab-pane" role="tabpanel" id="complete">
 											<h3>FORMULARIO COMPLETO</h3>
 											<p>¿Desea almacenar los datos digitados anteriormente?</p>

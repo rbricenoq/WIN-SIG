@@ -2,6 +2,8 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $db = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
 
+//Valores para calcular ICA
+
 $oxigeno_disuelto = $_POST[oxigeno_disuelto];
 $oxigeno_saturacion = $_POST[oxigeno_saturacion];
 $solidos_suspendidos = $_POST[solidos_suspendidos];
@@ -21,6 +23,65 @@ $indice_nt_pt=0;
 $ica=0;
 $e_ica="";
 
+//Valores para calcular IRCA
+
+if (isset($_POST['olor_check'])) {
+	$olor = 0;
+} else {
+	$olor = 1;
+}
+if (isset($_POST['sabor_check'])) {
+	$sabor = 0;
+} else {
+	$sabor = 1;
+}
+
+$color_aparente = $_POST[color_aparente];
+$turbiedad = $_POST[turbiedad];
+$conductividad = $_POST[conductividad];
+$ph_irca = $_POST[ph_irca]; 
+$antimonio = $_POST[antimonio];
+$arsenico = $_POST[arsenico];
+$bario = $_POST[bario]; 
+$cadmio = $_POST[cadmio];
+$cianuro_libre_disociable = $_POST[cianuro_libre_disociable];
+$cobre = $_POST[cobre];
+$cromo = $_POST[cromo];
+$mercurio = $_POST[mercurio];
+$niquel = $_POST[niquel];
+$plomo = $_POST[plomo]; 
+$selenio = $_POST[selenio];
+$trihalometanos = $_POST[trihalometanos];
+$hap = $_POST[hap];
+$cot = $_POST[cot]; 
+$nitritos = $_POST[nitritos];
+$nitratos = $_POST[nitratos]; 
+$fluoruros = $_POST[fluoruros]; 
+$calcio = $_POST[calcio];
+$alcalinidad = $_POST[alcalinidad]; 
+$cloruros = $_POST[cloruros]; 
+$aluminio = $_POST[aluminio];
+$dureza = $_POST[dureza]; 
+$hierro = $_POST[hierro];
+$magnesio = $_POST[magnesio];
+$manganeso = $_POST[manganeso]; 
+$molibdeno = $_POST[molibdeno];
+$sulfatos = $_POST[sulfatos];
+$zinc = $_POST[zinc]; 
+$fosfatos  = $_POST[fosfatos];
+$caracteristicas_quimicas = $_POST[caracteristicas_quimicas]; 
+$plaguicidas = $_POST[plaguicidas];
+$escherichia_coli = $_POST[escherichia_coli]; 
+$coliformes = $_POST[coliformes];
+$microorganismos_mesofilicos = $_POST[microorganismos_mesofilicos];
+$giardia = $_POST[giardia];
+$cryptosporidium = $_POST[cryptosporidium];
+$detergente = $_POST[detergente];
+$coagulante_sales_hierro = $_POST[coagulante_sales_hierro];
+$coagulante_aluminio = $_POST[coagulante_aluminio]; 
+$calculo_irca = 0;
+$estado_irca = "";
+
 $i_ox=indice_ox_disuelto($oxigeno_disuelto, $oxigeno_saturacion);
 $i_stt=indice_sst($solidos_suspendidos);
 $i_do=indice_demanda_oxigeno($demanda_quimica_oxigeno);
@@ -30,29 +91,29 @@ $i_ntf=indice_nitrogeno_fosfoto($nitrogeno_ica,$fosforo_ica);
 $c_ica=calcular_ica($i_ox, $i_stt, $i_do, $i_ce, $i_ph, $i_ntf);
 $e_ica=estado_ica($c_ica);
 
-echo "<h2>Ox Disuelto</h2>";
-echo( $i_ox);
+// echo "<h2>Ox Disuelto</h2>";
+// echo( $i_ox);
 
-echo "<h2>SST</h2>";
-echo( $i_stt);
+// echo "<h2>SST</h2>";
+// echo( $i_stt);
 
-echo "<h2>DO</h2>";
-echo( $i_do);
+// echo "<h2>DO</h2>";
+// echo( $i_do);
 
-echo "<h2>CE</h2>";
-echo( $i_ce);
+// echo "<h2>CE</h2>";
+// echo( $i_ce);
 
-echo "<h2>PH</h2>";
-echo( $i_ph);
+// echo "<h2>PH</h2>";
+// echo( $i_ph);
 
-echo "<h2>NF</h2>";
-echo( $i_ntf);
+// echo "<h2>NF</h2>";
+// echo( $i_ntf);
 
-echo "<h2>ICA</h2>";
-echo( $c_ica);
+// echo "<h2>ICA</h2>";
+// echo( $c_ica);
 
-echo "<h2>Estado</h2>";
-echo( $e_ica);
+// echo "<h2>Estado</h2>";
+// echo( $e_ica);
 
 //echo "<h2>YA VUELVO!!!!! voy a comer algo</h2>";
 
@@ -172,13 +233,13 @@ $query3 = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agu
 
 $query4 = "INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES ('$_POST[selectid_fh]', '$_POST[selectid_rancheria]' ,'$_POST[nom_fh]', '$_POST[latitud_fh]', '$_POST[longitud_fh]')";  
 
-$result = pg_query($query1); 
-$result = pg_query($query2); 
-$result = pg_query($query3); 
-$result = pg_query($query4);  
-echo '
-<SCRIPT LANGUAGE="javascript">
-location.href = "/WIN-TIG/home_recolector.php";
-</SCRIPT>
-';
+// $result = pg_query($query1); 
+// $result = pg_query($query2); 
+// $result = pg_query($query3); 
+// $result = pg_query($query4);  
+// echo '
+// <SCRIPT LANGUAGE="javascript">
+// location.href = "/WIN-TIG/home_recolector.php";
+// </SCRIPT>
+//';
 ?>

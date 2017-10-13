@@ -33,15 +33,69 @@ CREATE TABLE IF NOT EXISTS wintig.tipo_fuente_hidrica (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS wintig.ica (
   id_ica serial primary key not null,
-  oxigeno_disuelto integer not null,
-  solidos_suspendidos integer not null,
-  demanda_quimica_oxigeno integer not null,
-  conductividad_electrica integer not null,
-  ph_ica integer not null,
-  nitrogeno_ica integer not null,
-  fosforo_ica integer not null,
-  calculo_ica float not null,
-  estado_ica varchar(45) not null);
+  oxigeno_disuelto float,
+  solidos_suspendidos float,
+  demanda_quimica_oxigeno float,
+  conductividad_electrica float,
+  ph_ica float,
+  nitrogeno_ica float,
+  fosforo_ica float,
+  calculo_ica float,
+  estado_ica varchar(45));
+
+-- -----------------------------------------------------
+-- Table wintig.irca
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS wintig.irca (
+  id_irca serial primary key not null,
+  color_aparente float,
+  olor integer,
+  sabor integer,
+  turbiedad float,
+  conductividad float,
+  ph_irca float,
+  antimonio float,
+  arsenico float,
+  bario float,
+  cadmio float,
+  cianuro_libre_disociable float,
+  cobre float,
+  cromo float,
+  mercurio float,
+  niquel float,
+  plomo float,
+  selenio float,
+  trihalometanos float,
+  hap float,
+  cot float,
+  nitritos float,
+  nitratos float,
+  fluoruros float,
+  calcio float,
+  alcalinidad float,
+  cloruros float,
+  aluminio float,
+  dureza float,
+  hierro float,
+  magnesio float,
+  manganeso float,
+  molibdeno float,
+  sulfatos float,
+  zinc float,
+  fosfatos float,
+  cmt float,
+  plaguicidas float,
+  escherichia_coli float,
+  coliformes float,
+  microorganismos_mesofilicos float,
+  giardia float,
+  cryptosporidium float,
+  detergente float,
+  coagulante_sales_hierro float,
+  coagulante_aluminio float,
+  calculo_irca float,
+  estado_irca varchar(45));
 
 -- -----------------------------------------------------
 -- Table wintig.accesibilidad
@@ -168,6 +222,12 @@ INSERT INTO wintig.municipio (nom_municipio, id_departamento) VALUES ('Manaure',
 INSERT INTO wintig.municipio (nom_municipio, id_departamento) VALUES ('Maicao', 1); 
  
 INSERT INTO wintig.ica (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph_ica, nitrogeno_ica, fosforo_ica, calculo_ica, estado_ica) VALUES (11,12,13,14,15,16,17, 181, 'malo');
+INSERT INTO wintig.irca (color_aparente, olor,sabor, turbiedad, conductividad, ph_irca, antimonio, 
+  arsenico, bario, cadmio, cianuro_libre_disociable, cobre, cromo, mercurio, niquel, plomo, selenio,
+  trihalometanos, hap, cot, nitritos, nitratos, fluoruros, calcio, alcalinidad, cloruros, aluminio,
+  dureza, hierro, magnesio, manganeso, molibdeno ,sulfatos ,zinc ,fosfatos ,caracteristicas_quimicas, 
+  plaguicidas, escherichia_coli, coliformes, microorganismos_mesofilicos, giardia, cryptosporidium,
+  detergente, coagulante_sales_hierro, coagulante_aluminio, calculo_irca, estado_irca) VALUES (1,0,1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,'Sin Riesgo');
 
 INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, timepo_viaje, distancia, poblacion_acceso) VALUES (1, 2, 3, 4, '02:00', 6, 7);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (2);   
