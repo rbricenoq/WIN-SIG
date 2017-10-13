@@ -135,7 +135,6 @@ alter table wintig.rancheria add constraint rancheria_municipio_fk foreign key (
 
 alter table wintig.fuente_hidrica add constraint fuente_hidrica_tipo_fuente_hidrica_fk foreign key (id_tipo_fuente_hidrica) references wintig.tipo_fuente_hidrica (id_tipo_fuente_hidrica);
 alter table wintig.fuente_hidrica add constraint fuente_hidrica_ica_fk foreign key (id_ica) references wintig.ica (id_ica);
-alter table wintig.fuente_hidrica add constraint fuente_hidrica_irca_fk foreign key (id_irca) references wintig.irca (id_irca);
 alter table wintig.fuente_hidrica add constraint fuente_hidrica_accesibilidad_fk foreign key (id_accesibilidad) references wintig.accesibilidad (id_accesibilidad);
 alter table wintig.fuente_hidrica add constraint fuente_hidrica_uso_fk foreign key (id_uso) references wintig.uso (id_uso);
 alter table wintig.fuente_hidrica add constraint fuente_hidrica_rancheria_fk foreign key (id_rancheria) references wintig.rancheria (id_rancheria);
@@ -168,12 +167,13 @@ INSERT INTO wintig.departamento (nom_departamento) VALUES ('Guajira');
 INSERT INTO wintig.municipio (nom_municipio, id_departamento) VALUES ('Manaure', 1);  
 INSERT INTO wintig.municipio (nom_municipio, id_departamento) VALUES ('Maicao', 1); 
  
-INSERT INTO wintig.ica (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph_ica, nitrogeno_ica, fosforo_ica, calculo_ica, estado_ica) VALUES (11,12,13,14,15,16,17, 181 'malo');
+INSERT INTO wintig.ica (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph_ica, nitrogeno_ica, fosforo_ica, calculo_ica, estado_ica) VALUES (11,12,13,14,15,16,17, 181, 'malo');
 
 INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, timepo_viaje, distancia, poblacion_acceso) VALUES (1, 2, 3, 4, '02:00', 6, 7);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (2);   
 INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'rancheria-test1', 14, 'Martina', -72794138888, 105058056);
 
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (1, 'Aremashain', 11.7650790499241, -72.4589270353317);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (1, 1, 'Aremashain', 11.7650790499241, -72.4589270353317);
+
 
 

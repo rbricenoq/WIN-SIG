@@ -36,6 +36,8 @@
         Array.prototype.forEach.call(markers, function(markerElem) {
           var nombre = markerElem.getAttribute('nombre');
           var tipofuente = markerElem.getAttribute('tipofuente');
+          var ica_c = markerElem.getAttribute('ica_c');
+          var ica_e = markerElem.getAttribute('ica_e');
           var point = new google.maps.LatLng(
             parseFloat(markerElem.getAttribute('latitud_fh')),
             parseFloat(markerElem.getAttribute('longitud_fh')));
@@ -47,7 +49,7 @@
             label: icon.label
           });
           marker.addListener('click', function() {
-            infoWindow.setContent('<b> Nombre: </b> '+ nombre + '<br><b>Tipo de fuente hidrica: </b>'+ tipofuente);
+            infoWindow.setContent('<b> Nombre: </b> ' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado: </b>'+ ica_e );
             infoWindow.open(map, marker);
           });
         });
@@ -110,6 +112,7 @@
     }
 
     function doNothing() {}
+
   </script>
 </body>
 </html>

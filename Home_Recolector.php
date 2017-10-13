@@ -13,7 +13,6 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz1qiEOcBOfBZJujmvJC7MPe5l-ihNr8&callback=initMap" async defer> </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/form_var.js"></script>
 	<script src="js/google_Map.js"></script>
 </head>
 
@@ -58,9 +57,13 @@ session_start();
 				</form>
 			</div>
 			<div>
-				<button type="submit" id="btn_ag_fh"  class="btn btn-success" href="#variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
+				<button type="submit" id="btn_ag_fh"  class="btn btn-success" href="#form_variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
 				<br><br>
-				<button type="submit" id="btn_edi_fh"  class="btn btn-primary" href="#editar_variables" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
+				<button type="submit" id="btn_edi_fh"  class="btn btn-primary" href="#registros_fuente_hidirica" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
+				<br><br>
+				<button type="submit" id="btn_ag_rc"  class="btn btn-success" href="#form_rancheria" data-toggle="modal" title="Tienes que loguearte para poder agregar una Rancheria"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Rancheria</button>
+				<br><br>
+				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Rancheria</button>
 				<br><br>
 			</div>
 
@@ -197,12 +200,6 @@ session_start();
 		</section>
 	</div>
 
-	<!--Footer-->
-
-	<div id="particles-js"></div>
-	<script src="js\particles.js"></script>
-	<script src="js\login.js"></script>
-
 	<!-- Pop-up Contacto  -->
 	<div class="modal fade" id="contacto" role="dialog">
 		<div class="modal-dialog">
@@ -223,9 +220,63 @@ session_start();
 		</div>
 	</div>
 
-	<!-- Pop-up Formulario -->
+	<!-- Pop-up Rancheria  -->
+	<div class="modal fade" id="form_rancheria" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h4 class="modal-title">RANCHERIA</h4></center>
+				</div>
+				<div class="modal-body">
+					<form name="insertar" action="php/insertar_rancheria.php" method="post"> 
+						<div class="form-group">
+							Seleccione el municipio donde se encuentra la rancheria:
+							<select name="selectid_municipio" id="id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
+								<option value="" selected disabled>Municipio</option> 
+								<?php
+								$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+								or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+								$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
+								while($row_list=pg_fetch_assoc($municipio)){
+									?>                              
+									<option value=<?php echo $row_list["id_municipio"]; ?>>
+										<?php echo $row_list["nom_municipio"];?>  
+									</option>
+									<?php
+								}                        
+								?>
+							</select><br>
+							Nombre de la rancheria:<br>
+							<input type="text" class="form-control" name="nom_rancheria"><br>
+							Cantidad de personas:<br>
+							<input type="text" class="form-control" name="cantidad_personas"><br>
+							Nombre del representante:
+							<input type="text" class="form-control" name="representante"><br>
+							Latitud:<br>
+							<input type="text" class="form-control" name="latitud_r"><br>
+							Longitud:<br>
+							<input type="text" class="form-control" name="longitud_r"><br>
+							<button type="submit"  class="btn btn-primary  btn-lg center-block"><span class="glyphicon glyphicon-save"></span> Guardar</button>  
+							<script>
+								$(document).ready(function(){
+									$("#registro").onclick(function(){
+										$("#form_rancheria").modal();
+									});
+								});
+							</script> 
+						</div>
+					</form> 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>  
+		</div>
+	</div>
 
-	<div class="modal fade" id="variables" role="dialog">
+	<!-- Pop-up Variables  -->
+	<div class="modal fade" id="form_variables" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -239,31 +290,9 @@ session_start();
 								<div class="wizard-inner">
 									<div class="connecting-line"></div>
 									<ul class="nav nav-tabs" role="tablist">
+
 										<li role="presentation" class="active">
-											<a href="#fuente_hidirica" data-toggle="tab" aria-controls="fuente_hidirica" role="tab" title="" data-original-title="Fuente Hídrica">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon glyphicon-tint"></i>
-												</span>
-											</a>
-										</li>
-
-										<li role="presentation" class="disabled">
-											<a href="#ubicación" data-toggle="tab" aria-controls="ubicación" role="tab" title="Ubicación">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon glyphicon-map-marker"></i>
-												</span>
-											</a>
-										</li>
-										<li role="presentation" class="disabled">
-											<a href="#calidad" data-toggle="tab" aria-controls="calidad" role="tab" title="Calidad">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon glyphicon-heart-empty"></i>
-												</span>
-											</a>
-										</li>
-
-										<li role="presentation" class="disabled">
-											<a href="#acceso" data-toggle="tab" aria-controls="acceso" role="tab" title="Acceso">
+											<a href="#rancheria" data-toggle="tab" aria-controls="rancheria" role="tab" title="Rancheria">
 												<span class="round-tab">
 													<i class="glyphicon glyphicon-home"></i>
 												</span>
@@ -271,15 +300,30 @@ session_start();
 										</li>
 
 										<li role="presentation" class="disabled">
-											<a href="#comunidad" data-toggle="tab" aria-controls="comunidad" role="tab" title="Comunidad">
+											<a href="#fuente_hidirica" data-toggle="tab" aria-controls="fuente_hidirica" role="tab" title="Fuente Hídrica">
 												<span class="round-tab">
-													<i class="glyphicon glyphicon-user"></i>
+													<i class="glyphicon glyphicon-tint"></i>
 												</span>
 											</a>
 										</li>
 
 										<li role="presentation" class="disabled">
-											<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="" data-original-title="Complete">
+											<a href="#uso_accesibilidad" data-toggle="tab" aria-controls="uso_accesibilidad" role="tab" title="Uso_Accesibilidad">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-map-marker"></i>
+												</span>
+											</a>
+										</li>
+										<li role="presentation" class="disabled">
+											<a href="#ica" data-toggle="tab" aria-controls="ica" role="tab" title="ICA (Índice de Calida de Agua)">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-heart-empty"></i>
+												</span>
+											</a>
+										</li>
+
+										<li role="presentation" class="disabled">
+											<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Enviar">
 												<span class="round-tab">
 													<i class="glyphicon glyphicon-ok"></i>
 												</span>
@@ -288,16 +332,44 @@ session_start();
 									</ul>
 								</div>
 
-								<form role="form" action="php/insertar_datos.php" method="post">
+								<form role="form" action="php/insertar_datos_fh.php" method="post">
 									<div class="tab-content">
-										<div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
+										<div class="tab-pane active" role="tabpanel" id="rancheria">
+											<h3>RANCHERIA</h3>
+											<div class="modal-body">
+												<div class="form-group">
+													Seleccione la rancheria relacionada a la fuente hídrica:
+													<select name="selectid_rancheria" id="id_rancheria" class="form-control" onChange="getIdRancheria(this)">  
+														<option value="" selected disabled>Rancheria</option> 
+														<?php
+														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+														$rancheria = pg_query($conexion, "SELECT id_rancheria, nom_rancheria FROM wintig.rancheria");
+														while($row_list=pg_fetch_assoc($rancheria)){
+															?>                              
+															<option  value=<?php echo $row_list["id_rancheria"]; ?>>
+																<?php echo $row_list["nom_rancheria"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>														
+												</div>
+											</div>
+											<ul class="list-inline pull-right">												
+												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+											</ul>
+										</div>	
+										<div class="tab-pane" role="tabpanel" id="fuente_hidirica">
 											<div class="modal-body">
 												<h3>FUENTE HÍDRICA</h3>
 												<div class="form-group">
 													Seleccione el tipo de fuente hídrica:        
-													<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFH(this)">  
+													<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFh(this)">  
 														<option value="" selected disabled>Tipo</option> 
 														<?php
+														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
 														$fuente = pg_query($conexion, "SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM wintig.tipo_fuente_hidrica");
 														while($row_list=pg_fetch_assoc($fuente)){
 															?>                              
@@ -307,86 +379,111 @@ session_start();
 															<?php
 														}                        
 														?>
-													</select>
-													<br>				
-													Capacidad:<br>
-													<input type="text" class="form-control" name="capacidad"><br>
-												</div>
-
-												<h3>UBICACIÓN</h3>
-												<div class="form-group">
+													</select><br>
+													Nombre:<br>
+													<input type="text" class="form-control" name="nom_fh"><br>
 													Latitud:<br>
-													<input type="text" class="form-control" name="latitud"><br>
+													<input type="text" class="form-control" name="latitud_fh"><br>
 													Longitud:<br>
-													<input type="text" class="form-control" name="longitud"><br>
-													Seleccione el municipio:
-													<select name="selectid_municipio" id="s_municipio" class="form-control" onChange="getIdMunicipio(this)">
-														<option value="" selected disabled>Municipio</option> 
-														<?php    
-														$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
-														while($row_list=pg_fetch_assoc($municipio)){
-															?>
-															<option value=<?php echo $row_list["id_municipio"]; ?>>
-																<?php echo $row_list["nom_municipio"]; ?> 
-															</option>
-															<?php
-														}
-														?>
-													</select> 											
-												</div>
-												<h3>CALIDAD</h3>
-												<div class="form-group">
-													Oxígeno disuelto (OD):<br>
-													<input type="text" class="form-control" name="va_od"><br>
-													Sólidos  suspendidos totales (SST):<br>
-													<input type="text" class="form-control" name="va_sst"><br>
-													Demanda química de oxígeno (DQO):<br>
-													<input type="text" class="form-control" name="va_dqo"><br>
-													Conductividad eléctrica (C.E):<br>
-													<input type="text" class="form-control" name="va_ce"><br>					
-													Nivel de acidez PH:
-													<input type="text" class="form-control" name="va_ph"><br>
-													Nivel de nitrogeno:<br>
-													<input type="text" class="form-control" name="va_nitro"><br>					
-													Nivel de fosforo:
-													<input type="text" class="form-control" name="va_p"><br>
-												</div>
-												<h3>ACCESO</h3>
-												<div class="form-group">
-													% de población con acceso a agua limpia:<br>
-													<input type="text" class="form-control" name="acc_agua"><br>
-													% de población con acceso a sanidad:<br>
-													<input type="text" class="form-control" name="acce_sani"><br>
-													% de población con acceso a irrigación ajustada por recursos de agua per capita:
-													<input type="text" class="form-control" name="acc_irri"><br>
-													Uso de la fuente hídrica:
-													<input type="text" class="form-control" name="uso"><br>
-												</div>
-												<h3>COMUNIDAD</h3>
-												<div class="form-group">
-													Nombre de la comunidad:<br>
-													<input type="text" class="form-control" name="nom_comunidad"><br>
-													Cantidad de personas en la comunidad<br>
-													<input type="text" class="form-control" name="cantidad_personas"><br>
-													Nombre del Representante de la comunidad:
-													<input type="text" class="form-control" name="representante"><br>
+													<input type="text" class="form-control" name="longitud_fh"><br>
 												</div>
 											</div>
 											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+											</ul>
+										</div>
+										<div class="tab-pane" role="tabpanel" id="uso_accesibilidad">
+											<h3>USO Y ACCESIBILIDAD</h3>
+											<div class="modal-body">
+												<div class="form-group">
+													Seleccione el uso de la fuente hídrica:
+													<select name="selectid_uso" id="tipo_uso" class="form-control" onChange="getIdUso(this)">  
+														<option value="" selected disabled>Uso</option> 
+														<?php
+														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+														$uso = pg_query($conexion, "SELECT id_tipo_uso, nom_tipo_uso FROM wintig.tipo_uso");
+														while($row_list=pg_fetch_assoc($uso)){
+															?>                              
+															<option value=<?php echo $row_list["id_tipo_uso"]; ?>>
+																<?php echo $row_list["nom_tipo_uso"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>
+													Seleccione la localización de la fuente hídrica:
+													<select name="selectid_acceso" id="tipo_acceso" class="form-control" onChange="getIdAcceso(this)">  
+														<option value="" selected disabled>Acceso</option> 
+														<?php
+														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+														$acceso = pg_query($conexion, "SELECT id_tipo_acceso, nom_tipo_acceso FROM wintig.tipo_acceso");
+														while($row_list=pg_fetch_assoc($acceso)){
+															?>                              
+															<option value=<?php echo $row_list["id_tipo_acceso"]; ?>>
+																<?php echo $row_list["nom_tipo_acceso"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>
+													Número de dias que buscan agua por semana:<br>
+													<input type="text" class="form-control" name="num_dias_buscar_agua"><br>
+													Número de viajes que se realizan en el día en busca de agua:<br>
+													<input type="text" class="form-control" name="num_viajes"><br>
+													Cantidad de agua recolectada en el dia (Lt):<br>
+													<input type="text" class="form-control" name="cantidad_agua"><br>
+													Tiempo total para la recolección del agua (Tiempo de ida + espera + regreso):<br>
+													<input type="text" class="form-control" name="timepo_viaje"><br>
+													Cantidad de personas que utilizan la fuente hídrica:<br>
+													<input type="text" class="form-control" name="poblacion_acceso"><br>
+												</div>
+											</div>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+											</ul>
+										</div>
+										<div class="tab-pane" role="tabpanel" id="ica">
+											<h3>ICA (Índice de Calidad de Agua)</h3>
+											<div class="modal-body">
+												<div class="form-group">
+													Oxígeno disuelto (OD):<br>
+													<input type="text" class="form-control" name="oxigeno_disuelto"><br>
+													Oxígeno de Saturación (OS):<br>
+													<input type="text" class="form-control" name="oxigeno_saturacion"><br>
+													Sólidos  suspendidos totales (SST):<br>
+													<input type="text" class="form-control" name="solidos_suspendidos"><br>
+													Demanda química de oxígeno (DQO):
+													<input type="text" class="form-control" name="demanda_quimica_oxigeno"><br>
+													Conductividad eléctrica (C.E):
+													<input type="text" class="form-control" name="conductividad_electrica"><br>
+													Nivel de acidez (PH):
+													<input type="text" class="form-control" name="ph_ica"><br>
+													Nitrógeno:
+													<input type="text" class="form-control" name="nitrogeno_ica"><br>
+													Fósforo:
+													<input type="text" class="form-control" name="fosforo_ica"><br>
+												</div>
+											</div>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
 												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
 											</ul>
 										</div>														
 
 										<div class="tab-pane" role="tabpanel" id="complete">
 											<h3>FORMULARIO COMPLETO</h3>
-											<p>Usted ha llenado todos los campos de los formularios satisfactoriamente</p>
+											<p>¿Desea almacenar los datos digitados anteriormente?</p>
 											<ul class="list-inline pull-right">
 												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
 												<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>
-												<script>													
+												<script>												
 													$(document).ready(function(){
-														$("#registro").onclick(function(){
-															$("#fuente_hidirica").modal();
+														$("#registrar_ica").onclick(function(){
+															$("#form_variables").modal();
 														});
 													});
 												</script>
@@ -396,13 +493,182 @@ session_start();
 									</div>
 								</form>
 							</div>
-						</div>
-					</div>	
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+						</section>
 					</div>
 				</div>
-			</div>	
-		</body>
-		</html>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+				</div>
+			</div>  
+		</div>
+	</div>
+
+	<!-- Pop.up ver registros de Fuentes Hidricas -->
+	<div class="modal fade" id="registros_fuente_hidirica" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h3 class="modal-title">EDITAR FUENTE HÍDRICA</h3></center>
+				</div>
+				<div class="modal-body" >
+					<div class="container">	
+						<div class="row">
+							<div class="col-md-12">
+								<h3>Registros:</h3>
+								<div class="records_content"></div>
+							</div>
+						</div>
+					</div>					
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+				</div>
+			</div>  
+		</div>
+	</div>	
+
+	<!-- Pop-up Actualizar Fuentre Hidrica-->
+	<div class="modal fade" id="editar_variables" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">ACTUALIZAR INFORMACIÓN DE LA FUENTE HIDRICA</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="update_nombre">Nombre</label>
+						<input type="text" id="update_nombre" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_apellido">Apellido</label>
+						<input type="text" id="update_apellido" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_tel_usuario">Telefono</label>
+						<input type="text" id="update_tel_usuario" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_correo_usuario">Correo</label>
+						<input type="text" id="update_correo_usuario" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_nom_usuario">Usuario</label>
+						<input type="text" id="update_nom_usuario" placeholder="" class="form-control"/>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Aceptar</button>
+					<input type="hidden" id="hidden_user_id">
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- Pop.up ver registros de Rancheria -->
+	<div class="modal fade" id="registros_rancheria" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" id="ventana" style="display: table; left: -10%;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h3 class="modal-title">EDITAR RANCHERIA</h3></center>
+				</div>
+				<div class="modal-body">
+					<div class="container">	
+						<div class="row">
+							<div class="col-md-12">
+								<h3>Registros:</h3>
+								<div class="records_content_r"></div>
+							</div>
+						</div>
+					</div>					
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+				</div>
+			</div>  
+		</div>
+	</div>	
+
+	<!-- Pop-up Actualizar Rancheria-->
+	<div class="modal fade" id="detalles_rancheria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">ACTUALIZAR INFORMACIÓN DE LA FUENTE HIDRICA</h4>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="update_nom_municipio">Municipio</label>
+						<select name="selectid_municipio_2" id="update_id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
+							<option value="" selected disabled>Municipio</option> 
+							<?php
+							$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+							or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+							$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
+							while($row_list=pg_fetch_assoc($municipio)){
+								?>                              
+								<option value=<?php echo $row_list["id_municipio"]; ?>>
+									<?php echo $row_list["nom_municipio"];?>  
+								</option>
+								<?php
+							}                        
+							?>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="update_nom_rancheria">Rancheria</label>
+						<input type="text" id="update_nom_rancheria" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_cantidad_personas">Cantidad Personas</label>
+						<input type="text" id="update_cantidad_personas" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_representante">Representante</label>
+						<input type="text" id="update_representante" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_latitud_r">Latitud</label>
+						<input type="text" id="update_latitud_r" placeholder="" class="form-control"/>
+					</div>
+
+					<div class="form-group">
+						<label for="update_longitud_r">Longitud</label>
+						<input type="text" id="update_longitud_r" placeholder="" class="form-control"/>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" onclick="actualizar_detalles_rancheria()" >Aceptar</button>
+					<input type="hidden" id="hidden_rancheria_id">
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<div id="particles-js"></div>
+	<script src="js\particles.js"></script>
+	<script src="js\login.js"></script>
+	<script src="js\script_acciones.js"></script>
+	<script type="text/javascript" src="js/script_rancheria.js"></script>
+
+	
