@@ -23,3 +23,4 @@ if(isset($_POST)){
     pg_query($conexion, $query);
     
 }
+

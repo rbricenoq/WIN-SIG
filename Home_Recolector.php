@@ -32,7 +32,7 @@ session_start();
 			?>
 			<li id="lsita_bar_nav"><a class="active"> <?php echo $_SESSION['username']	?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
+			<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
 			<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>
 		</ul>
 		<?php
@@ -61,9 +61,7 @@ session_start();
 				<br><br>
 				<button type="submit" id="btn_edi_fh"  class="btn btn-primary" href="#registros_fuente_hidirica" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
 				<br><br>
-				<button type="submit" id="btn_ag_rc"  class="btn btn-success" href="#form_rancheria" data-toggle="modal" title="Tienes que loguearte para poder agregar una Rancheria"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Rancheria</button>
-				<br><br>
-				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Rancheria</button>
+				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-pencil"></i>  Rancherias</button>
 				<br><br>
 			</div>
 
@@ -198,6 +196,7 @@ session_start();
 			</div>
 			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
 		</section>
+
 	</div>
 
 	<!-- Pop-up Contacto  -->
@@ -220,56 +219,22 @@ session_start();
 		</div>
 	</div>
 
-	<!-- Pop-up Rancheria  -->
-	<div class="modal fade" id="form_rancheria" role="dialog">
+	<!-- Pop-up Acerca de  -->
+	<div class="modal fade" id="cuestionario" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>	
-					<center><h4 class="modal-title">RANCHERIA</h4></center>
+					<center><h4 class="modal-title">CUESTIONARIOS</h4></center>
 				</div>
-				<div class="modal-body">
-					<form name="insertar" action="php/insertar_rancheria.php" method="post"> 
-						<div class="form-group">
-							Seleccione el municipio donde se encuentra la rancheria:
-							<select name="selectid_municipio" id="id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
-								<option value="" selected disabled>Municipio</option> 
-								<?php
-								$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-								or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-								$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
-								while($row_list=pg_fetch_assoc($municipio)){
-									?>                              
-									<option value=<?php echo $row_list["id_municipio"]; ?>>
-										<?php echo $row_list["nom_municipio"];?>  
-									</option>
-									<?php
-								}                        
-								?>
-							</select><br>
-							Nombre de la rancheria:<br>
-							<input type="text" class="form-control" name="nom_rancheria"><br>
-							Cantidad de personas:<br>
-							<input type="text" class="form-control" name="cantidad_personas"><br>
-							Nombre del representante:
-							<input type="text" class="form-control" name="representante"><br>
-							Latitud:<br>
-							<input type="text" class="form-control" name="latitud_r"><br>
-							Longitud:<br>
-							<input type="text" class="form-control" name="longitud_r"><br>
-							<button type="submit"  class="btn btn-primary  btn-lg center-block"><span class="glyphicon glyphicon-save"></span> Guardar</button>  
-							<script>
-								$(document).ready(function(){
-									$("#registro").onclick(function(){
-										$("#form_rancheria").modal();
-									});
-								});
-							</script> 
-						</div>
-					</form> 
+				<div class="modal-body" >
+					Cuestionarios para saber su opinión sobre la aplicación:
+					<br><br>
+					<A HREF="https://docs.google.com/forms/d/1_cOo15t5TEq4XMJcxpD8mcaomJl446Sw6Fy29TYGBUk/edit" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
+					<A HREF="https://docs.google.com/forms/d/1ch_-j59fRtgfjcawq4spNheJlZ6a-wO1b4xkyuZCPRY/edit" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
 				</div>
 			</div>  
 		</div>
@@ -568,13 +533,18 @@ session_start();
 													<h4><b>CARACTERÍSTICAS QUÍMICAS RELACIONADAS CON LOS PLAGUICIDAS Y OTRAS SUSTANCIAS</b></h4>
 													Cancerígenas, mutagénicas y teratogénicas:
 													<input type="text" class="form-control" name="cmt"><br>
-													Plaguicidas:
+													Plaguicidas (Sumatoria de los valores de los plaguicidas):
 													<input type="text" class="form-control" name="plaguicidas"><br>
 													<h4><b>CARACTERÍSTICAS MICROBIOLÓGICAS</b></h4>
-													Escherichia Coli:
-													<input type="text" class="form-control" name="escherichia_coli"><br>
-													Coliformes:
-													<input type="text" class="form-control" name="coliformes"><br>
+
+													¿Ausencia de Escherichia Coli en 100cm3? <br>
+
+													Ausencia: <input type="checkbox" id="escherichia_coli_check" name="escherichia_coli_check" value="0"><br><br>
+
+													¿Ausencia de Coliformes en 100cm3?C<br>
+
+													Ausencia: <input type="checkbox" id="coliformes_check" name="coliformes_check" value="0"><br><br>
+
 													Microorganismos mesofilicos:
 													<input type="text" class="form-control" name="microorganismos_mesofilicos"><br>
 													Giardia:
@@ -698,7 +668,7 @@ session_start();
 	<!-- Pop.up ver registros de Rancheria -->
 	<div class="modal fade" id="registros_rancheria" role="dialog">
 		<div class="modal-dialog">
-			<div class="modal-content" id="ventana" style="display: table; left: -10%;">
+			<div class="modal-content" id="ventana">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>	
 					<center><h3 class="modal-title">EDITAR RANCHERIA</h3></center>
@@ -706,14 +676,21 @@ session_start();
 				<div class="modal-body">
 					<div class="container">	
 						<div class="row">
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="pull-right">
+										<button class="btn btn-success" data-toggle="modal" data-target="#añadir_rancheria">Nueva Rancheria</button>
+									</div>
+								</div>
+							</div>
+
 							<div class="col-md-12">
 								<h3>Registros:</h3>
 								<div class="records_content_r"></div>
 							</div>
 						</div>
-					</div>					
-
-
+					</div>	
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
@@ -721,6 +698,65 @@ session_start();
 			</div>  
 		</div>
 	</div>	
+
+	<!-- Nueva Rancheria -->
+	<div class="modal fade" id="añadir_rancheria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Nueva Rancheria</h4>
+				</div>
+
+				<div class="modal-body">
+					<form name="insertar" action="php/insertar_rancheria.php" method="post"> 
+						<div class="form-group">
+							Seleccione el municipio donde se encuentra la rancheria:
+							<select name="select_id_municipio" id="id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
+								<option value="" selected disabled>Municipio</option> 
+								<?php
+								$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+								or die("Ha sucedido un error inesperado en la conexion de la base de datos");
+								$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
+								while($row_list=pg_fetch_assoc($municipio)){
+									?>                              
+									<option value=<?php echo $row_list["id_municipio"]; ?>>
+										<?php echo $row_list["nom_municipio"];?>  
+									</option>
+									<?php
+								}                        
+								?>
+							</select><br>
+							Nombre de la rancheria:<br>
+							<input type="text" class="form-control" name="nom_rancheria"><br>
+							Cantidad de personas:<br>
+							<input type="text" class="form-control" name="cantidad_personas"><br>
+							Nombre del representante:
+							<input type="text" class="form-control" name="representante"><br>
+							Latitud:<br>
+							<input type="text" class="form-control" name="latitud_r"><br>
+							Longitud:<br>
+							<input type="text" class="form-control" name="longitud_r"><br>							
+						</div>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary" onclick="insertar_rancheria()">Guardar 1</button>
+						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Guardar</button>  
+						<script>
+							$(document).ready(function(){
+								$("#registro").onclick(function(){
+									$("#añadir_rancheria").modal();
+								});
+							});
+						</script> 
+					</div>
+				</form> 
+			</div>
+		</div>
+	</div>
 
 	<!-- Pop-up Actualizar Rancheria-->
 	<div class="modal fade" id="detalles_rancheria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -731,10 +767,9 @@ session_start();
 					<h4 class="modal-title" id="myModalLabel">ACTUALIZAR INFORMACIÓN DE LA FUENTE HIDRICA</h4>
 				</div>
 				<div class="modal-body">
-
 					<div class="form-group">
 						<label for="update_nom_municipio">Municipio</label>
-						<select name="selectid_municipio_2" id="update_id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
+						<select name="selectid_municipio_2" id="update_id_municipio" class="form-control" onChange="getIdMunicipio(this)">  							
 							<option value="" selected disabled>Municipio</option> 
 							<?php
 							$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
@@ -792,4 +827,4 @@ session_start();
 	<script src="js\script_acciones.js"></script>
 	<script type="text/javascript" src="js/script_rancheria.js"></script>
 
-	
+

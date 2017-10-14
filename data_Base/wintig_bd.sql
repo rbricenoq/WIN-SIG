@@ -1,5 +1,5 @@
 create database wintig;
-create schema if not exists wintig;
+  create schema if not exists wintig;
 
 -- -----------------------------------------------------
 -- Table wintig.tipo_de_usuario
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS wintig.ica (
 CREATE TABLE IF NOT EXISTS wintig.irca (
   id_irca serial primary key not null,
   color_aparente float,
-  olor integer,
-  sabor integer,
+  olor varchar(45),
+  sabor varchar(45),
   turbiedad float,
   conductividad float,
   ph_irca float,
@@ -86,8 +86,8 @@ CREATE TABLE IF NOT EXISTS wintig.irca (
   fosfatos float,
   cmt float,
   plaguicidas float,
-  escherichia_coli float,
-  coliformes float,
+  escherichia_coli varchar(45),
+  coliformes varchar(45),
   microorganismos_mesofilicos float,
   giardia float,
   cryptosporidium float,
@@ -166,9 +166,9 @@ CREATE TABLE IF NOT EXISTS wintig.fuente_hidrica (
   id_tipo_fuente_hidrica integer not null,
   id_accesibilidad serial not null,
   id_uso serial not null,
-  id_ica serial not null,
-  id_irca serial not null,
-  id_rancheria serial not null,
+  id_ica serial,
+  id_irca serial,
+  id_rancheria integer,
   nom_fh varchar(45) not null,
   latitud_fh float NOT NULL,
   longitud_fh float NOT NULL);
@@ -203,6 +203,8 @@ INSERT INTO wintig.tipo_de_usuario (tipo_de_usuario) values ('Recolector');
 INSERT INTO wintig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Ramiro', 'Briceño', 1, '3208809703', 'rbricenoq@unbosque.edu.co', 'rbricenoq', 'ramiro1234');  
 INSERT INTO wintig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Sergio', 'Barrero', 1, '3212290107', 'sbarrerof@unbosque.edu.co', 'sbarrerof', 'sergio1234');
 INSERT INTO wintig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Daniela', 'Pico', 1, '3166190924', 'dpico@unbosque.edu.co', 'dpico', 'dpico1234');
+INSERT INTO wintig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password) VALUES ('Recolector', 'Recolector', 2, '3125218427', 'Recolector@unbosque.edu.co', 'reco', 'reco1234');
+
 
 INSERT INTO wintig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) values ('Pozo');
 INSERT INTO wintig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) values ('Jagüey');
@@ -220,18 +222,23 @@ INSERT INTO wintig.departamento (nom_departamento) VALUES ('Guajira');
 
 INSERT INTO wintig.municipio (nom_municipio, id_departamento) VALUES ('Manaure', 1);  
 INSERT INTO wintig.municipio (nom_municipio, id_departamento) VALUES ('Maicao', 1); 
- 
-INSERT INTO wintig.ica (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph_ica, nitrogeno_ica, fosforo_ica, calculo_ica, estado_ica) VALUES (11,12,13,14,15,16,17, 181, 'malo');
+
+INSERT INTO wintig.ica (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph_ica, nitrogeno_ica, fosforo_ica, calculo_ica, estado_ica) VALUES (5,6,10,20,7,9,300, 300, 'Regular');
 INSERT INTO wintig.irca (color_aparente, olor,sabor, turbiedad, conductividad, ph_irca, antimonio, 
   arsenico, bario, cadmio, cianuro_libre_disociable, cobre, cromo, mercurio, niquel, plomo, selenio,
   trihalometanos, hap, cot, nitritos, nitratos, fluoruros, calcio, alcalinidad, cloruros, aluminio,
-  dureza, hierro, magnesio, manganeso, molibdeno ,sulfatos ,zinc ,fosfatos ,caracteristicas_quimicas, 
+  dureza, hierro, magnesio, manganeso, molibdeno, sulfatos, zinc, fosfatos, cmt, 
   plaguicidas, escherichia_coli, coliformes, microorganismos_mesofilicos, giardia, cryptosporidium,
-  detergente, coagulante_sales_hierro, coagulante_aluminio, calculo_irca, estado_irca) VALUES (1,0,1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,'Sin Riesgo');
+  detergente, coagulante_sales_hierro, coagulante_aluminio, calculo_irca, estado_irca) VALUES (1,'Aceptable','No Aceptable',4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,'Presencia en 100cm3','Ausencia en 100cm3',40,41,42,43,44,45,46,'Sin Riesgo');
 
 INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, timepo_viaje, distancia, poblacion_acceso) VALUES (1, 2, 3, 4, '02:00', 6, 7);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (2);   
-INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'rancheria-test1', 14, 'Martina', -72794138888, 105058056);
+
+INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'Aremashain', 20, 'Martina', 11.7650790499241, -72.4589270353317);
+INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'Guaymaral', 15, 'Pedro', 11.7756873227519, -72.4290955066681);
+INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'Pushaina', 35, 'Andrea', 11.77, -72.4290955066681);
+INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'Arpushana', 41, 'Federico', 11.74105378, -72.46052468);
+INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'Warpushana', 62, 'Natalia', 11.75034567, -72.46976543);
 
 INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (1, 1, 'Aremashain', 11.7650790499241, -72.4589270353317);
 

@@ -32,7 +32,7 @@ session_start();
 			?>
 			<li id="lsita_bar_nav"><a class="active" > <?php echo $_SESSION['username']?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-			<li id="lsita_bar_nav"><a href="#acerca_de">Acerca de</a></li>
+			<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
 			<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>
 		</ul>
 		<?php
@@ -208,7 +208,28 @@ session_start();
 				</div>
 			</div>  
 		</div>
-	</div>	
+	</div>
+
+	<!-- Pop-up Acerca de  -->
+	<div class="modal fade" id="cuestionario" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h4 class="modal-title">CUESTIONARIOS</h4></center>
+				</div>
+				<div class="modal-body" >
+					Cuestionarios para saber su opinión sobre la aplicación:
+					<br><br>
+					<A HREF="https://docs.google.com/forms/d/1_cOo15t5TEq4XMJcxpD8mcaomJl446Sw6Fy29TYGBUk/edit" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
+					<A HREF="https://docs.google.com/forms/d/1ch_-j59fRtgfjcawq4spNheJlZ6a-wO1b4xkyuZCPRY/edit" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+				</div>
+			</div>  
+		</div>
+	</div>
 
 	<!-- Pop.up ver registros de Usuarios -->
 	<div class="modal fade" id="editar_usuarios" role="dialog">

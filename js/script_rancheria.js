@@ -1,4 +1,34 @@
 // READ records
+function insertar_rancheria() {
+    // get values
+    var nom_municipio = $("#new_nom_municipio").val();
+    var id_municipio = $("#new_id_municipio").val();
+    var nom_rancheria = $("#new_nom_rancheria").val();
+    var cantidad_personas = $("new_cantidad_personas").val();
+    var representante = $("#new_representante").val();
+    var latitud_r = $("#new_latitud_r").val();
+    var longitud_r = $("#new_longitud_r").val();
+
+    // Add record
+    $.post("ajax/insertar_rancheria.php", {
+        id_municipio: id_municipio,
+        nom_municipio: nom_municipio,
+        nom_rancheria: nom_rancheria,
+        cantidad_personas: cantidad_personas,
+        representante: representante,
+        latitud_r: latitud_r,
+        longitud_r: longitud_r
+    }, function (data, status) {
+        // close the popup
+        $("#añadir_rancheria").modal("hide");
+
+        // read records again
+        readRecords();
+
+        // clear fields from the popup
+    });
+}
+
 function readRecords() {
     $.get("php/registros_rancheria.php", {}, function (data, status) {
         $(".records_content_r").html(data);
