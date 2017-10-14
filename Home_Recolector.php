@@ -18,9 +18,7 @@
 
 <?php 
 	//Creamos la conexión con la BD en postgresql
-$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-
+include 'php/conexion.php';
 session_start();
 ?>
 <body>
@@ -208,9 +206,9 @@ session_start();
 					<center><h4 class="modal-title">CONTACTO</h4></center>
 				</div>
 				<div class="modal-body" >
-					<h4 id="p-regis"> Rbricenoq@unbosque.edu.co</h4><br>
-					<h4 id="p-regis"> Sbarrerof@unbosque.edu.co</h4><br>
-					<h4 id="p-regis"> Dpico@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> rbricenoq@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> sbarrerof@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> dpico@unbosque.edu.co</h4><br>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
@@ -317,9 +315,8 @@ session_start();
 													<select name="selectid_rancheria" id="id_rancheria" class="form-control" onChange="getIdRancheria(this)">  
 														<option value="" selected disabled>Rancheria</option> 
 														<?php
-														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-														$rancheria = pg_query($conexion, "SELECT id_rancheria, nom_rancheria FROM wintig.rancheria");
+														include 'php/conexion.php';
+														$rancheria = pg_query("SELECT id_rancheria, nom_rancheria FROM wintig.rancheria");
 														while($row_list=pg_fetch_assoc($rancheria)){
 															?>                              
 															<option  value=<?php echo $row_list["id_rancheria"]; ?>>
@@ -344,9 +341,8 @@ session_start();
 													<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFh(this)">  
 														<option value="" selected disabled>Tipo</option> 
 														<?php
-														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-														$fuente = pg_query($conexion, "SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM wintig.tipo_fuente_hidrica");
+														include 'php/conexion.php';
+														$fuente = pg_query("SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM wintig.tipo_fuente_hidrica");
 														while($row_list=pg_fetch_assoc($fuente)){
 															?>                              
 															<option value=<?php echo $row_list["id_tipo_fuente_hidrica"]; ?>>
@@ -357,11 +353,11 @@ session_start();
 														?>
 													</select><br>
 													Nombre:<br>
-													<input type="text" class="form-control" name="nom_fh"><br>
+													<input type="text" class="form-control" name="nom_fh" required><br>
 													Latitud:<br>
-													<input type="text" class="form-control" name="latitud_fh"><br>
+													<input type="text" class="form-control" name="latitud_fh" required><br>
 													Longitud:<br>
-													<input type="text" class="form-control" name="longitud_fh"><br>
+													<input type="text" class="form-control" name="longitud_fh" required><br>
 												</div>
 											</div>
 											<ul class="list-inline pull-right">
@@ -378,9 +374,8 @@ session_start();
 													<select name="selectid_uso" id="tipo_uso" class="form-control" onChange="getIdUso(this)">  
 														<option value="" selected disabled>Uso</option> 
 														<?php
-														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-														$uso = pg_query($conexion, "SELECT id_tipo_uso, nom_tipo_uso FROM wintig.tipo_uso");
+														include 'php/conexion.php';
+														$uso = pg_query("SELECT id_tipo_uso, nom_tipo_uso FROM wintig.tipo_uso");
 														while($row_list=pg_fetch_assoc($uso)){
 															?>                              
 															<option value=<?php echo $row_list["id_tipo_uso"]; ?>>
@@ -394,9 +389,8 @@ session_start();
 													<select name="selectid_acceso" id="tipo_acceso" class="form-control" onChange="getIdAcceso(this)">  
 														<option value="" selected disabled>Acceso</option> 
 														<?php
-														$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-														or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-														$acceso = pg_query($conexion, "SELECT id_tipo_acceso, nom_tipo_acceso FROM wintig.tipo_acceso");
+														include 'php/conexion.php';
+														$acceso = pg_query("SELECT id_tipo_acceso, nom_tipo_acceso FROM wintig.tipo_acceso");
 														while($row_list=pg_fetch_assoc($acceso)){
 															?>                              
 															<option value=<?php echo $row_list["id_tipo_acceso"]; ?>>
@@ -429,21 +423,21 @@ session_start();
 											<div class="modal-body">
 												<div class="form-group">
 													Oxígeno disuelto (OD):<br>
-													<input type="text" class="form-control" name="oxigeno_disuelto"><br>
+													<input type="text" class="form-control" name="oxigeno_disuelto" required><br>
 													Oxígeno de Saturación (OS):<br>
-													<input type="text" class="form-control" name="oxigeno_saturacion"><br>
+													<input type="text" class="form-control" name="oxigeno_saturacion" required><br>
 													Sólidos  suspendidos totales (SST):<br>
-													<input type="text" class="form-control" name="solidos_suspendidos"><br>
+													<input type="text" class="form-control" name="solidos_suspendidos" required><br>
 													Demanda química de oxígeno (DQO):
-													<input type="text" class="form-control" name="demanda_quimica_oxigeno"><br>
+													<input type="text" class="form-control" name="demanda_quimica_oxigeno" required><br>
 													Conductividad eléctrica (C.E):
-													<input type="text" class="form-control" name="conductividad_electrica"><br>
+													<input type="text" class="form-control" name="conductividad_electrica" required><br>
 													Nivel de acidez (PH):
-													<input type="text" class="form-control" name="ph_ica"><br>
+													<input type="text" class="form-control" name="ph_ica" required><br>
 													Nitrógeno:
-													<input type="text" class="form-control" name="nitrogeno_ica"><br>
+													<input type="text" class="form-control" name="nitrogeno_ica" required><br>
 													Fósforo:
-													<input type="text" class="form-control" name="fosforo_ica"><br>
+													<input type="text" class="form-control" name="fosforo_ica" required><br>
 												</div>
 											</div>
 											<ul class="list-inline pull-right">
@@ -545,7 +539,7 @@ session_start();
 
 													Ausencia: <input type="checkbox" id="coliformes_check" name="coliformes_check" value="0"><br><br>
 
-													Microorganismos mesofilicos:
+													Microorganismos mesofílicos:
 													<input type="text" class="form-control" name="microorganismos_mesofilicos"><br>
 													Giardia:
 													<input type="text" class="form-control" name="giardia"><br>
@@ -715,9 +709,8 @@ session_start();
 							<select name="select_id_municipio" id="id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
 								<option value="" selected disabled>Municipio</option> 
 								<?php
-								$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-								or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-								$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
+								include 'php/conexion.php';
+								$municipio = pg_query("SELECT id_municipio, nom_municipio FROM wintig.municipio");
 								while($row_list=pg_fetch_assoc($municipio)){
 									?>                              
 									<option value=<?php echo $row_list["id_municipio"]; ?>>
@@ -772,9 +765,8 @@ session_start();
 						<select name="selectid_municipio_2" id="update_id_municipio" class="form-control" onChange="getIdMunicipio(this)">  							
 							<option value="" selected disabled>Municipio</option> 
 							<?php
-							$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-							or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-							$municipio = pg_query($conexion, "SELECT id_municipio, nom_municipio FROM wintig.municipio");
+							include 'php/conexion.php';
+							$municipio = pg_query("SELECT id_municipio, nom_municipio FROM wintig.municipio");
 							while($row_list=pg_fetch_assoc($municipio)){
 								?>                              
 								<option value=<?php echo $row_list["id_municipio"]; ?>>

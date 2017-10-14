@@ -85,7 +85,7 @@ div.container {
 
 .panel_filtros{
     width: 250px;
-    max-height: 400px;
+    max-height: 700px;
     background-color: #ddd;
     overflow: scroll;
 }
@@ -110,8 +110,9 @@ nav ul a {
 }
 
 #map {
-    height: 700px;
-    width: 85%;
+    height: 800px;
+    width: 79.5%;
+    float: right;
 }
 .material-switch > input[type="checkbox"] {
     display: none;   

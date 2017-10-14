@@ -14,13 +14,7 @@
 </head>
 
 <?php 
-	//Creamos la conexión con la BD en postgresql
-$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-or die("Ha sucedido un error inexperado en la conexion de la base de datos");
-	//desconectamos la base de datos
-$close = pg_close($conexion) 
-or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
-	//pg_set_client_encoding($conexion, "utf8");
+include 'php/conexion.php';
 ?>
 
 <body>
@@ -67,18 +61,18 @@ or die("Ha sucedido un error inesperado en la desconexion de la base de datos");
 					<center><h4 class="modal-title">REGISTRO WIN-TIG</h4></center>
 				</div>
 				<div class="modal-body">
-					<form name="insertar" action="php/insertar_usuario.php" method="post"> 
+					<form name="insertar" action="php/Registrar.php" method="post"> 
 						<div class="form-group">
 							Nombre:<br>
 							<input type="text" class="form-control" name="nombre" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 							Apellidos:<br>
 							<input type="text" class="form-control" name="apellido" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 							Telefono:
-							<input type="text" class="form-control" name="telefono" pattern="[0-9]{7,10}+" title="Ingresa un número válido: 7 dígitos para casa u oficina, 10 dígitos para celulares" required><br>
+							<input type="text" class="form-control" name="telefono" pattern="[0-9]{7,10}" title="Ingresa un número válido: 7 dígitos para casa u oficina, 10 dígitos para celulares" required><br>
 							Correo Electrónico:
 							<input type="email" class="form-control" name="email" title="Agregue una dirección de correo electrónico como user@example.com" required><br>
 							Nombre de Usuario:
-							<input type="text" class="form-control" name="nom_usuario"  pattern="[0-9a-zA-ZñÑáéíóúÁÉÍÓÚ@_-&\s]+" title="Ingresa el nombre de usuario con el que serás identificad@" required><br>
+							<input type="text" class="form-control" name="usuario"  pattern="[0-9a-zA-ZñÑáéíóúÁÉÍÓÚ@_-&\s]+" title="Ingresa el nombre de usuario con el que serás identificad@" required><br>
 							Contraseña:
 							<input type="password" class="form-control" name="contra1" required><br>
 							Confirmar contraseña:

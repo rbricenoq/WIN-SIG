@@ -17,9 +17,7 @@
 
 <?php 
 //Creamos la conexión con la BD en postgresql
-$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
-or die("Ha sucedido un error inesperado en la conexion de la base de datos");
-
+include 'php/conexion.php';
 session_start();
 ?>
 <body>
@@ -34,7 +32,7 @@ session_start();
 	<?php
 	if (isset($_SESSION['username'])) {
 		echo '<b>'.$_SESSION['username'].'</b>.';
-		echo '<p><a href="logout.php">Logout</a></p>';
+		echo '<p><a href="php/logout.php">Logout</a></p>';
 	}
 	?>
 
@@ -47,9 +45,9 @@ session_start();
 					<center><h4 class="modal-title">CONTACTO</h4></center>
 				</div>
 				<div class="modal-body" >					
-					<h4 id="p-regis"> Rbricenoq@unbosque.edu.co</h4><br>
-					<h4 id="p-regis"> Sbarrerof@unbosque.edu.co</h4><br>
-					<h4 id="p-regis"> Dpico@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> rbricenoq@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> sbarrerof@unbosque.edu.co</h4><br>
+					<h4 id="p-regis"> dpico@unbosque.edu.co</h4><br>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    

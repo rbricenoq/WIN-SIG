@@ -1,10 +1,9 @@
 <?php
-require("connection.php");
+include 'php/conexion.php';
 $dom = new DOMDocument("1.0");
 $node = $dom->createElement("markers");
 $parnode = $dom->appendChild($node);
-$conn_string = "host=localhost port=5432 dbname=wintig user=postgres password=root";
-$dbconn = pg_connect($conn_string);
+session_start();
 $result = pg_query($dbconn, "SELECT * FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidrica, wintig.ica, wintig.irca where wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica and wintig.fuente_hidrica.id_ica = wintig.ica.id_ica and wintig.fuente_hidrica.id_irca = wintig.irca.id_irca");
 
 header("Content-type: text/xml");
