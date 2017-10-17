@@ -1,6 +1,6 @@
 <?php
-include('conexion.php'); 
 
+include("correo.php"); 
 session_start();
 
 if(trim($_POST["usuario"]) != "" && trim($_POST["password"]) != ""){

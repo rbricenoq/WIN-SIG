@@ -24,7 +24,7 @@ $data = '<table class="table table-bordered table-striped">
 $result = pg_Exec($conexion,'select wintig.rancheria.id_rancheria, wintig.municipio.nom_municipio,wintig.rancheria.nom_rancheria, wintig.rancheria.cantidad_personas, wintig.rancheria.representante, wintig.rancheria.latitud_r, wintig.rancheria.longitud_r  from wintig.rancheria, wintig.municipio where wintig.rancheria.id_municipio = wintig.municipio.id_municipio order by wintig.rancheria.id_rancheria');
 
 if (!$result) {
-	echo 'Erro en la consulta.\n'; 
+	echo 'Error en la consulta.\n'; 
 	exit;
 }
     // if query results contains rows then featch those rows 

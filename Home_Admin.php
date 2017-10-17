@@ -59,28 +59,28 @@ session_start();
 			</div>
 			<!-- Filtros -->
 			<div class="filtros">
-				<div class="panel panel_filtros">
-					<div class="panel_heading">Fuente Hídrica</div>
+				<div class="panel_filtros">
+					<div class="panel_heading"><br>Fuente Hídrica</br></div>
 					<ul class="list-group">
-						<li class="list-group-item">
+						<li class="list-group-item" value="pozo">
 							Pozo
 							<div class="material-switch pull-right">
-								<input id="f1" name="Pozo" type="checkbox"/>
-								<label for="f1" class="label-primary"></label>
+								<input id="pozo" name="Pozo" type="checkbox" onclick="filtros_fuente_hidrica('Pozo');"/>
+								<label for="pozo" class="label-primary"></label>
 							</div>
 						</li>
 						<li class="list-group-item">
 							Jagüey
 							<div class="material-switch pull-right">
-								<input id="f2" name="Jagüey" type="checkbox"/>
-								<label for="f2" class="label-primary"></label>
+								<input id="jaguey" name="Jagüey" type="checkbox" onclick="filtros_fuente_hidrica('Jagüey');"/>
+								<label for="jaguey" class="label-primary"></label>
 							</div>
 						</li>
 						<li class="list-group-item">
 							Reservorio
 							<div class="material-switch pull-right">
-								<input id="f3" name="Reservorio" type="checkbox"/>
-								<label for="f3" class="label-primary"></label>
+								<input id="reservorio" name="Reservorio" type="checkbox" onclick="filtros_fuente_hidrica('Reservorio');"/>
+								<label for="reservorio" class="label-primary"></label>
 							</div>
 						</li>
 					</ul>
@@ -89,93 +89,113 @@ session_start();
 						<li class="list-group-item">
 							Manaure
 							<div class="material-switch pull-right">
-								<input id="f4" name="Manaure" type="checkbox"/>
-								<label for="f4" class="label-primary"></label>
+								<input id="manaure_f" name="Manaure" type="checkbox" onclick="filtros_municipio_fuente('Manaure');"/>
+								<label for="manaure_f" class="label-primary"></label>
 							</div>
 						</li>
 						<li class="list-group-item">
 							Maicao
 							<div class="material-switch pull-right">
-								<input id="f5" name="Maicao" type="checkbox"/>
-								<label for="f5" class="label-primary"></label>
+								<input id="maicao_f" name="Maicao" type="checkbox" onclick="filtros_municipio_fuente('Maicao');"/>
+								<label for="maicao_f" class="label-primary"></label>
 							</div>
 						</li>
 					</ul>
-					<div class="panel_heading">Indice de Calidad del Agua</div>
-					<ul class="list-group">
-						<li class="list-group-item">
-							Indicador 1
-							<div class="material-switch pull-right">
-								<input id="f6" name="Indicador_1" type="checkbox"/>
-								<label for="f6" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Indicador 2
-							<div class="material-switch pull-right">
-								<input id="f7" name="Indicador_2" type="checkbox"/>
-								<label for="f7" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Indicador 3
-							<div class="material-switch pull-right">
-								<input id="f8" name="Indicador_3" type="checkbox"/>
-								<label for="f8" class="label-primary"></label>
-							</div>
-						</li>
-					</ul>
-					<div class="panel_heading">Capacidad</div>
-					<!-- List group -->
-					<ul class="list-group">
-						<li class="list-group-item">
-							5-10 personas
-							<div class="material-switch pull-right">
-								<input id="f9" name="min_personas" type="checkbox"/>
-								<label for="f9" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							10-20
-							<div class="material-switch pull-right">
-								<input id="f10" name="med_personas" type="checkbox"/>
-								<label for="f10" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Más de 20 personas
-							<div class="material-switch pull-right">
-								<input id="f11" name="mas_personas" type="checkbox"/>
-								<label for="f11" class="label-primary"></label>
-							</div>
-						</li>
-					</ul>
-					<div class="panel_heading">Diagnostico</div>
-					<!-- List group -->
-					<ul class="list-group">
-						<li class="list-group-item">
-							Bueno
-							<div class="material-switch pull-right">
-								<input id="f12" name="bueno" type="checkbox"/>
-								<label for="f12" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Regular
-							<div class="material-switch pull-right">
-								<input id="f13" name="regular" type="checkbox"/>
-								<label for="f13" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Malo
-							<div class="material-switch pull-right">
-								<input id="f14" name="malo" type="checkbox"/>
-								<label for="f14" class="label-primary"></label>
-							</div>
-						</li>
-					</ul>
-				</div>            
+				</ul>
+				<div class="panel_heading">Rancheria</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						Manaure
+						<div class="material-switch pull-right">
+							<input id="manaure" name="Manaure" type="checkbox" onclick="filtros_municipio_rancheria('Manaure');"/>
+							<label for="manaure" class="label-primary"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Maicao
+						<div class="material-switch pull-right">
+							<input id="maicao" name="Maicao" type="checkbox" onclick="filtros_municipio_rancheria('Maicao');"/>
+							<label for="maicao" class="label-primary"></label>
+						</div>
+					</li>
+				</ul>
+				<div class="panel_heading">Indice de Calidad del Agua - ICA</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						Buena
+						<div class="material-switch pull-right">
+							<input id="buena" name="Indicador_2" type="checkbox" onclick="filtros_ica('Buena');"/>
+							<label for="buena" class="label-primary"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Aceptable
+						<div class="material-switch pull-right">
+							<input id="aceptable" name="Indicador_3" type="checkbox" onclick="filtros_ica('Aceptable');"/>
+							<label for="aceptable" class="label-success"></label>
+						</div>
+					</li>				
+					<li class="list-group-item">
+						Regular
+						<div class="material-switch pull-right">
+							<input id="regular" name="Indicador_2" type="checkbox" onclick="filtros_ica('Regular');"/>
+							<label for="regular" class="label-info"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Mala
+						<div class="material-switch pull-right">
+							<input id="mala" name="Indicador_3" type="checkbox" onclick="filtros_ica('Mala');"/>
+							<label for="mala" class="label-warning"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Muy Mala
+						<div class="material-switch pull-right">
+							<input id="muy_mala" name="Indicador_1" type="checkbox" onclick="filtros_ica('Muy Mala');"/>
+							<label for="muy_mala" class="label-danger"></label>
+						</div>
+					</li>
+				</ul>
+				<div class="panel_heading">índice de Riesgo de la Calidad del Agua para Consumo Humano - IRCA</div>
+				<!-- List group -->
+				<ul class="list-group">
+					<li class="list-group-item">
+						Sin Riesgo
+						<div class="material-switch pull-right">
+							<input id="sin_riesgo" name="min_personas" type="checkbox" onclick="filtros_irca('Sin Riesgo');"/>
+							<label for="sin_riesgo" class="label-primary"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Riesgo Bajo
+						<div class="material-switch pull-right">
+							<input id="riesgo_bajo" name="med_personas" type="checkbox" onclick="filtros_irca('Riesgo Bajo');"/>
+							<label for="riesgo_bajo" class="label-success"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Riesgo Medio
+						<div class="material-switch pull-right">
+							<input id="riesgo_medio" name="mas_personas" type="checkbox" onclick="filtros_irca('Riesgo Medio');"/>
+							<label for="riesgo_medio" class="label-info"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Riesgo Alto
+						<div class="material-switch pull-right">
+							<input id="riesgo_alto" name="med_personas" type="checkbox" onclick="filtros_irca('Riesgo Alto');"/>
+							<label for="riesgo_alto" class="label-warning"></label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						Inviable Sanitariamente
+						<div class="material-switch pull-right">
+							<input id="inviable" name="mas_personas" type="checkbox" onclick="filtros_irca('Sanitariamente Inviable');"/>
+							<label for="inviable" class="label-danger"></label> 
+						</div>
+					</li>
+				</ul>					
 			</div>
 		</nav>
 		<!--Mapa-->

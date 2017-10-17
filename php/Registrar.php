@@ -1,6 +1,6 @@
 <?php 
 //incluimos el archivo conexion.php para establecer la conexion y tener acceso a todas las funciones declaradas
-include("conexion.php");
+include('correo.php');
 session_start();
 //recogemos mediante POST los datos de user,password y email y los almacenamos en variables
 $nombre = $_POST["nombre"]; 

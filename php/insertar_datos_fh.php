@@ -272,7 +272,7 @@ function estado_ica($c_ica){
 }
 
 //------------------------------------
-//            Funciones ICA
+//            Funciones IRCA
 //------------------------------------
 
 function calcular_irca($color_aparente, $turbiedad, $ph_irca, $antimonio, $arsenico, $bario, $cadmio, $cianuro_libre_disociable, $cobre, $cromo, $mercurio, $niquel, $plomo, $selenio, $trihalometanos, $hap, $cot, $nitritos, $nitratos, $fluoruros, $calcio, $alcalinidad, $cloruros, $aluminio, $dureza, $hierro, $magnesio, $manganeso, $molibdeno, $sulfatos, $zinc, $fosfatos, $cmt, $plaguicidas, $scherichia_coli, $coliformes, $microorganismos_mesofilicos, $giardia, $cryptosporidium, $detergente, $coagulante_sales_hierro, $coagulante_aluminio, $calculo_irca, $estado_irca){

@@ -3,84 +3,230 @@
   <div id="map"></div>
 
   <script>
+    var gmarkers_f = [];
+    var markers_f = [];
+
+    var gmarkers_r = [];
+    var markers_r = [];
+
     var label_fuente = {
       Reservorio: {
-        label: 'R'
+        label: ''
       },
       Pozo: {
-        label: 'P'
+        label: ''
       },
       Jagüey: {
-        label: 'J'
+        label: ''
       }
     };
     var label_municipio = {
       Manaure: {
-        label: 'Mr'
+        label: ''
       },
       Maicao: {
-        label: 'Mc'
+        label: ''
       }
     };
 
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
         center: new google.maps.LatLng(11.775, -72.444444),
-        zoom: 12
+        zoom: 10
       });
       var infoWindow = new google.maps.InfoWindow;
 
       downloadUrl('generarXML.php', function(data) {
         var xml = data.responseXML;
-        var markers = xml.documentElement.getElementsByTagName('marker_f');
-        Array.prototype.forEach.call(markers, function(markerElem) {
+        markers_f = xml.documentElement.getElementsByTagName('marker_f');
+        Array.prototype.forEach.call(markers_f, function(markerElem) {
           var nombre = markerElem.getAttribute('nombre');
           var tipofuente = markerElem.getAttribute('tipofuente');
           var ica_c = markerElem.getAttribute('ica_c');
           var ica_e = markerElem.getAttribute('ica_e');
           var irca_c = markerElem.getAttribute('irca_c');
           var irca_e = markerElem.getAttribute('irca_e');
+          var tipoacceso = markerElem.getAttribute('tipoacceso');
+          var tipouso = markerElem.getAttribute('tipouso');
+          var acceso_poblacion = markerElem.getAttribute('acceso_poblacion');
+          var tiempo_viaje = markerElem.getAttribute('tiempo_viaje');
+          var dias_buscar_agua = markerElem.getAttribute('dias_buscar_agua');
+          var cantidad_agua = markerElem.getAttribute('cantidad_agua');
+          var numero_viajes = markerElem.getAttribute('numero_viajes');
+          var nom_municipio = markerElem.getAttribute('nom_municipio');
+          var contenido_f = '<b><center> DATOS FUENTE HÍDRICA </center></b>' + '<br><b>Nombre: </b>' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e + '<b><br><br><center> Accesibilidad </center></b>' + '<br><b>Tipo de acceso: </b>' + tipoacceso + '<br><b>Acceso de Población: </b>' +acceso_poblacion + '<br><b>Tipo de viaje: </b>' +tiempo_viaje + '<br><b>Número de días que se busca agua: </b>' + dias_buscar_agua + '<br><b>Cantidad de Agua: </b>' + cantidad_agua + '<br><b>Número de viajes: </b>' + numero_viajes +'<br><br><b><center> Uso </center></b>' + '<br><b>Tipo de uso: </b>' + tipouso + '<br><b>Municipio: </b>' + nom_municipio + '<br><b> <a href=""> Más información </a href></b>';
           var point = new google.maps.LatLng(
             parseFloat(markerElem.getAttribute('latitud_fh')),
             parseFloat(markerElem.getAttribute('longitud_fh')));
           
           var icon = label_fuente[tipofuente] || {};
-          var marker = new google.maps.Marker({
+          var marker_f = new google.maps.Marker({
             map: map,
             position: point,
-            label: icon.label
+            category: tipofuente,
+            label: icon.label,
+            icon: 'img/blue.png'
           });
-          marker.addListener('click', function() {
-            infoWindow.setContent('<b> Nombre: </b> ' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e );
-            infoWindow.open(map, marker);
-          });
+          gmarkers_f.push(marker_f);
+          google.maps.event.addListener(marker_f, 'click', (function(marker_f, tipofuente) {
+            return function() {
+              infoWindow.setContent(contenido_f);
+              infoWindow.open(map, marker_f);
+            }
+          })(marker_f,tipofuente));
         });
       });
 
       downloadUrl('generarXML.php', function(data) {
         var xml = data.responseXML;
-        var markers = xml.documentElement.getElementsByTagName('marker_r');
-        Array.prototype.forEach.call(markers, function(markerElem) {
+        markers_r = xml.documentElement.getElementsByTagName('marker_r');
+        Array.prototype.forEach.call(markers_r, function(markerElem) {
           var nombre = markerElem.getAttribute('nombre');
           var municipio = markerElem.getAttribute('municipio');
           var representante = markerElem.getAttribute('representante');
           var cantidad_personas = markerElem.getAttribute('cantidad_personas');
+          var contenido_r = '<b> Rancheria: </b> '+ nombre + '<br><b>Representante: </b>'+ representante + '<br><b> Municipio: </b> '+ municipio + '<br><b>Cantidad Personas: </b>'+ cantidad_personas;
           var point = new google.maps.LatLng(
             parseFloat(markerElem.getAttribute('latitud')),
             parseFloat(markerElem.getAttribute('longitud')));
-
           var icon = label_municipio[municipio] || {};
-          var marker = new google.maps.Marker({
+          var marker_r = new google.maps.Marker({
             map: map,
             position: point,
-            label: icon.label
+            category: municipio,
+            label: icon.label,
+            icon: 'img/black.png'
+
           });
-          marker.addListener('click', function() {
-            infoWindow.setContent('<b> Rancheria: </b> '+ nombre + '<br><b>Representante: </b>'+ representante + '<br><b> Municipio: </b> '+ municipio + '<br><b>Cantidad Personas: </b>'+ cantidad_personas);
-            infoWindow.open(map, marker);
-          });
+          gmarkers_r.push(marker_r);
+          google.maps.event.addListener(marker_r, 'click', (function(marker_r, municipio) {
+            return function() {
+              infoWindow.setContent(contenido_r);
+              infoWindow.open(map,marker_r);
+            }
+          })(marker_r,municipio));
         });
       });
+    }
+
+
+    filtros_fuente_hidrica = function (tipofuente) {      
+      for (i = 0; i<markers_f.length; i++) {
+        marker_f = gmarkers_f[i];
+        if (markers_f[i].getAttribute('tipofuente') == tipofuente || tipofuente == 0) {
+          marker_f.setVisible(true);  
+        }
+        else if (document.getElementById("pozo").checked==false && document.getElementById("jaguey").checked==false && document.getElementById("reservorio").checked==false) {
+          marker_f.setVisible(true);
+        }
+        else {
+          marker_f.setVisible(false);
+        }
+      }
+    }
+
+    filtros_ica = function (ica_e) {   
+      for (i = 0; i<markers_f.length; i++) {
+        marker_f = gmarkers_f[i];
+        marker_f.setIcon('img/blue.png');
+        if (markers_f[i].getAttribute('ica_e') == ica_e || ica_e == 0) {
+          if (document.getElementById("muy_mala").checked==true && document.getElementById("mala").checked==false && document.getElementById("regular").checked==false && document.getElementById("aceptable").checked==false && document.getElementById("buena").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/red.png');
+          }
+          else if (document.getElementById("muy_mala").checked==false && document.getElementById("mala").checked==true && document.getElementById("regular").checked==false && document.getElementById("aceptable").checked==false && document.getElementById("buena").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/orange.png');
+
+          }
+          else if (document.getElementById("muy_mala").checked==false && document.getElementById("mala").checked==false && document.getElementById("regular").checked==true && document.getElementById("aceptable").checked==false && document.getElementById("buena").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/yellow.png');
+
+          }
+          else if (document.getElementById("muy_mala").checked==false && document.getElementById("mala").checked==false && document.getElementById("regular").checked==false && document.getElementById("aceptable").checked==true && document.getElementById("buena").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/green.png');
+
+          }
+          else if (document.getElementById("muy_mala").checked==false && document.getElementById("mala").checked==false && document.getElementById("regular").checked==false && document.getElementById("aceptable").checked==false && document.getElementById("buena").checked==true) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/blue.png');
+          }
+        }        
+        else if (document.getElementById("muy_mala").checked==false && document.getElementById("mala").checked==false && document.getElementById("regular").checked==false && document.getElementById("aceptable").checked==false && document.getElementById("buena").checked==false) {
+          marker_f.setVisible(true);
+        }
+        else {
+          marker_f.setVisible(false);
+        }
+      }
+    }
+
+    filtros_irca = function (irca_e) {      
+      for (i = 0; i<markers_f.length; i++) {
+        marker_f = gmarkers_f[i];
+        marker_f.setIcon('img/blue.png');
+        if (markers_f[i].getAttribute('irca_e') == irca_e || irca_e == 0) {
+          if (document.getElementById("sin_riesgo").checked==true && document.getElementById("riesgo_bajo").checked==false && document.getElementById("riesgo_medio").checked==false && document.getElementById("riesgo_alto").checked==false && document.getElementById("inviable").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/blue.png');
+          }
+          else if (document.getElementById("sin_riesgo").checked==false && document.getElementById("riesgo_bajo").checked==true && document.getElementById("riesgo_medio").checked==false && document.getElementById("riesgo_alto").checked==false && document.getElementById("inviable").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/green.png');
+          }
+          else if (document.getElementById("sin_riesgo").checked==false && document.getElementById("riesgo_bajo").checked==false && document.getElementById("riesgo_medio").checked==true && document.getElementById("riesgo_alto").checked==false && document.getElementById("inviable").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/yellow.png');
+          }
+          else if (document.getElementById("sin_riesgo").checked==false && document.getElementById("riesgo_bajo").checked==false && document.getElementById("riesgo_medio").checked==false && document.getElementById("riesgo_alto").checked==true && document.getElementById("inviable").checked==false) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/orange.png');
+          }
+          else if (document.getElementById("sin_riesgo").checked==false && document.getElementById("riesgo_bajo").checked==false && document.getElementById("riesgo_medio").checked==false && document.getElementById("riesgo_alto").checked==false && document.getElementById("inviable").checked==true) {
+            marker_f.setVisible(true);
+            marker_f.setIcon('img/red.png');
+          }
+        }
+        else if (document.getElementById("sin_riesgo").checked==false && document.getElementById("riesgo_bajo").checked==false && document.getElementById("riesgo_medio").checked==false && document.getElementById("riesgo_alto").checked==false && document.getElementById("inviable").checked==false) {
+          marker_f.setVisible(true);
+        }
+        else {
+          marker_f.setVisible(false);
+        }
+      }
+    }
+
+    filtros_municipio_rancheria = function (municipio) {
+      for (j = 0; j<markers_r.length; j++) {
+        marker_r = gmarkers_r[j];
+        if (markers_r[j].getAttribute('municipio') == municipio || municipio == null) {
+          marker_r.setVisible(true);  
+        }
+        else if (document.getElementById("manaure").checked==false && document.getElementById("maicao").checked==false) {
+          marker_r.setVisible(true);
+        }
+        else {
+          marker_r.setVisible(false);
+        }
+      }
+    }
+
+    filtros_municipio_fuente = function (nom_municipio) {
+      console.log(markers_f[1].getAttribute(nom_municipio));
+      for (j = 0; j<markers_f.length; j++) {
+        marker_f = gmarkers_f[j];
+        if (markers_f[j].getAttribute('nom_municipio') == nom_municipio || nom_municipio == null) {
+          marker_f.setVisible(true);  
+        }
+        else if (document.getElementById("manaure_f").checked==false && document.getElementById("maicao_f").checked==false) {
+          marker_f.setVisible(true);
+        }
+        else {
+          marker_f.setVisible(false);
+        }
+      }
     }
 
     function downloadUrl(url, callback) {

@@ -1,6 +1,7 @@
 <?php 
 //incluimos conexion para establecer la conexion con la base y usar las funciones antes declaradas.
 include('conexion.php'); 
+require("correo.php");
 
 //recogemos mediante GET el valor MD5 del user y el codigo de activacion y lo almacenamos en variables
 $user = $_GET['user']; 
