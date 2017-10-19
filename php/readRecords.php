@@ -1,7 +1,7 @@
 <?php
 $conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
 if (!$conexion) {
-	echo 'Ha ocurrido un erro de conexión con la base de datos.';
+	echo 'Ha ocurrido un error de conexión con la base de datos.';
 	exit;
 }
 error_reporting(E_ALL ^ E_NOTICE); 

@@ -2,10 +2,8 @@
 $dom = new DOMDocument("1.0");
 $node = $dom->createElement("markers");
 $parnode = $dom->appendChild($node);
-$conn_string = "host=localhost port=5432 dbname=wintig user=postgres password=root";
-$dbconn = pg_connect($conn_string);
-
-$result = pg_query($dbconn,"SELECT * FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidrica, wintig.ica, wintig.irca, wintig.accesibilidad, wintig.tipo_acceso, wintig.uso, wintig.tipo_uso, wintig.rancheria, wintig.municipio where wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica and wintig.fuente_hidrica.id_ica = wintig.ica.id_ica and wintig.fuente_hidrica.id_irca = wintig.irca.id_irca and wintig.fuente_hidrica.id_uso = wintig.uso.id_uso and wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica and wintig.uso.id_tipo_uso = wintig.tipo_uso.id_tipo_uso and wintig.fuente_hidrica.id_accesibilidad = wintig.accesibilidad.id_accesibilidad and wintig.accesibilidad.id_tipo_acceso = wintig.tipo_acceso.id_tipo_acceso and wintig.fuente_hidrica.id_rancheria = wintig.rancheria.id_Rancheria and wintig.rancheria.id_municipio = wintig.municipio.id_municipio order by id_fuente_hidrica");
+require("php/conexion.php");
+$result = pg_query("SELECT * FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidrica, wintig.ica, wintig.irca, wintig.accesibilidad, wintig.tipo_acceso, wintig.uso, wintig.tipo_uso, wintig.rancheria, wintig.municipio where wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica and wintig.fuente_hidrica.id_ica = wintig.ica.id_ica and wintig.fuente_hidrica.id_irca = wintig.irca.id_irca and wintig.fuente_hidrica.id_uso = wintig.uso.id_uso and wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica and wintig.uso.id_tipo_uso = wintig.tipo_uso.id_tipo_uso and wintig.fuente_hidrica.id_accesibilidad = wintig.accesibilidad.id_accesibilidad and wintig.accesibilidad.id_tipo_acceso = wintig.tipo_acceso.id_tipo_acceso and wintig.fuente_hidrica.id_rancheria = wintig.rancheria.id_Rancheria and wintig.rancheria.id_municipio = wintig.municipio.id_municipio order by id_fuente_hidrica");
 
 header("Content-type: text/xml");
 
@@ -30,7 +28,7 @@ while ($row = @pg_fetch_assoc($result)){
 	$newnode->setAttribute("nom_municipio", $row['nom_municipio']);  
 }
 
-$result2 = pg_query($dbconn,"SELECT * FROM wintig.rancheria, wintig.municipio where wintig.rancheria.id_municipio = wintig.municipio.id_municipio");
+$result2 = pg_query("SELECT * FROM wintig.rancheria, wintig.municipio where wintig.rancheria.id_municipio = wintig.municipio.id_municipio");
 
 while ($row = @pg_fetch_assoc($result2)){
 	$node = $dom->createElement("marker_r");

@@ -18,7 +18,6 @@
 <?php 
 //Creamos la conexión con la BD en postgresql
 include 'php/conexion.php';
-session_start();
 ?>
 <body>
 	<!-- Barra Navegación -->
@@ -29,13 +28,6 @@ session_start();
 			<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
 		</ul>	
 	</div>
-	<?php
-	if (isset($_SESSION['username'])) {
-		echo '<b>'.$_SESSION['username'].'</b>.';
-		echo '<p><a href="php/logout.php">Logout</a></p>';
-	}
-	?>
-
 	<!-- Pop-up Contacto  -->
 	<div class="modal fade" id="contacto" role="dialog">
 		<div class="modal-dialog">
@@ -159,35 +151,35 @@ session_start();
 					<li class="list-group-item">
 						Buena
 						<div class="material-switch pull-right">
-							<input id="buena" name="Indicador_2" type="checkbox" onclick="filtros_ica('Buena');"/>
+							<input id="buena" name="Indicador_b" type="checkbox" onclick="filtros_ica('Buena');"/>
 							<label for="buena" class="label-primary"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Aceptable
 						<div class="material-switch pull-right">
-							<input id="aceptable" name="Indicador_3" type="checkbox" onclick="filtros_ica('Aceptable');"/>
+							<input id="aceptable" name="Indicador_a" type="checkbox" onclick="filtros_ica('Aceptable');"/>
 							<label for="aceptable" class="label-success"></label>
 						</div>
 					</li>				
 					<li class="list-group-item">
 						Regular
 						<div class="material-switch pull-right">
-							<input id="regular" name="Indicador_2" type="checkbox" onclick="filtros_ica('Regular');"/>
-							<label for="regular" class="label-info"></label>
+							<input id="regular" name="Indicador_r" type="checkbox" onclick="filtros_ica('Regular');"/>
+							<label for="regular" class="label-info" style="background-color: #FFFF00;"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Mala
 						<div class="material-switch pull-right">
-							<input id="mala" name="Indicador_3" type="checkbox" onclick="filtros_ica('Mala');"/>
+							<input id="mala" name="Indicador_m" type="checkbox" onclick="filtros_ica('Mala');"/>
 							<label for="mala" class="label-warning"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Muy Mala
 						<div class="material-switch pull-right">
-							<input id="muy_mala" name="Indicador_1" type="checkbox" onclick="filtros_ica('Muy Mala');"/>
+							<input id="muy_mala" name="Indicador_mm" type="checkbox" onclick="filtros_ica('Muy Mala');"/>
 							<label for="muy_mala" class="label-danger"></label>
 						</div>
 					</li>
@@ -198,35 +190,35 @@ session_start();
 					<li class="list-group-item">
 						Sin Riesgo
 						<div class="material-switch pull-right">
-							<input id="sin_riesgo" name="min_personas" type="checkbox" onclick="filtros_irca('Sin Riesgo');"/>
-							<label for="sin_riesgo" class="label-primary"></label>
+							<input id="sin_riesgo" name="sin_r" type="checkbox" onclick="filtros_irca('Sin Riesgo');"/>
+							<label for="sin_riesgo" class="label-info"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Riesgo Bajo
 						<div class="material-switch pull-right">
-							<input id="riesgo_bajo" name="med_personas" type="checkbox" onclick="filtros_irca('Riesgo Bajo');"/>
-							<label for="riesgo_bajo" class="label-success"></label>
+							<input id="riesgo_bajo" name="r_bajo" type="checkbox" onclick="filtros_irca('Riesgo Bajo');"/>
+							<label for="riesgo_bajo" class="label-success" style="background-color: #9ACD32;"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Riesgo Medio
 						<div class="material-switch pull-right">
-							<input id="riesgo_medio" name="mas_personas" type="checkbox" onclick="filtros_irca('Riesgo Medio');"/>
-							<label for="riesgo_medio" class="label-info"></label>
+							<input id="riesgo_medio" name="r_medio" type="checkbox" onclick="filtros_irca('Riesgo Medio');"/>
+							<label for="riesgo_medio" class="label-info" style="background-color: #FFFF00;"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Riesgo Alto
 						<div class="material-switch pull-right">
-							<input id="riesgo_alto" name="med_personas" type="checkbox" onclick="filtros_irca('Riesgo Alto');"/>
+							<input id="riesgo_alto" name="r_alto" type="checkbox" onclick="filtros_irca('Riesgo Alto');"/>
 							<label for="riesgo_alto" class="label-warning"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Inviable Sanitariamente
 						<div class="material-switch pull-right">
-							<input id="inviable" name="mas_personas" type="checkbox" onclick="filtros_irca('Sanitariamente Inviable');"/>
+							<input id="inviable" name="inv_sani" type="checkbox" onclick="filtros_irca('Sanitariamente Inviable');"/>
 							<label for="inviable" class="label-danger"></label> 
 						</div>
 					</li>
@@ -245,8 +237,8 @@ session_start();
 </div>
 
 <div id="particles-js"></div>
-<script src="js\particles.js"></script>
-<script src="js\login.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/login.js"></script>
 
 </body>
 </html>

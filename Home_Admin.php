@@ -20,8 +20,7 @@
 <?php 
 	//Creamos la conexión con la BD en postgresql
 include 'php/conexion.php';
-session_start();
-
+require_once("php/session.php");
 ?>
 <body>
 	<!--Barra Navegacion-->
@@ -311,7 +310,10 @@ session_start();
 						<label for="update_nom_usuario">Usuario</label>
 						<input type="text" id="update_nom_usuario" placeholder="" class="form-control"/>
 					</div>
-
+					<div class="form-group">
+						<label for="update_nom_usuario">Estado</label>
+						<input type="text" id="update_estado" placeholder="" class="form-control"/>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

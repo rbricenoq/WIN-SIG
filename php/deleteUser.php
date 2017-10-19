@@ -1,7 +1,6 @@
 <?php
 if(isset($_POST['id_usuario']) && isset($_POST['id_usuario']) != "")
 {
-	include("db_connection.php");
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 	$conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
 	if (!$conexion) {

@@ -1,6 +1,5 @@
 <?php
 // include Database connection file
-include("db_connection.php");
 $conexion = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
 if (!$conexion) {
   echo 'Ha ocurrido un error de conexión con la base de datos.';
