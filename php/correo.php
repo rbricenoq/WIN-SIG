@@ -1,7 +1,8 @@
 <?php 
 
 //Creamos la conexión con la BD en postgresql
-include 'conexion.php';
+pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root") 
+or die("Ha sucedido un error inexperado en la conexion de la base de datos");
 //desconectamos la base de datos
 
 //creamos una funcion para encriptar en md5 valores como pueden ser el password,etc

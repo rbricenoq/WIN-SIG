@@ -6,11 +6,11 @@ if (!$conexion) {
 }
 
 // check request
-if(isset($_POST['id_racncheria']) && isset($_POST['id_racncheria']) != ""){
+if(isset($_POST['id_rancheria']) && isset($_POST['id_rancheria']) != ""){
 
-  $rancheria_id = $_POST['id_racncheria'];
+  $rancheria_id = $_POST['id_rancheria'];
 
-  $query = "SELECT wintig.municipio.nom_municipio, wintig.rancheria.nom_rancheria, wintig.rancheria.cantidad_personas, wintig.rancheria.representante, wintig.rancheria.latitud_r, wintig.rancheria.longitud_r  from wintig.rancheria, wintig.municipio WHERE wintig.rancheria.id_rancheria = '$rancheria_id' and wintig.municipio.id_municipio = wintig.rancheria.id_municipio ";
+  $query = "SELECT * from wintig.rancheria, wintig.municipio WHERE wintig.rancheria.id_rancheria = '$rancheria_id' and wintig.municipio.id_municipio = wintig.rancheria.id_municipio";
 
   $result= pg_query($conexion, $query);
 

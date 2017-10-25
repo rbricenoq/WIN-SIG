@@ -35,6 +35,7 @@ function GetUserDetails(id_usuario) {
             $("#update_tel_usuario").val(usuario.tel_usuario);
             $("#update_correo_usuario").val(usuario.correo_usuario);
             $("#update_nom_usuario").val(usuario.nom_usuario);
+            $("#update_estado").val(usuario.estado);
         }
         );
     // Open modal popup

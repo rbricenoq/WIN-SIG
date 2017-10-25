@@ -11,7 +11,7 @@ if(isset($_POST['id_usuario']) && isset($_POST['id_usuario']) != ""){
 
   $user_id = $_POST['id_usuario'];
 
-  $query = "SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario FROM wintig.usuario WHERE id_usuario = '$user_id'";
+  $query = "SELECT nombre, apellido, tel_usuario, correo_usuario, nom_usuario, estado FROM wintig.usuario WHERE id_usuario = '$user_id'";
   $result= pg_query($conexion, $query);
 
   $response = array();

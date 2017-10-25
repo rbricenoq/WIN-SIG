@@ -1,4 +1,5 @@
 <?php  
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $db = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
 
@@ -95,7 +96,7 @@ $coagulante_aluminio = $_POST[coagulante_aluminio];
 $calculo_irca = 0;
 $estado_irca = "";
 
-//LLmadao a Funciones ICA
+//LLamadao a Funciones ICA
 
 $i_ox=indice_ox_disuelto($oxigeno_disuelto, $oxigeno_saturacion);
 $i_stt=indice_sst($solidos_suspendidos);
@@ -394,7 +395,7 @@ detergente, coagulante_sales_hierro, coagulante_aluminio, calculo_irca, estado_i
 
 $query3 = "INSERT INTO wintig.uso (id_tipo_uso) VALUES ('$_POST[selectid_uso]')"; 
 
-$query4 = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, timepo_viaje, distancia, poblacion_acceso) VALUES ('$_POST[selectid_acceso]','$_POST[num_dias_buscar_agua]', '$_POST[num_viajes]','$_POST[cantidad_agua]', '$_POST[timepo_viaje]', 1, '$_POST[poblacion_acceso]')";
+$query4 = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES ('$_POST[selectid_acceso]','$_POST[num_dias_buscar_agua]', '$_POST[num_viajes]','$_POST[cantidad_agua]', '$_POST[tiempo_viaje]', 1, '$_POST[poblacion_acceso]')";
 
 $query5 = "INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES ('$_POST[selectid_fh]', '$_POST[selectid_rancheria]' ,'$_POST[nom_fh]', '$_POST[latitud_fh]', '$_POST[longitud_fh]')";  
 

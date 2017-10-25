@@ -18,9 +18,8 @@ if(isset($_POST)){
     $latitud_r = $_POST['latitud_r'];
     $longitud_r = $_POST['longitud_r'];
 
-    // Updaste rancheria details
+    // Updaste rancheria detalles
     $query = "UPDATE wintig.rancheria SET id_municipio = '$id_municipio', nom_rancheria = '$nom_rancheria', cantidad_personas = '$cantidad_personas', representante = '$representante', latitud_r = '$latitud_r', longitud_r = '$longitud_r' WHERE id_rancheria = '$id_rancheria'";
     pg_query($conexion, $query);
     
 }
-

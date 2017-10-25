@@ -335,14 +335,14 @@ INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, re
 INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (2, 'Camuya', 13, 'José', 11.216237, -72.398248); 
 INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (2, 'Botoy', 4, 'Jose', 11.478698, -72.292425);
 
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (1, 'Aremashain', 11.7650790499241, -72.4589270353317);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (2, 'Epehuz', 11.497942, -72.428158);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (2, 'Epehin', 11.498993, -72.438694);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (2, 'Yamahain', 11.422820, -72.392875);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (2, 'Yamaluria', 11.420548, -72.383820);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (2, 'Fakimuhana', 11.456573, -72.252018);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (2, 'Huaraurahu', 11.379048, -72.403278);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, nom_fh, latitud_fh, longitud_fh) VALUES (2, 'Huayahu', 11.381298, -72.403278);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (1, 2, 'Aremashain', 11.7650790499241, -72.4589270353317);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 4, 'Epehuz', 11.497942, -72.428158);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 7, 'Epehin', 11.498993, -72.438694);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 9, 'Yamahain', 11.422820, -72.392875);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 11, 'Yamaluria', 11.420548, -72.383820);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 13, 'Fakimuhana', 11.456573, -72.252018);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 15, 'Huaraurahu', 11.379048, -72.403278);
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 16, 'Huayahu', 11.381298, -72.403278);
 
 
 

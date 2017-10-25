@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/google_Map.js"></script>
 </head>
 
 <?php 
@@ -20,6 +19,7 @@
 include 'php/conexion.php';
 ?>
 <body>
+
 	<!-- Barra Navegación -->
 	<div>
 		<ul id="bar_nav">
@@ -36,10 +36,19 @@ include 'php/conexion.php';
 					<button type="button" class="close" data-dismiss="modal">&times;</button>	
 					<center><h4 class="modal-title">CONTACTO</h4></center>
 				</div>
-				<div class="modal-body" >					
-					<h4 id="p-regis"> rbricenoq@unbosque.edu.co</h4><br>
-					<h4 id="p-regis"> sbarrerof@unbosque.edu.co</h4><br>
-					<h4 id="p-regis"> dpico@unbosque.edu.co</h4><br>
+				<div class="modal-body" >
+					<div id="logo_wintig" style="text-align: center;">
+						<a href="http://www.uelbosque.edu.co/">
+							<img src="img/LOGOU.png" width="50%">
+						</a>
+					</div>
+					<h1 id="p-regis" style="text-align: center;">UNIVERSIDAD EL BOSQUE</h1>
+					<h2 id="p-regis" style="text-align: center;">FACULTAD DE INGENIRÍA</h2> 
+					<h3 id="p-regis" style="text-align: center;">PROGRAMA DE INGENIERÍA DE SISTEMAS</h3><br><br>
+					<h4 id="p-regis" style="text-align: center;"> ¿Alguna duda o sugerencia? ¡Contáctenos!</h4><br>
+					<h4 style="text-align: center; color: #4682B4;"> rbricenoq@unbosque.edu.co</h4><br>
+					<h4 style="text-align: center; color: #4682B4;"> sbarrerof@unbosque.edu.co</h4><br>
+					<h4 style="text-align: center; color: #4682B4;"> dpico@unbosque.edu.co</h4><br>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
@@ -70,64 +79,73 @@ include 'php/conexion.php';
 	</div>
 
 	<!-- Contenedor Filtro y Mapa-->
+
 	<div class="container">
+		<!-- Logo -->
 		<div id="logo_wintig" style="text-align: center;">
 			<a href="/WIN-TIG/home.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
 		</div>
-		<!--Navegación Filtros-->
+
+		<!--Filtros-->
+
 		<nav class="nav_filtros">	
+
+			<!--Busqueda-->
 			<div>
-				<input id="buscar" class="controls" type="text" placeholder="Busqueda..." required>
-				<input type="submit" id="buscar_btn" class="btn btn-primary" onclick="buscar(getThisValue());">
+				<form class="form-wrapper cf">
+					<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+					<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+					<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+					<input type="text"  placeholder="Busqueda..." id ="b1" class = "ui-widget" required>
+					<button type="button"  class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
+				</form>
 			</div>
 
 			<!-- Filtros -->
 
-			<div class="filtros">
-				<div class="panel_filtros">
-					<div class="panel_heading"><br>Fuente Hídrica</br></div>
-					<ul class="list-group">
-						<li class="list-group-item" value="pozo">
-							Pozo
-							<div class="material-switch pull-right">
-								<input id="pozo" name="Pozo" type="checkbox" onclick="filtros_fuente_hidrica('Pozo');"/>
-								<label for="pozo" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Jagüey
-							<div class="material-switch pull-right">
-								<input id="jaguey" name="Jagüey" type="checkbox" onclick="filtros_fuente_hidrica('Jagüey');"/>
-								<label for="jaguey" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Reservorio
-							<div class="material-switch pull-right">
-								<input id="reservorio" name="Reservorio" type="checkbox" onclick="filtros_fuente_hidrica('Reservorio');"/>
-								<label for="reservorio" class="label-primary"></label>
-							</div>
-						</li>
-					</ul>
-					<div class="panel_heading">Municipio</div>
-					<ul class="list-group">
-						<li class="list-group-item">
-							Manaure
-							<div class="material-switch pull-right">
-								<input id="manaure_f" name="Manaure" type="checkbox" onclick="filtros_municipio_fuente('Manaure');"/>
-								<label for="manaure_f" class="label-primary"></label>
-							</div>
-						</li>
-						<li class="list-group-item">
-							Maicao
-							<div class="material-switch pull-right">
-								<input id="maicao_f" name="Maicao" type="checkbox" onclick="filtros_municipio_fuente('Maicao');"/>
-								<label for="maicao_f" class="label-primary"></label>
-							</div>
-						</li>
-					</ul>
+			<div class="panel_filtros">
+				<div class="panel_heading"><br>Fuente Hídrica</br></div>
+				<ul class="list-group">
+					<li class="list-group-item" value="pozo">
+						Pozo
+						<div class="material-switch pull-right">
+							<input id="pozo" name="Pozo" type="checkbox" onclick="filtros_fuente_hidrica('Pozo');"/>
+							<label for="pozo" class="label-primary"></label>
+						</div>
+					</li>
+					<li class="list-group-item" value="jaguey">
+						Jagüey
+						<div class="material-switch pull-right">
+							<input id="jaguey" name="Jagüey" type="checkbox" onclick="filtros_fuente_hidrica('Jagüey');"/>
+							<label for="jaguey" class="label-primary"></label>
+						</div>
+					</li>
+					<li class="list-group-item" value="reservorio">
+						Reservorio
+						<div class="material-switch pull-right">
+							<input id="reservorio" name="Reservorio" type="checkbox" onclick="filtros_fuente_hidrica('Reservorio');"/>
+							<label for="reservorio" class="label-primary"></label>
+						</div>
+					</li>
+				</ul>
+				<div class="panel_heading">Municipio</div>
+				<ul class="list-group">
+					<li class="list-group-item" value="manaure">
+						Manaure
+						<div class="material-switch pull-right">
+							<input id="manaure_f" name="Manaure" type="checkbox" onclick="filtros_municipio_fuente('Manaure');"/>
+							<label for="manaure_f" class="label-primary"></label>
+						</div>
+					</li>
+					<li class="list-group-item" value="maicao">
+						Maicao
+						<div class="material-switch pull-right">
+							<input id="maicao_f" name="Maicao" type="checkbox" onclick="filtros_municipio_fuente('Maicao');"/>
+							<label for="maicao_f" class="label-primary"></label>
+						</div>
+					</li>
 				</ul>
 				<div class="panel_heading">Rancheria</div>
 				<ul class="list-group">
@@ -151,94 +169,93 @@ include 'php/conexion.php';
 					<li class="list-group-item">
 						Buena
 						<div class="material-switch pull-right">
-							<input id="buena" name="Indicador_b" type="checkbox" onclick="filtros_ica('Buena');"/>
+							<input id="buena" name="Indicador_2" type="checkbox" onclick="filtros_ica('Buena');"/>
 							<label for="buena" class="label-primary"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Aceptable
 						<div class="material-switch pull-right">
-							<input id="aceptable" name="Indicador_a" type="checkbox" onclick="filtros_ica('Aceptable');"/>
+							<input id="aceptable" name="Indicador_3" type="checkbox" onclick="filtros_ica('Aceptable');"/>
 							<label for="aceptable" class="label-success"></label>
 						</div>
 					</li>				
 					<li class="list-group-item">
 						Regular
 						<div class="material-switch pull-right">
-							<input id="regular" name="Indicador_r" type="checkbox" onclick="filtros_ica('Regular');"/>
+							<input id="regular" name="Indicador_2" type="checkbox" onclick="filtros_ica('Regular');"/>
 							<label for="regular" class="label-info" style="background-color: #FFFF00;"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Mala
 						<div class="material-switch pull-right">
-							<input id="mala" name="Indicador_m" type="checkbox" onclick="filtros_ica('Mala');"/>
+							<input id="mala" name="Indicador_3" type="checkbox" onclick="filtros_ica('Mala');"/>
 							<label for="mala" class="label-warning"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Muy Mala
 						<div class="material-switch pull-right">
-							<input id="muy_mala" name="Indicador_mm" type="checkbox" onclick="filtros_ica('Muy Mala');"/>
+							<input id="muy_mala" name="Indicador_1" type="checkbox" onclick="filtros_ica('Muy Mala');"/>
 							<label for="muy_mala" class="label-danger"></label>
 						</div>
 					</li>
 				</ul>
 				<div class="panel_heading">índice de Riesgo de la Calidad del Agua para Consumo Humano - IRCA</div>
-				<!-- List group -->
 				<ul class="list-group">
 					<li class="list-group-item">
 						Sin Riesgo
 						<div class="material-switch pull-right">
-							<input id="sin_riesgo" name="sin_r" type="checkbox" onclick="filtros_irca('Sin Riesgo');"/>
-							<label for="sin_riesgo" class="label-info"></label>
+							<input id="sin_riesgo" name="min_personas" type="checkbox" onclick="filtros_irca('Sin Riesgo');"/>
+							<label for="sin_riesgo" class="label-primary"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Riesgo Bajo
 						<div class="material-switch pull-right">
-							<input id="riesgo_bajo" name="r_bajo" type="checkbox" onclick="filtros_irca('Riesgo Bajo');"/>
+							<input id="riesgo_bajo" name="med_personas" type="checkbox" onclick="filtros_irca('Riesgo Bajo');"/>
 							<label for="riesgo_bajo" class="label-success" style="background-color: #9ACD32;"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Riesgo Medio
 						<div class="material-switch pull-right">
-							<input id="riesgo_medio" name="r_medio" type="checkbox" onclick="filtros_irca('Riesgo Medio');"/>
+							<input id="riesgo_medio" name="mas_personas" type="checkbox" onclick="filtros_irca('Riesgo Medio');"/>
 							<label for="riesgo_medio" class="label-info" style="background-color: #FFFF00;"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Riesgo Alto
 						<div class="material-switch pull-right">
-							<input id="riesgo_alto" name="r_alto" type="checkbox" onclick="filtros_irca('Riesgo Alto');"/>
+							<input id="riesgo_alto" name="med_personas" type="checkbox" onclick="filtros_irca('Riesgo Alto');"/>
 							<label for="riesgo_alto" class="label-warning"></label>
 						</div>
 					</li>
 					<li class="list-group-item">
 						Inviable Sanitariamente
 						<div class="material-switch pull-right">
-							<input id="inviable" name="inv_sani" type="checkbox" onclick="filtros_irca('Sanitariamente Inviable');"/>
+							<input id="inviable" name="mas_personas" type="checkbox" onclick="filtros_irca('Sanitariamente Inviable');"/>
 							<label for="inviable" class="label-danger"></label> 
 						</div>
 					</li>
-				</ul>					
-			</div>            
-		</div>			
-	</nav>
+				</ul>
+			</div>	
+		</nav>
 
-	<!--Mapa-->
-	<section>
-		<div id="map">
-			<?php include("mapa.html");?>
-		</div>
-		<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
-	</section>
-</div>
+		<!--Mapa-->
+		<section>
+			<div id="map_container"></div>
+			<div id="map">
+				<?php include("mapa.html");?>
+			</div>
+			<div id="leyenda"><h3>Leyenda</h3></div>
+			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
+		</section>
+	</div>
 
-<div id="particles-js"></div>
-<script src="js/particles.js"></script>
-<script src="js/login.js"></script>
-
+	<div id="particles-js"></div>
+	<script src="js/particles.js"></script>
+	<script src="js/login.js"></script>
 </body>
 </html>
