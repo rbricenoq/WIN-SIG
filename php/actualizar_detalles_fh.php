@@ -10,7 +10,6 @@ if (!$conexion) {
 // check request
 if(isset($_POST)){
 
-
     $id_fuente_hidrica = $_POST['id_fuente_hidrica'];
     $id_tipo_fuente_hidrica = $_POST['id_tipo_fuente_hidrica'];
     $id_tipo_uso = $_POST['id_tipo_uso'];
@@ -111,7 +110,7 @@ if(isset($_POST)){
     echo "<h2>coliformes</h2>";
     echo($coliformes);
 
-    //LLamadao a Funciones ICA
+    //LLamado a Funciones ICA
 
     $i_ox=indice_ox_disuelto($oxigeno_disuelto, $oxigeno_saturacion);
     $i_stt=indice_sst($solidos_suspendidos);
@@ -122,7 +121,7 @@ if(isset($_POST)){
     $c_ica=calcular_ica($i_ox, $i_stt, $i_do, $i_ce, $i_ph, $i_ntf);
     $e_ica=estado_ica($c_ica);
 
-//LLmadao a Funciones IRCA
+//LLamado a Funciones IRCA
 
     $c_irca=calcular_irca($color_aparente, $turbiedad, $ph_irca, $antimonio, $arsenico, $bario, $cadmio, $cianuro_libre_disociable, $cobre, $cromo, $mercurio, $niquel, $plomo, $selenio, $trihalometanos, $hap, $cot, $nitritos, $nitratos, $fluoruros, $calcio, $alcalinidad, $cloruros, $aluminio, $dureza, $hierro, $magnesio, $manganeso, $molibdeno, $sulfatos, $zinc, $fosfatos, $cmt, $plaguicidas, $scherichia_coli, $coliformes, $microorganismos_mesofilicos, $giardia, $cryptosporidium, $detergente, $coagulante_sales_hierro, $coagulante_aluminio, $calculo_irca, $estado_irca);
 

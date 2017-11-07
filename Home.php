@@ -26,6 +26,7 @@ include 'php/conexion.php';
 			<li id="lsita_bar_nav"><a class="active" href="/WIN-TIG/login.php"> <?php echo 'Log in '?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 			<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
+			<li id="lsita_bar_nav"><a href="/WIN-TIG/home.php"><img src="img/LOGO.png" width="40PX" style="text-align: center;"></a></li>
 		</ul>	
 	</div>
 	<!-- Pop-up Contacto  -->
@@ -68,8 +69,8 @@ include 'php/conexion.php';
 				<div class="modal-body" >
 					Cuestionarios para saber su opinión sobre la aplicación:
 					<br><br>
-					<A HREF="https://docs.google.com/forms/d/1_cOo15t5TEq4XMJcxpD8mcaomJl446Sw6Fy29TYGBUk/edit" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
-					<A HREF="https://docs.google.com/forms/d/1ch_-j59fRtgfjcawq4spNheJlZ6a-wO1b4xkyuZCPRY/edit" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
+					<A HREF="https://docs.google.com/forms/d/e/1FAIpQLSc6cPJVo-htX-yZvrH4SxMfZGSw75Y4d851-L7716JrRSdG7g/viewform" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
+					<A HREF="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdZpIZBJcH62i1TT_bPZzL8y089QmLQsj-BA47xAtUXIdpqfQ/viewform" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
@@ -81,12 +82,12 @@ include 'php/conexion.php';
 	<!-- Contenedor Filtro y Mapa-->
 
 	<div class="container">
-		<!-- Logo -->
+		<!-- Logo 
 		<div id="logo_wintig" style="text-align: center;">
 			<a href="/WIN-TIG/home.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
-		</div>
+		</div>-->
 
 		<!--Filtros-->
 
@@ -254,8 +255,8 @@ include 'php/conexion.php';
 		</section>
 	</div>
 
-	<div id="particles-js"></div>
-	<script src="js/particles.js"></script>
+	<!--<div id="particles-js"></div>
+	<script src="js/particles.js"></script>-->
 	<script src="js/login.js"></script>
 </body>
 </html>

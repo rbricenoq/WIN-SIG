@@ -34,7 +34,8 @@ require_once("php/session.php");
 				<li id="lsita_bar_nav"><a class="active" > <?php echo $_SESSION['username']?></a></li>
 				<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 				<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
-				<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>
+				<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>				
+				<li id="lsita_bar_nav"><a href="/WIN-TIG/Home_Admin.php"><img src="img/LOGO.png" width="20PX" style="text-align: center;"></a></li>
 			</ul>
 			<?php
 		}
@@ -81,8 +82,8 @@ require_once("php/session.php");
 				<div class="modal-body" >
 					Cuestionarios para saber su opinión sobre la aplicación:
 					<br><br>
-					<A HREF="https://docs.google.com/forms/d/1_cOo15t5TEq4XMJcxpD8mcaomJl446Sw6Fy29TYGBUk/edit" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
-					<A HREF="https://docs.google.com/forms/d/1ch_-j59fRtgfjcawq4spNheJlZ6a-wO1b4xkyuZCPRY/edit" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
+					<A HREF="https://docs.google.com/forms/d/e/1FAIpQLSc6cPJVo-htX-yZvrH4SxMfZGSw75Y4d851-L7716JrRSdG7g/viewform" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
+					<A HREF="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdZpIZBJcH62i1TT_bPZzL8y089QmLQsj-BA47xAtUXIdpqfQ/viewform" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
@@ -171,12 +172,12 @@ require_once("php/session.php");
 	<!-- Contenedor Filtro y Mapa-->
 
 	<div class="container">
-		<!--Busqueda-->
+		<!--Busqueda
 		<div id="logo_wintig" style="text-align: center;">
 			<a href="/WIN-TIG/home_admin.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
-		</div>
+		</div>-->
 		<!--Filtros-->
 		<nav class="nav_filtros">	
 			<div>
@@ -185,7 +186,7 @@ require_once("php/session.php");
 					<button type="button"  class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
 				</form>
 
-				<button type="submit" id="btn_edi_usu" class="btn btn-primary" href="#editar_usuarios" data-toggle="modal" style="margin-left: -9px; width: 180px; position: relative;" ><i class="glyphicon glyphicon-edit"></i> Editar Usuarios</button>
+				<button type="submit" id="btn_edi_usu" class="btn btn-primary" href="#editar_usuarios" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;" ><i class="glyphicon glyphicon-edit"></i> Editar Usuarios</button>
 				<br><br>
 			</div>
 
@@ -340,12 +341,12 @@ require_once("php/session.php");
 		</section>
 	</div>  
 	
-	<div id="particles-js"></div>
-	<script src="js/particles.js"></script>
-	<script src="js/login.js"></script>
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/script_usuarios.js"></script>
+	<!--<div id="particles-js"></div>
+		<script src="js/particles.js"></script>-->
+		<script src="js/login.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/script_usuarios.js"></script>
 
-</body>
-</html>
+	</body>
+	</html>

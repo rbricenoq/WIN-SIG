@@ -23,6 +23,7 @@ while ($row = @pg_fetch_assoc($result)){
 	$newnode->setAttribute("numero_viajes", $row['num_viajes']);
 	$newnode->setAttribute("cantidad_agua", $row['cantidad_agua']);
 	$newnode->setAttribute("tiempo_viaje", $row['tiempo_viaje']);
+	$newnode->setAttribute("distancia", $row['distancia']);
 	$newnode->setAttribute("acceso_poblacion", $row['poblacion_acceso']);
 	$newnode->setAttribute("latitud_fh", $row['latitud_fh']);
 	$newnode->setAttribute("longitud_fh", $row['longitud_fh']);  

@@ -10,8 +10,8 @@ function readRecordsFH() {
     });
 }
 
-function readRecordsFHM() {
-    $.get("php/registros_fh_mapa.php", {}, function (data, status) {
+function readRecordsFHM(id) {
+    $.get("php/registros_fh_mapa.php?id_fh="+id+"", {}, function (data, status) {
         $(".records_content_f_mapa").html(data);
     });
 }
@@ -239,9 +239,7 @@ function actualizar_detalles_fh() {
     var detergente = $("#update_detergente").val();
     var coagulante_sales_hierro = $("#update_coagulantes_hierro").val();
     var coagulante_aluminio = $("#update_coagulantes_aluminio").val();
-    // get hidden field value
     var id_fuente_hidrica = $("#hidden_fh_id").val();
-    // Update the details by requesting to the server using php
     $.post("php/actualizar_detalles_fh.php", {
         id_fuente_hidrica: id_fuente_hidrica,
         nom_fh: nom_fh,

@@ -8,8 +8,6 @@ if (!$conexion) {
 error_reporting(E_ALL ^ E_NOTICE); 
 
 $id_fh_m = $_GET["id_fh"]; 
-echo 'Var ' . $id_fh_m ;
-
 
 	// Design initial table header 
 $data = '<div style="overflow-x:auto;"><table class="table table-bordered table-striped">

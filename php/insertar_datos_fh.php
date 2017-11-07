@@ -5,6 +5,31 @@ $db = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=
 
 //Valores para calcular ICA
 
+$query_r = pg_Exec($db, "select latitud_r, longitud_r from wintig.rancheria where wintig.rancheria.id_rancheria = '$_POST[selectid_rancheria]'");
+
+if(pg_Num_Rows($query_r) > 0){
+	while($row = pg_fetch_assoc($query_r)){
+		$lat_r = $row['latitud_r'];
+		$long_r = $row['longitud_r'];
+	}
+}
+
+$lat_fh = $_POST[latitud_fh];
+$long_fh = $_POST[longitud_fh];
+
+echo "<h2>Latitud F</h2>";
+echo( $lat_fh);
+
+echo "<h2>Longitud F</h2>";
+echo( $long_fh);
+
+echo "<h2>Latitud R</h2>";
+echo( $lat_r);
+
+echo "<h2>Longitud R</h2>";
+echo( $long_r);
+
+
 $oxigeno_disuelto = $_POST[oxigeno_disuelto];
 $oxigeno_saturacion = $_POST[oxigeno_saturacion];
 $solidos_suspendidos = $_POST[solidos_suspendidos];
@@ -96,6 +121,10 @@ $coagulante_aluminio = $_POST[coagulante_aluminio];
 $calculo_irca = 0;
 $estado_irca = "";
 
+//Calculo de la distancia
+
+$distancia = calcular_distancia($lat_r,$lon_r,$lat_fh,$lon_fh);
+
 //LLamadao a Funciones ICA
 
 $i_ox=indice_ox_disuelto($oxigeno_disuelto, $oxigeno_saturacion);
@@ -160,6 +189,24 @@ $e_irca=estado_irca($c_irca);
 // echo( $e_irca);
 
 //echo "<h2>YA VUELVO!!!!! voy a comer algo</h2>";
+
+
+//------------------------------------
+//            Distancia
+//------------------------------------
+
+function calcular_distancia($lat_r,$lon_r,$lat_fh,$lon_fh){
+	$radio = 6378137;
+	$dLat = deg2rad($lat_r - $lat_fh);
+	$dLong = deg2rad($lon_r - $lon_fh);
+	$a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat_fh)) * cos(deg2rad($lat_r)) * sin($dLong / 2) * sin($dLong / 2);
+	$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+	$distancia = ($radio * $c)/1000;
+	echo "<h2>Distancia:</h2>";
+	echo($distancia);
+	return $distancia;
+}
+
 
 //------------------------------------
 //            Funciones ICA
@@ -395,7 +442,7 @@ detergente, coagulante_sales_hierro, coagulante_aluminio, calculo_irca, estado_i
 
 $query3 = "INSERT INTO wintig.uso (id_tipo_uso) VALUES ('$_POST[selectid_uso]')"; 
 
-$query4 = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES ('$_POST[selectid_acceso]','$_POST[num_dias_buscar_agua]', '$_POST[num_viajes]','$_POST[cantidad_agua]', '$_POST[tiempo_viaje]', 1, '$_POST[poblacion_acceso]')";
+$query4 = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES ('$_POST[selectid_acceso]','$_POST[num_dias_buscar_agua]', '$_POST[num_viajes]','$_POST[cantidad_agua]', '$_POST[tiempo_viaje]', $distancia, '$_POST[poblacion_acceso]')";
 
 $query5 = "INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES ('$_POST[selectid_fh]', '$_POST[selectid_rancheria]' ,'$_POST[nom_fh]', '$_POST[latitud_fh]', '$_POST[longitud_fh]')";  
 

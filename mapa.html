@@ -12,6 +12,8 @@
     var gmarkers_r = [];
     var markers_r = [];
 
+    var guajira = {lat: 11.775, lng: -72.444444};
+
     $( document ).ready( function() {
 
       function initMap() {
@@ -23,6 +25,10 @@
 
         downloadUrl('php/generarXML.php', function(data) {
           var xml = data.responseXML;
+          var centerControlDiv = document.createElement('div');
+          var centerControl = new CenterControl(centerControlDiv, map);
+          centerControlDiv.index = 1;
+          map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
           markers_f = xml.documentElement.getElementsByTagName('marker_f');
           Array.prototype.forEach.call(markers_f, function(markerElem) {
             var id = markerElem.getAttribute('id');
@@ -36,11 +42,12 @@
             var tipouso = markerElem.getAttribute('tipouso');
             var acceso_poblacion = markerElem.getAttribute('acceso_poblacion');
             var tiempo_viaje = markerElem.getAttribute('tiempo_viaje');
+            var distancia = markerElem.getAttribute('distancia');
             var dias_buscar_agua = markerElem.getAttribute('dias_buscar_agua');
             var cantidad_agua = markerElem.getAttribute('cantidad_agua');
             var numero_viajes = markerElem.getAttribute('numero_viajes');
             var nom_municipio = markerElem.getAttribute('nom_municipio');
-            var contenido_f = '<b><center> DATOS FUENTE HÍDRICA </center></b>' + '<br><b>Nombre: </b>' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e + '<b><br><br><center> Accesibilidad </center></b>' + '<br><b>Tipo de acceso: </b>' + tipoacceso + '<br><b>Acceso de Población: </b>' +acceso_poblacion + '<br><b>Tipo de viaje: </b>' +tiempo_viaje + '<br><b>Número de días que se busca agua: </b>' + dias_buscar_agua + '<br><b>Cantidad de Agua: </b>' + cantidad_agua + '<br><b>Número de viajes: </b>' + numero_viajes +'<br><br><b><center> Uso </center></b>' + '<br><b>Tipo de uso: </b>' + tipouso + '<br><b>Municipio: </b>' + nom_municipio + '<br><b> <a href="php/registros_fh_mapa.php?id_fh='+id+'" target="_blank"> Más información </a href></b>';
+            var contenido_f = '<b><center> DATOS FUENTE HÍDRICA </center></b>' + '<br><b>Nombre: </b>' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e + '<b><br><br><center> Accesibilidad </center></b>' + '<br><b>Tipo de acceso: </b>' + tipoacceso + '<br><b>Acceso de Población: </b>' +acceso_poblacion + '<br><b>Tipo de viaje: </b>' + tiempo_viaje + '<br><b>Distancia a la Rancheria  (Km): </b>' + distancia + '<br><b>Número de días que se busca agua: </b>' + dias_buscar_agua + '<br><b>Cantidad de Agua (Lt): </b>' + cantidad_agua + '<br><b>Número de viajes: </b>' + numero_viajes +'<br><br><b><center> Uso </center></b>' + '<br><b>Tipo de uso: </b>' + tipouso + '<br><b>Municipio: </b>' + nom_municipio + '<br><button type="submit" onclick="readRecordsFHM('+id+');" class="btn btn-warning" href="#fuente_hidirica_mapa" data-toggle="modal">Más información</button>';
             var point = new google.maps.LatLng(
               parseFloat(markerElem.getAttribute('latitud_fh')),
               parseFloat(markerElem.getAttribute('longitud_fh')));
@@ -132,6 +139,34 @@
         }
 
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+      }
+
+      function CenterControl(controlDiv, map) {
+
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click para centrar el mapa';
+        controlDiv.appendChild(controlUI);
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Centrar Mapa';
+        controlUI.appendChild(controlText);
+
+        controlUI.addEventListener('click', function() {
+          map.setCenter(guajira);
+        });
+
       }
 
       filtros_fuente_hidrica = function (tipofuente) {      

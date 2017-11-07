@@ -31,10 +31,11 @@ require_once("php/session.php");
 		<?php
 		if (isset($_SESSION['username'])) {
 			?>
-			<li id="lsita_bar_nav"><a class="active"> <?php echo $_SESSION['username']	?></a></li>
+			<li id="lsita_bar_nav"><a class="active"> <?php echo $_SESSION['username']?></a></li>
 			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
 			<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
 			<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>
+			<li id="lsita_bar_nav"><a href="/WIN-TIG/Home_Recolector.php"><img src="img/LOGO.png" width="20PX" style="text-align: center;"></a></li>
 		</ul>
 		<?php
 	}
@@ -80,8 +81,8 @@ require_once("php/session.php");
 				<div class="modal-body" >
 					Cuestionarios para saber su opinión sobre la aplicación:
 					<br><br>
-					<A HREF="https://docs.google.com/forms/d/1_cOo15t5TEq4XMJcxpD8mcaomJl446Sw6Fy29TYGBUk/edit" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
-					<A HREF="https://docs.google.com/forms/d/1ch_-j59fRtgfjcawq4spNheJlZ6a-wO1b4xkyuZCPRY/edit" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
+					<A HREF="https://docs.google.com/forms/d/e/1FAIpQLSc6cPJVo-htX-yZvrH4SxMfZGSw75Y4d851-L7716JrRSdG7g/viewform" TARGET="_BLANK"><p>Escala de Usabilidad del Sistema</p></A>
+					<A HREF="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdZpIZBJcH62i1TT_bPZzL8y089QmLQsj-BA47xAtUXIdpqfQ/viewform" TARGET="_BLANK"><p>Utilidad, Satisfacción y Facilidad de Uso</p></A>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
@@ -1045,12 +1046,12 @@ require_once("php/session.php");
 
 	<!--Contenedor-->
 	<div class="container">
-		<!-- Logo -->
+		<!-- Logo 
 		<div id="logo_wintig" style="text-align: center;">
 			<a href="/WIN-TIG/home_recolector.php">
 				<img src="img/LOGO.png" width="15%">
 			</a>
-		</div>
+		</div>-->
 
 		<!--Menu Botones y Filtros-->
 
@@ -1064,16 +1065,16 @@ require_once("php/session.php");
 					<button type="button" class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
 				</form>
 				<!--Agregar FH-->
-				<button type="submit" id="btn_ag_fh"  class="btn btn-success" href="#form_variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica" style="margin-left: -9px; width: 180px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
+				<button type="submit" id="btn_ag_fh"  class="btn btn-success" href="#form_variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
 				<br><br>
 				<!--Editar FH-->
-				<button type="submit" id="btn_edi_fh" class="btn btn-primary" href="#registros_fuente_hidirica" data-toggle="modal" style="margin-left: -9px; width: 180px; position: relative;"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
+				<button type="submit" id="btn_edi_fh" class="btn btn-primary" href="#registros_fuente_hidirica" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
 				<br><br>
 				<!--Agrear Rancheria-->
-				<button type="submit" id="btn_ag_rc"  class="btn btn-success" href="#añadir_rancheria" data-toggle="modal" title="Tienes que loguearte para poder agregar una Rancheria" style="margin-left: -9px; width: 180px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Rancheria</button>
+				<button type="submit" id="btn_ag_rc"  class="btn btn-success" href="#añadir_rancheria" data-toggle="modal" title="Tienes que loguearte para poder agregar una Rancheria" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Rancheria</button>
 				<br><br>
 				<!--Editar Rancheria-->
-				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal" style="margin-left: -9px; width: 180px; position: relative;"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Rancheria</button>
+				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Rancheria</button>
 				<br><br>
 			</div>
 
@@ -1228,15 +1229,15 @@ require_once("php/session.php");
 
 	</div>
 
-	<div id="particles-js"></div>
-	<script src="js/particles.js"></script>
-	<script src="js/login.js"></script>
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script src="js\script_acciones.js"></script>
-	<script src="js\script_recolector.js"></script>
-</body>
-</html>
+	<!--<div id="particles-js"></div>
+		<script src="js/particles.js"></script>-->
+		<script src="js/login.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script src="js\script_acciones.js"></script>
+		<script src="js\script_recolector.js"></script>
+	</body>
+	</html>
 
 
 
