@@ -52,6 +52,8 @@ require_once("php/session.php");
 				</div>
 				<div class="modal-body" >
 					<div id="logo_wintig" style="text-align: center;">
+						<img src="img/LOGO.png" width="50%">
+						<img src="img/LOGO.png" width="30%">
 						<a href="http://www.uelbosque.edu.co/">
 							<img src="img/LOGOU.png" width="50%">
 						</a>
@@ -166,6 +168,33 @@ require_once("php/session.php");
 					<input type="hidden" id="hidden_user_id">
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<!-- Pop.up ver registros de Fuentes Hidricas Mapa-->
+	<div class="modal fade" id="fuente_hidirica_mapa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width: 1000px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h3 class="modal-title">FUENTE HÍDRICA</h3></center>
+				</div>
+				<div class="modal-body" >
+					<div class="container">	
+						<div class="row">
+							<div class="col-md-12">
+								<h3>Información:</h3>
+								<div class="records_content_f_mapa"></div>
+							</div>
+						</div>
+					</div>					
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+				</div>
+			</div>  
 		</div>
 	</div>
 
@@ -347,6 +376,7 @@ require_once("php/session.php");
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/script_usuarios.js"></script>
+		<script src="js\script_recolector.js"></script>
 
 	</body>
 	</html>

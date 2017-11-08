@@ -51,6 +51,7 @@ require_once("php/session.php");
 				</div>
 				<div class="modal-body" >
 					<div id="logo_wintig" style="text-align: center;">
+						<img src="img/LOGOU.png" width="50%">
 						<a href="http://www.uelbosque.edu.co/">
 							<img src="img/LOGOU.png" width="50%">
 						</a>
@@ -106,15 +107,7 @@ require_once("php/session.php");
 								<div class="wizard-inner">
 									<div class="connecting-line"></div>
 									<ul class="nav nav-tabs" role="tablist">
-
 										<li role="presentation" class="active">
-											<a href="#rancheria" data-toggle="tab" aria-controls="rancheria" role="tab" title="Rancheria">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon-home"></i>
-												</span>
-											</a>
-										</li>
-										<li role="presentation" class="disabled">
 											<a href="#fuente_hidirica" data-toggle="tab" aria-controls="fuente_hidirica" role="tab" title="Fuente Hídrica">
 												<span class="round-tab">
 													<i class="glyphicon glyphicon-tint"></i>
@@ -122,9 +115,16 @@ require_once("php/session.php");
 											</a>
 										</li>
 										<li role="presentation" class="disabled">
-											<a href="#uso_accesibilidad" data-toggle="tab" aria-controls="uso_accesibilidad" role="tab" title="Uso_Accesibilidad">
+											<a href="#rancheria" data-toggle="tab" aria-controls="rancheria" role="tab" title="Rancheria">
 												<span class="round-tab">
-													<i class="glyphicon glyphicon-map-marker"></i>
+													<i class="glyphicon glyphicon-tent"></i>
+												</span>
+											</a>
+										</li>										
+										<li role="presentation" class="disabled">
+											<a href="#uso_accesibilidad" data-toggle="tab" aria-controls="uso_accesibilidad" role="tab" title="Uso y Accesibilidad">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-road"></i>
 												</span>
 											</a>
 										</li>
@@ -132,7 +132,8 @@ require_once("php/session.php");
 										<li role="presentation" class="disabled">
 											<a href="#ica" data-toggle="tab" aria-controls="ica" role="tab" title="ICA (Índice de Calida de Agua)">
 												<span class="round-tab">
-													<i class="glyphicon glyphicon-heart-empty"></i>
+													<!--<i class="glyphicon glyphicon-heart-empty"></i>-->
+													<b>ICA</b>
 												</span>
 											</a>
 										</li>
@@ -140,7 +141,8 @@ require_once("php/session.php");
 										<li role="presentation" class="disabled">
 											<a href="#irca" data-toggle="tab" aria-controls="irca" role="tab" title="IRCA (Índice de Riesgo de la Calidad del Agua para Consumo Humano)">
 												<span class="round-tab">
-													<i class="glyphicon glyphicon-heart"></i>
+													<!--<i class="glyphicon glyphicon-heart"></i>-->
+													<b>IRCA</b>
 												</span>
 											</a>
 										</li>
@@ -156,35 +158,9 @@ require_once("php/session.php");
 								</div>
 
 								<form role="form" action="php/insertar_datos_fh.php" method="post">
-									<div class="tab-content">
-										<!-- Formulario Rancheria -->
-										<div class="tab-pane active" role="tabpanel" id="rancheria">
-											<h3>RANCHERIA</h3>
-											<div class="modal-body">
-												<div class="form-group">
-													Seleccione la rancheria relacionada a la fuente hídrica:
-													<select name="selectid_rancheria" id="id_rancheria" class="form-control" onChange="getIdRancheria(this)">  
-														<option value="" selected disabled>Rancheria</option> 
-														<?php
-														include 'php/conexion.php';
-														$rancheria = pg_query("SELECT id_rancheria, nom_rancheria FROM wintig.rancheria");
-														while($row_list=pg_fetch_assoc($rancheria)){
-															?>                              
-															<option  value=<?php echo $row_list["id_rancheria"]; ?>>
-																<?php echo $row_list["nom_rancheria"];?>  
-															</option>
-															<?php
-														}                        
-														?>
-													</select><br>														
-												</div>
-											</div>
-											<ul class="list-inline pull-right">												
-												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
-											</ul>
-										</div>	
+									<div class="tab-content">										
 										<!-- Formulario Fuente Hidrica -->
-										<div class="tab-pane" role="tabpanel" id="fuente_hidirica">
+										<div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
 											<div class="modal-body">
 												<h3>FUENTE HÍDRICA</h3>
 												<div class="form-group">
@@ -216,6 +192,32 @@ require_once("php/session.php");
 												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
 											</ul>
 										</div>
+										<!-- Formulario Rancheria -->
+										<div class="tab-pane" role="tabpanel" id="rancheria">
+											<h3>RANCHERIA</h3>
+											<div class="modal-body">
+												<div class="form-group">
+													Seleccione la rancheria relacionada a la fuente hídrica:
+													<select name="selectid_rancheria" id="id_rancheria" class="form-control" onChange="getIdRancheria(this)">  
+														<option value="" selected disabled>Rancheria</option> 
+														<?php
+														include 'php/conexion.php';
+														$rancheria = pg_query("SELECT id_rancheria, nom_rancheria FROM wintig.rancheria");
+														while($row_list=pg_fetch_assoc($rancheria)){
+															?>                              
+															<option  value=<?php echo $row_list["id_rancheria"]; ?>>
+																<?php echo $row_list["nom_rancheria"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>														
+												</div>
+											</div>
+											<ul class="list-inline pull-right">												
+												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+											</ul>
+										</div>	
 										<!-- Formulario Uso y Accesibilidad -->
 										<div class="tab-pane" role="tabpanel" id="uso_accesibilidad">
 											<h3>USO Y ACCESIBILIDAD</h3>
@@ -274,21 +276,21 @@ require_once("php/session.php");
 											<div class="modal-body">
 												<div class="form-group">
 													Oxígeno disuelto (OD):<br>
-													<input type="text" class="form-control" name="oxigeno_disuelto" required><br>
+													<input type="text" class="form-control" name="oxigeno_disuelto" required placeholder="0"><br>
 													Oxígeno de Saturación (OS):<br>
-													<input type="text" class="form-control" name="oxigeno_saturacion" required><br>
+													<input type="text" class="form-control" name="oxigeno_saturacion" required placeholder="0"><br>
 													Sólidos  suspendidos totales (SST):<br>
-													<input type="text" class="form-control" name="solidos_suspendidos" required><br>
+													<input type="text" class="form-control" name="solidos_suspendidos" required placeholder="0"><br>
 													Demanda química de oxígeno (DQO):
-													<input type="text" class="form-control" name="demanda_quimica_oxigeno" required><br>
+													<input type="text" class="form-control" name="demanda_quimica_oxigeno" required placeholder="0"><br>
 													Conductividad eléctrica (C.E):
-													<input type="text" class="form-control" name="conductividad_electrica" required><br>
+													<input type="text" class="form-control" name="conductividad_electrica" required placeholder="0"><br>
 													Nivel de acidez (PH):
-													<input type="text" class="form-control" name="ph_ica" required><br>
+													<input type="text" class="form-control" name="ph_ica" required placeholder="0"><br>
 													Nitrógeno:
-													<input type="text" class="form-control" name="nitrogeno_ica" required><br>
+													<input type="text" class="form-control" name="nitrogeno_ica" required placeholder="0"><br>
 													Fósforo:
-													<input type="text" class="form-control" name="fosforo_ica" required><br>
+													<input type="text" class="form-control" name="fosforo_ica" required placeholder="0"><br>
 												</div>
 											</div>
 											<ul class="list-inline pull-right">
@@ -303,83 +305,83 @@ require_once("php/session.php");
 												<div class="form-group">
 													<h4><b>CARACTERÍSTICAS FÍSICAS</b></h4>
 													Color Aparente (Unidades de PLanito Cobalto - UPC):<br>
-													<input type="text" class="form-control" name="color_aparente"><br>
+													<input type="text" class="form-control" name="color_aparente" required placeholder="0"><br>
 													¿Olor aceptable?<br>
 													Aceptable: <input type="checkbox" id="olor_check" name="olor_check" value="0"><br><br>
 													¿Sabor aceptable?<br>
 													Aceptable: <input type="checkbox" id="sabor_check" name="sabor_check" value="0"><br><br>
 													Turbiedad (UNT):
-													<input type="text" class="form-control" name="turbiedad"><br>
+													<input type="text" class="form-control" name="turbiedad" required placeholder="0"><br>
 													Conductividad eléctrica (C.E):
-													<input type="text" class="form-control" name="conductividad"><br>
+													<input type="text" class="form-control" name="conductividad" required placeholder="0"><br>
 													Nivel de acidez (PH):
-													<input type="text" class="form-control" name="ph_irca"><br>
+													<input type="text" class="form-control" name="ph_irca" required placeholder="0""><br>
 													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN RECONOCIDO EFECTO ADVERSO EN LA SALUD HUMANA</b></h4>
 													Antimonio:
-													<input type="text" class="form-control" name="antimonio"><br>
+													<input type="text" class="form-control" name="antimonio" required placeholder="0"><br>
 													Arsénico:
-													<input type="text" class="form-control" name="arsenico"><br>
+													<input type="text" class="form-control" name="arsenico" required placeholder="0"><br>
 													Barío:
-													<input type="text" class="form-control" name="bario"><br>
+													<input type="text" class="form-control" name="bario" required placeholder="0"><br>
 													Cadmio:
-													<input type="text" class="form-control" name="cadmio"><br>
+													<input type="text" class="form-control" name="cadmio" required placeholder="0"><br>
 													Cianuro libre y disociable:
-													<input type="text" class="form-control" name="cianuro_libre_disociable"><br>
+													<input type="text" class="form-control" name="cianuro_libre_disociable" required placeholder="0"><br>
 													Cobre:
-													<input type="text" class="form-control" name="cobre"><br>
+													<input type="text" class="form-control" name="cobre" required placeholder="0"><br>
 													Cromo:
-													<input type="text" class="form-control" name="cromo"><br>
+													<input type="text" class="form-control" name="cromo" required placeholder="0"><br>
 													Mercurio:
-													<input type="text" class="form-control" name="mercurio"><br>
+													<input type="text" class="form-control" name="mercurio" required placeholder="0"><br>
 													Niquel:
-													<input type="text" class="form-control" name="niquel"><br>
+													<input type="text" class="form-control" name="niquel" required placeholder="0"><br>
 													Plomo:
-													<input type="text" class="form-control" name="plomo"><br>
+													<input type="text" class="form-control" name="plomo" required placeholder="0"><br>
 													Selenio:
-													<input type="text" class="form-control" name="selenio"><br>
+													<input type="text" class="form-control" name="selenio" required placeholder="0"><br>
 													Trihalometanos:
-													<input type="text" class="form-control" name="trihalometanos"><br>
+													<input type="text" class="form-control" name="trihalometanos" required placeholder="0"><br>
 													Hidrocarburos Aromáticos Policíclicos (HAP):
-													<input type="text" class="form-control" name="hap"><br>
+													<input type="text" class="form-control" name="hap" required placeholder="0"><br>
 													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN IMPLICACIONES SOBRE LA SALUD HUMANA</b></h4>
 													Carbono Orgánico Total (COT):
-													<input type="text" class="form-control" name="cot"><br>
+													<input type="text" class="form-control" name="cot" required placeholder="0"><br>
 													Nitritos:
-													<input type="text" class="form-control" name="nitritos"><br>
+													<input type="text" class="form-control" name="nitritos" required placeholder="0"><br>
 													Nitratos:
-													<input type="text" class="form-control" name="nitratos"><br>
+													<input type="text" class="form-control" name="nitratos" required placeholder="0"><br>
 													Fluoruros:
-													<input type="text" class="form-control" name="fluoruros"><br>
+													<input type="text" class="form-control" name="fluoruros" required placeholder="0"><br>
 													<h4><b>CARACTERÍSTICAS QUÍMICAS QUE TIENEN CONSECUENCIAS ECONÓMICAS E INDIRECTAS SOBRE LA SALUD HUMANA</b></h4>
 													Calcio:
-													<input type="text" class="form-control" name="calcio"><br>
+													<input type="text" class="form-control" name="calcio" required placeholder="0"><br>
 													Alcalinidad:
-													<input type="text" class="form-control" name="alcalinidad"><br>
+													<input type="text" class="form-control" name="alcalinidad" required placeholder="0"><br>
 													Cloruros:
-													<input type="text" class="form-control" name="cloruros"><br>
+													<input type="text" class="form-control" name="cloruros" required placeholder="0"><br>
 													Aluminio:
-													<input type="text" class="form-control" name="aluminio"><br>
+													<input type="text" class="form-control" name="aluminio" required placeholder="0"><br>
 													Dureza:
-													<input type="text" class="form-control" name="dureza"><br>
+													<input type="text" class="form-control" name="dureza" required placeholder="0"><br>
 													Hierro:
-													<input type="text" class="form-control" name="hierro"><br>
+													<input type="text" class="form-control" name="hierro" required placeholder="0"><br>
 													Magnesio:
-													<input type="text" class="form-control" name="magnesio"><br>
+													<input type="text" class="form-control" name="magnesio" required placeholder="0"><br>
 													Manganeso:
-													<input type="text" class="form-control" name="manganeso"><br>
+													<input type="text" class="form-control" name="manganeso" required placeholder="0"><br>
 													Molibdeno:
-													<input type="text" class="form-control" name="molibdeno"><br>
+													<input type="text" class="form-control" name="molibdeno" required placeholder="0"><br>
 													Sulfatos:
-													<input type="text" class="form-control" name="sulfatos"><br>
+													<input type="text" class="form-control" name="sulfatos" required placeholder="0"><br>
 													Zinc:
-													<input type="text" class="form-control" name="zinc"><br>
+													<input type="text" class="form-control" name="zinc" required placeholder="0"><br>
 													Fosfatos:
-													<input type="text" class="form-control" name="fosfatos"><br>
+													<input type="text" class="form-control" name="fosfatos" required placeholder="0"><br>
 													<h4><b>CARACTERÍSTICAS QUÍMICAS RELACIONADAS CON LOS PLAGUICIDAS Y OTRAS SUSTANCIAS</b></h4>
 													Cancerígenas, mutagénicas y teratogénicas:
-													<input type="text" class="form-control" name="cmt"><br>
+													<input type="text" class="form-control" name="cmt" required placeholder="0"><br>
 													Plaguicidas (Sumatoria de los valores de los plaguicidas):
-													<input type="text" class="form-control" name="plaguicidas"><br>
+													<input type="text" class="form-control" name="plaguicidas" required placeholder="0"><br>
 													<h4><b>CARACTERÍSTICAS MICROBIOLÓGICAS</b></h4>
 
 													¿Ausencia de Escherichia Coli en 100cm3? <br>
@@ -391,18 +393,18 @@ require_once("php/session.php");
 													Ausencia: <input type="checkbox" id="coliformes_check" name="coliformes_check" value="0"><br><br>
 
 													Microorganismos mesofílicos:
-													<input type="text" class="form-control" name="microorganismos_mesofilicos"><br>
+													<input type="text" class="form-control" name="microorganismos_mesofilicos" required placeholder="0"><br>
 													Giardia:
-													<input type="text" class="form-control" name="giardia"><br>
+													<input type="text" class="form-control" name="giardia" required placeholder="0"><br>
 													Cryptosporidium:
-													<input type="text" class="form-control" name="cryptosporidium"><br>
+													<input type="text" class="form-control" name="cryptosporidium" required placeholder="0"><br>
 													<h4><b>CARACTERÍSTICAS QUÍMICAS DE OTRAS SUSTANCIAS UTILIZADAS EN LA POTABILIZACIÓN</b></h4>
 													Detergente: Cloro residual libre:
-													<input type="text" class="form-control" name="detergente"><br>
+													<input type="text" class="form-control" name="detergente" required placeholder="0"><br>
 													Coagulante: Sales de hierro:
-													<input type="text" class="form-control" name="coagulante_sales_hierro"><br>
+													<input type="text" class="form-control" name="coagulante_sales_hierro" required placeholder="0"><br>
 													Coagulante: Aluminio:
-													<input type="text" class="form-control" name="coagulante_aluminio"><br>
+													<input type="text" class="form-control" name="coagulante_aluminio" required placeholder="0"><br>
 												</div>
 											</div>
 											<ul class="list-inline pull-right">
@@ -415,7 +417,7 @@ require_once("php/session.php");
 											<p>¿Desea almacenar los datos digitados anteriormente?</p>
 											<ul class="list-inline pull-right">
 												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
-												<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i>Guardar Datos</button></li>
+												<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i> Guardar Datos</button></li>
 												<script>												
 													$(document).ready(function(){
 														$("#registrar_ica").onclick(function(){
@@ -497,13 +499,13 @@ require_once("php/session.php");
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Nueva Rancheria</h4>
+					<center><h3 class="modal-title">NUEVA RANCHERIA</h3></center>
 				</div>
 
 				<div class="modal-body">
 					<form name="insertar" action="php/insertar_rancheria.php" method="post"> 
 						<div class="form-group">
-							Seleccione el municipio donde se encuentra la rancheria:
+							<label>Seleccione el municipio donde se encuentra la rancheria:</label>
 							<select name="select_id_municipio" id="id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
 								<option value="" selected disabled>Municipio</option> 
 								<?php
@@ -518,15 +520,15 @@ require_once("php/session.php");
 								}                        
 								?>
 							</select><br>
-							Nombre de la rancheria:<br>
+							<label>Nombre de la rancheria:</label>
 							<input type="text" class="form-control" name="nom_rancheria"><br>
-							Cantidad de personas:<br>
+							<label>Cantidad de personas: </label>
 							<input type="text" class="form-control" name="cantidad_personas"><br>
-							Nombre del representante:
+							<label>Nombre del representante:</label>
 							<input type="text" class="form-control" name="representante"><br>
-							Latitud:<br>
+							<label>Latitud:</label>
 							<input type="text" class="form-control" name="latitud_r"><br>
-							Longitud:<br>
+							<label>Longitud:</label>
 							<input type="text" class="form-control" name="longitud_r"><br>							
 						</div>
 
@@ -1017,7 +1019,7 @@ require_once("php/session.php");
 		</div>
 	</div>
 
-	<!-- Pop.up ver registros de Fuentes Hidricas -->
+	<!-- Pop.up ver registros de Fuentes Hidricas Mapa-->
 	<div class="modal fade" id="fuente_hidirica_mapa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog">
 			<div class="modal-content" style="width: 1000px;">
@@ -1055,6 +1057,17 @@ require_once("php/session.php");
 
 		<!--Menu Botones y Filtros-->
 
+		<div class="dropdown">
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+				<span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a href="#">HTML</a></li>
+					<li><a href="#">CSS</a></li>
+					<li><a href="#">JavaScript</a></li>
+				</ul>
+			</div>
+		</div>
+
 		<nav class="nav_filtros">
 
 			<!--Botones-->	
@@ -1068,13 +1081,13 @@ require_once("php/session.php");
 				<button type="submit" id="btn_ag_fh"  class="btn btn-success" href="#form_variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
 				<br><br>
 				<!--Editar FH-->
-				<button type="submit" id="btn_edi_fh" class="btn btn-primary" href="#registros_fuente_hidirica" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Fuente Hídrica</button>
+				<button type="submit" id="btn_edi_fh" class="btn btn-primary" href="#registros_fuente_hidirica" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-edit"></i> Editar Fuente Hídrica</button>
 				<br><br>
 				<!--Agrear Rancheria-->
 				<button type="submit" id="btn_ag_rc"  class="btn btn-success" href="#añadir_rancheria" data-toggle="modal" title="Tienes que loguearte para poder agregar una Rancheria" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Rancheria</button>
 				<br><br>
 				<!--Editar Rancheria-->
-				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon glyphicon-pencil"></i> Editar Rancheria</button>
+				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-edit"></i> Editar Rancheria</button>
 				<br><br>
 			</div>
 
