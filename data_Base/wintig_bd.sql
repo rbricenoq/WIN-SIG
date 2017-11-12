@@ -1,5 +1,4 @@
-create database wintig;
-	create schema if not exists wintig;
+create schema if not exists wintig;
 
 -- -----------------------------------------------------
 -- Table wintig.tipo_de_usuario
@@ -109,8 +108,7 @@ CREATE TABLE IF NOT EXISTS wintig.accesibilidad (
 	num_viajes INTEGER NOT NULL,
 	cantidad_agua FLOAT NOT NULL,
 	tiempo_viaje TIME NOT NULL,
-	distancia FLOAT NOT NULL,
-	poblacion_acceso INTEGER NOT NULL);
+	distancia FLOAT NOT NULL);
 
 -- -----------------------------------------------------
 -- Table wintig.tipo_acceso
@@ -159,6 +157,15 @@ CREATE TABLE IF NOT EXISTS wintig.rancheria (
 	representante VARCHAR(45) NOT NULL,
 	latitud_r FLOAT NOT NULL,
 	longitud_r FLOAT NOT NULL);
+    
+-- -----------------------------------------------------
+-- Table wintig.muestra
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS wintig.muestra (
+	id_muestra SERIAL PRIMARY KEY NOT NULL,
+	id_ica INTEGER NOT NULL,
+	id_irca INTEGER NOT NULL,
+	fecha DATE NOT NULL);
 
 -- -----------------------------------------------------
 -- Table wintig.fuente_hidrica
@@ -168,12 +175,13 @@ CREATE TABLE IF NOT EXISTS wintig.fuente_hidrica (
 	id_tipo_fuente_hidrica INTEGER NOT NULL,
 	id_accesibilidad SERIAL NOT NULL,
 	id_uso SERIAL NOT NULL,
-	id_ica SERIAL,
-	id_irca SERIAL,
+	id_muestra SERIAL,
 	id_rancheria INTEGER,
-	nom_fh VARCHAR(45) NOT NULL,
+    id_usuario INTEGER,
+    nom_fh VARCHAR(45) NOT NULL,
 	latitud_fh FLOAT NOT NULL,
-	longitud_fh FLOAT NOT NULL);
+	longitud_fh FLOAT NOT NULL,
+	codigo_fh VARCHAR(45));
 
 -- -----------------------------------------------------
 -- FOREIGN KEYs
@@ -189,12 +197,15 @@ ALTER TABLE wintig.uso add CONSTRAINT uso_tipo_uso_fk FOREIGN KEY (id_tipo_uso) 
 
 ALTER TABLE wintig.rancheria add CONSTRAINT rancheria_municipio_fk FOREIGN KEY (id_municipio) REFERENCES wintig.municipio (id_municipio);
 
+ALTER TABLE wintig.muestra add CONSTRAINT muestra_ica_fk FOREIGN KEY (id_ica) REFERENCES wintig.ica (id_ica);
+ALTER TABLE wintig.muestra add CONSTRAINT muestra_irca_fk FOREIGN KEY (id_irca) REFERENCES wintig.irca (id_irca);
+
 ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_tipo_fuente_hidrica_fk FOREIGN KEY (id_tipo_fuente_hidrica) REFERENCES wintig.tipo_fuente_hidrica (id_tipo_fuente_hidrica);
-ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_ica_fk FOREIGN KEY (id_ica) REFERENCES wintig.ica (id_ica);
-ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_irca_fk FOREIGN KEY (id_irca) REFERENCES wintig.irca (id_irca);
 ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_accesibilidad_fk FOREIGN KEY (id_accesibilidad) REFERENCES wintig.accesibilidad (id_accesibilidad);
 ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_uso_fk FOREIGN KEY (id_uso) REFERENCES wintig.uso (id_uso);
 ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_rancheria_fk FOREIGN KEY (id_rancheria) REFERENCES wintig.rancheria (id_rancheria);
+ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_muestra_fk FOREIGN KEY (id_muestra) REFERENCES wintig.muestra (id_muestra);
+ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_usuario_fk FOREIGN KEY (id_usuario) REFERENCES wintig.usuario (id_usuario);
 
 -- -----------------------------------------------------
 -- Insert test data
@@ -202,10 +213,6 @@ ALTER TABLE wintig.fuente_hidrica add CONSTRAINT fuente_hidrica_rancheria_fk FOR
 
 INSERT INTO wintig.tipo_de_usuario (tipo_de_usuario) VALUES ('Administrador');
 INSERT INTO wintig.tipo_de_usuario (tipo_de_usuario) VALUES ('Recolector');
-
-INSERT INTO wintig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password, activate, estado) VALUES ('Ramiro', 'Briceño', 1, '3208809703', 'rbricenoq@unbosque.edu.co', 'rbricenoq', 'ramiro1234',  'asdhashfgjahsdf', 1);  
-INSERT INTO wintig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password, activate, estado) VALUES ('Sergio', 'Barrero', 1, '3212290107', 'sbarrerof@unbosque.edu.co', 'sbarrerof', 'sergio1234',  'adfgadfggfdh', 1);
-INSERT INTO wintig.usuario (nombre, apellido, id_tipo_de_usuario, tel_usuario, correo_usuario, nom_usuario, password, activate, estado) VALUES ('Daniela', 'Pico', 1, '3166190924', 'dpico@unbosque.edu.co', 'dpico', 'dpico1234', 'dfsghfdghgf', 1);
 
 INSERT INTO wintig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) VALUES ('Pozo');
 INSERT INTO wintig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) VALUES ('Jagüey');
@@ -335,15 +342,22 @@ INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, re
 INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (2, 'Camuya', 13, 'José', 11.216237, -72.398248); 
 INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (2, 'Botoy', 4, 'Jose', 11.478698, -72.292425);
 
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (1, 2, 'Aremashain', 11.7650790499241, -72.4589270353317);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 4, 'Epehuz', 11.497942, -72.428158);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 7, 'Epehin', 11.498993, -72.438694);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 9, 'Yamahain', 11.422820, -72.392875);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 11, 'Yamaluria', 11.420548, -72.383820);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 13, 'Fakimuhana', 11.456573, -72.252018);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 15, 'Huaraurahu', 11.379048, -72.403278);
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, nom_fh, latitud_fh, longitud_fh) VALUES (2, 16, 'Huayahu', 11.381298, -72.403278);
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (1,1,'2017-08-25');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (2,2,'2017-06-5');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (3,3,'2017-08-21');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (4,4,'2017-05-23');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (5,5,'2017-06-8');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (6,6,'2017-07-15');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (7,7,'2017-08-15');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (8,8,'2017-10-20');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (9,9,'2017-11-4');
+INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (10,10,'2017-10-5');
 
-
-
-
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 2, 2 'Aremashain', 11.7650790499241, -72.4589270353317, 'FH1PMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 4, 2 'Epehuz', 11.497942, -72.428158, 'FH2PMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 7, 2 'Epehin', 11.498993, -72.438694, 'FH3JMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 9, 2 'Yamahain', 11.422820, -72.392875, 'FH4JMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (3, 11, 2 'Yamaluria', 11.420548, -72.383820, 'FH5RMC');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (3, 13, 2 'Fakimuhana', 11.456573, -72.252018, 'FH6RMC');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 15, 2 'Huaraurahu', 11.379048, -72.403278, 'FH7PMC');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 16, 2 'Huayahu', 11.381298, -72.403278, 'FH8JMC');

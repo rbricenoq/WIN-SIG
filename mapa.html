@@ -32,22 +32,23 @@
           markers_f = xml.documentElement.getElementsByTagName('marker_f');
           Array.prototype.forEach.call(markers_f, function(markerElem) {
             var id = markerElem.getAttribute('id');
+            var codigo = markerElem.getAttribute('codigo');
             var nombre = markerElem.getAttribute('nombre');
             var tipofuente = markerElem.getAttribute('tipofuente');
+            var fecha = markerElem.getAttribute('fecha_muestra');
             var ica_c = markerElem.getAttribute('ica_c');
             var ica_e = markerElem.getAttribute('ica_e');
             var irca_c = markerElem.getAttribute('irca_c');
             var irca_e = markerElem.getAttribute('irca_e');
             var tipoacceso = markerElem.getAttribute('tipoacceso');
             var tipouso = markerElem.getAttribute('tipouso');
-            var acceso_poblacion = markerElem.getAttribute('acceso_poblacion');
             var tiempo_viaje = markerElem.getAttribute('tiempo_viaje');
             var distancia = markerElem.getAttribute('distancia');
             var dias_buscar_agua = markerElem.getAttribute('dias_buscar_agua');
             var cantidad_agua = markerElem.getAttribute('cantidad_agua');
             var numero_viajes = markerElem.getAttribute('numero_viajes');
             var nom_municipio = markerElem.getAttribute('nom_municipio');
-            var contenido_f = '<b><center> DATOS FUENTE HÍDRICA </center></b>' + '<br><b>Nombre: </b>' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e + '<b><br><br><center> Accesibilidad </center></b>' + '<br><b>Tipo de acceso: </b>' + tipoacceso + '<br><b>Acceso de Población: </b>' +acceso_poblacion + '<br><b>Tipo de viaje: </b>' + tiempo_viaje + '<br><b>Distancia a la Rancheria  (Km): </b>' + distancia + '<br><b>Número de días que se busca agua: </b>' + dias_buscar_agua + '<br><b>Cantidad de Agua (Lt): </b>' + cantidad_agua + '<br><b>Número de viajes: </b>' + numero_viajes +'<br><br><b><center> Uso </center></b>' + '<br><b>Tipo de uso: </b>' + tipouso + '<br><b>Municipio: </b>' + nom_municipio + '<br><br><button type="submit" style="text-align: center;" onclick="readRecordsFHM('+id+');" class="btn btn-primary center-block" href="#fuente_hidirica_mapa" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i> Más información</button>';
+            var contenido_f = '<b><center> DATOS FUENTE HÍDRICA </center></b>' + '<br><b>Codigo: </b>' + codigo + '<br><b>Nombre: </b>' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>Fecha de la muestra: </b>' + fecha + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e + '<b><br><br><center> Accesibilidad </center></b>' + '<br><b>Tipo de acceso: </b>' + tipoacceso + '<br><b>Tipo de viaje: </b>' + tiempo_viaje + '<br><b>Distancia a la Rancheria  (Km): </b>' + distancia + '<br><b>Número de días que se busca agua: </b>' + dias_buscar_agua + '<br><b>Cantidad de Agua (Lt): </b>' + cantidad_agua + '<br><b>Número de viajes: </b>' + numero_viajes +'<br><br><b><center> Uso </center></b>' + '<br><b>Tipo de uso: </b>' + tipouso + '<br><b>Municipio: </b>' + nom_municipio + '<br><br><button type="submit" style="text-align: center;" onclick="readRecordsFHM('+id+');" class="btn btn-primary center-block" href="#fuente_hidirica_mapa" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i> Más información</button>';
             var point = new google.maps.LatLng(
               parseFloat(markerElem.getAttribute('latitud_fh')),
               parseFloat(markerElem.getAttribute('longitud_fh')));
