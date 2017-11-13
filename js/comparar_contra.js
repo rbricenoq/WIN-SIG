@@ -2,7 +2,6 @@ $(document).ready(function() {
 	//variables
 	var pass1 = $('[name=contra1]');
 	var pass2 = $('[name=contra2]');
-	var longitud = "La contraseña debe estar formada por al menos 8 carácteres";
 	var confirmacion = "Las contraseñas ingresadas coinciden";
 	var negacion = "Las contraseñas ingresadas no coinciden";
 	//oculto por defecto el elemento span

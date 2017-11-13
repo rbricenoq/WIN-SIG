@@ -260,6 +260,26 @@ if(isset($_POST)){
         return $indice_nt_pt;
     }
 
+/*    function indice_nitrogeno_fosfoto($nitrogeno_ica, $fosforo_ica){
+        if($nitrogeno_ica!=0 and fosforo_ica!=0){
+            $indice_nt_pt=$nitrogeno_ica/$fosforo_ica; 
+            if ($indice_nt_pt >= 15 and $indice_nt_pt <= 20) {
+                $indice_nt_pt = 0.8;
+            }
+            elseif ($indice_nt_pt > 10 and $indice_nt_pt < 15) {
+                $indice_nt_pt = 0.6;
+            }
+            elseif ($indice_nt_pt > 5 and $indice_nt_pt <= 10) {
+                $indice_nt_pt = 0.35;
+            }
+            else
+                $indice_nt_pt = 0.15;
+            
+        } else
+        $indice_nt_pt = "-";
+        return $indice_nt_pt;
+    }*/
+
     function calcular_ica($i_ox, $i_stt, $i_do, $i_ce, $i_ph, $i_ntf){
         $ica= (($i_ox + $i_stt + $i_do + $i_ce + $i_ntf)) * 0.17 + ($i_ph*0.15);
         return $ica;

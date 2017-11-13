@@ -10,7 +10,9 @@
 	<link href="css/login.css" rel="stylesheet">
 	<link href="css/form_var.css" rel="stylesheet">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
@@ -21,14 +23,34 @@ include 'php/conexion.php';
 <body>
 
 	<!-- Barra Navegación -->
-	<div>
-		<ul id="bar_nav">
-			<li id="lsita_bar_nav"><a class="active" href="/WIN-TIG/login.php"> <?php echo 'Log in '?></a></li>
-			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-			<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
-			<li id="lsita_bar_nav"><a href="/WIN-TIG/home.php"><img src="img/LOGO.png" width="20PX" style="text-align: center;"></a></li>
-		</ul>	
-	</div>
+	<nav class="navbar navbar-default" style="background-color: #e3f2fd; width: 100%;">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/WIN-TIG/Home.php">WIN-TIG</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="/WIN-TIG/login.php"><span class="glyphicon glyphicon-log-in"></span><?php echo ' Login '?></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#contacto" data-toggle="modal">Contacto</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#cuestionario" data-toggle="modal">Cuestionarios</a>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
 	<!-- Pop-up Contacto  -->
 	<div class="modal fade" id="contacto" role="dialog">
 		<div class="modal-dialog">
@@ -282,12 +304,9 @@ include 'php/conexion.php';
 			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
 		</section>
 	</div>
-
-	<!--<div id="particles-js"></div>
-		<script src="js/particles.js"></script>-->
-		<script src="js/login.js"></script>
-		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script src="js\script_recolector.js"></script>
-	</body>
-	</html>
+	<div id="particles-js"></div>
+	<script src="js/particles.js"></script>
+	<script src="js/login.js"></script>
+	<script src="js\script_recolector.js"></script>
+</body>
+</html>

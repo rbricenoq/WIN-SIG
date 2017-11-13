@@ -27,11 +27,19 @@ $username_exist = pg_num_rows($checkuser);
 $checkemail = pg_query("SELECT correo_usuario FROM wintig.usuario WHERE correo_usuario ='$email'"); 
 $email_exist = pg_num_rows($checkemail); 
 if ($email_exist>0) { 
-    echo "La cuenta de correo se encuentra ya en uso. Por favor elija otra."; 
-    die();
+  echo '
+  <SCRIPT LANGUAGE="javascript">
+  alert("La cuenta de correo se encuentra ya en uso. Por favor elija otra");
+  history.go(-1);
+  </SCRIPT>';
+  die();
 
 }elseif ($username_exist>0) { 
-  echo "El nombre de usuario ya se encuentra en uso. Por favor elija otro."; 
+  echo '
+  <SCRIPT LANGUAGE="javascript">
+  alert("El nombre de usuario ya se encuentra en uso. Por favor elija otro");
+  history.go(-1);
+  </SCRIPT>';
   die();
 } else { 
 
@@ -45,9 +53,12 @@ if ($email_exist>0) {
         enviar_mail($email,$user,$activate,$password); 
     }else{ 
 //en caso de no poder insertar el nuevo usuario dejamos un codigo de error. 
-        echo'Hubo Un Error Al Intentar Registrarle, Inténtelo De Nuevo'; 
-        header("location: /WIN-TIG/Login.php"); 
-    } 
+      echo '
+      <SCRIPT LANGUAGE="javascript">
+      alert("Hubo Un Error Al Intentar Registrarle, Inténtelo De Nuevo");
+      history.go(-1);
+      </SCRIPT>'; 
+  } 
 } 
 ?> 
 

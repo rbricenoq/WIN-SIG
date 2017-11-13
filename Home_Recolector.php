@@ -8,14 +8,13 @@
 	<link rel ="icon" href="img/favicon.ico" >
 	<link href ="css/css_home.css" rel="stylesheet">
 	<link href ="css/login.css" rel="stylesheet">
-	<link href ="css/form_var.css" rel="stylesheet">	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">	
-	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	<script src="js\login.js"></script>
+	<link href ="css/form_var.css" rel="stylesheet">
+	<link href ="css/instrucciones.css" rel="stylesheet">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel ="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/instrucciones.js"></script>
 </head>
 
 <?php 
@@ -26,20 +25,58 @@ require_once("php/session.php");
 
 <body>
 
-	<!--Barra Navegacion-->	
-	<ul id="bar_nav">
-		<?php
-		if (isset($_SESSION['username'])) {
-			?>
-			<li id="lsita_bar_nav"><a class="active"> <?php echo $_SESSION['username']?></a></li>
-			<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-			<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
-			<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>
-			<li id="lsita_bar_nav"><a href="/WIN-TIG/Home_Recolector.php"><img src="img/LOGO.png" width="20PX" style="text-align: center;"></a></li>
-		</ul>
-		<?php
-	}
-	?>
+	<!-- Barra Navegación -->
+	<nav class="navbar navbar-default" style="background-color: #e3f2fd; width: 100%;">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/WIN-TIG/Home.php">WIN-TIG</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#contacto" data-toggle="modal">Contacto</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#cuestionario" data-toggle="modal">Cuestionarios</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menú<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#instrucciones" data-toggle="modal"><span class="glyphicon glyphicon-list"></span> Instrucciones de uso</a></li>
+							<li><a href="#form_fuente" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Insertar Fuente Hídrica</a></li>
+							<li><a href="#form_accesibilidad" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Insertar Accesibilidad</a></li>
+							<li><a href="#form_muestra" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Registrar Muestra</a></li>
+							<li><a href="#registros_fuente_hidirica" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Ver Fuentes Hídricas</a></li>
+							<li><a href="#registros_rancheria" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Ver Rancherias</a></li>
+
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<?php
+					if (isset($_SESSION['username'])) {
+						?>
+						<li>
+							<a class="active" style="background: DeepSkyBlue; font-weight: bold; color: SlateGrey ;"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username']?></a>
+						</li>
+						<li>
+							<a class="nav-link" href="php/logout.php" style="align-content: right;"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+						</li>
+					</ul>
+					<?php
+				}
+				?>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
 
 	<!-- Pop-up Contacto  -->
 	<div class="modal fade" id="contacto" role="dialog">
@@ -51,7 +88,7 @@ require_once("php/session.php");
 				</div>
 				<div class="modal-body" >
 					<div id="logo_wintig" style="text-align: center;">
-						<img src="img/LOGOU.png" width="50%">
+						<img src="img/LOGO.png" width="30%">
 						<a href="http://www.uelbosque.edu.co/">
 							<img src="img/LOGOU.png" width="50%">
 						</a>
@@ -92,113 +129,360 @@ require_once("php/session.php");
 		</div>
 	</div>
 
-	<!-- Pop-up Fuente Hidrica  -->
-	<div class="modal fade" id="form_variables" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">		
+	<!-- Pop-up Instrucciones  -->
+
+	<div class="modal fade" id="instrucciones" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>	
-					<center><h2 class="modal-title">NUEVA FUENTE HÍDRICA</h2></center>
+					<center><h4 class="modal-title">INSTRUCCIONES DE USO</h4></center>
 				</div>
 				<div class="modal-body" >
-					<div class="container">	
-						<div class="modal-body">										
-							<div class="form-group">
+					<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+    <div class="row">
+        <div class="progress" id="progress1">
+            <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+            </div>
+            <span class="progress-type">Progreso</span>
+            <span class="progress-completed">20%</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row step">
+            <div id="div1" class="col-md-2" onclick="javascript: resetActive(event, 0, 'Paso-1');">
+                <span class="fa fa-tint"></span>
+                <p>Registrar Fuente</p>
+            </div>
+            <div class="col-md-2 activestep" onclick="javascript: resetActive(event, 20, 'Paso-2');">
+                <span class="fa fa-road"></span>
+                <p>Registrar Accesibilidad</p>
+            </div>
+            <div class="col-md-2" onclick="javascript: resetActive(event, 40, 'Paso-3');">
+                <span class="fa fa-list-ul"></span>
+                <p>Registrar Muestra</p>
+            </div>
+            <div class="col-md-2" onclick="javascript: resetActive(event, 60, 'Paso-4');">
+                <span class="fa fa-pencil-square-o"></span>
+                <p>Editar información</p>
+            </div>
+            <div class="col-md-2" onclick="javascript: resetActive(event, 80, 'Paso-5');">
+                <span class="fa fa-filter"></span>
+                <p>Aplicar filtros</p>
+            </div>
+            <div id="last" class="col-md-2" onclick="javascript: resetActive(event, 100, 'Paso-6');">
+                <span class="fa fa-eye"></span>
+                <p>Consultar Información</p>
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="Paso-1">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>PASO 1</h1>
+                <h3 class="underline">Instrucciones</h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step activeStepInfo" id="Paso-2">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>PASO 2</h1>
+                <h3 class="underline">Instrucciones</h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="Paso-3">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>PASO 3</h1>
+                <h3 class="underline">Instrucciones</h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="Paso-4">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>PASO 4</h1>
+                <h3 class="underline">Instrucciones</h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="Paso-5">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>PASO 5</h1>
+                <h3 class="underline">Instrucciones</h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="Paso-6">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>PASO 6</h1>
+                <h3 class="underline">Instrucciones</h3>
+               
+            </div>
+        </div>
+    </div>
+</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>    
+				</div>
+			</div>  
+		</div>
+	</div>
+
+	<!-- Pop-up Fuente Hidrica  -->
+	<div class="modal fade" id="form_fuente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h4 class="modal-title">NUEVA FUENTE HÍDRICA</h4></center>
+				</div>
+				<div>
+					<div class="row">
+						<section>
+							<div class="wizard">
+								<div class="wizard-inner">
+									<div class="connecting-line"></div>
+									<ul class="nav nav-tabs" role="tablist">
+
+										<li role="presentation" class="active">
+											<a href="#fuente_hidrica" data-toggle="tab" aria-controls="fuente_hidrica" role="tab" title="Fuente Hídrica">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-tint"></i>
+												</span>
+											</a>
+										</li>
+
+										<li role="presentation" class="disabled">
+											<a href="#rancheria" data-toggle="tab" aria-controls="rancheria" role="tab" title="Rancheria">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-tent"></i>
+												</span>
+											</a>
+										</li>
+
+										<li role="presentation" class="disabled">
+											<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Enviar">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-ok"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+
 								<form role="form" action="php/insertar_datos_fh.php" method="post">
-									<H4>FUENTE HÍDRICA</H4>
-									Usuario:
-									<input type="text" class="form-control" name="nom_usuario" placeholder="<?php echo $_SESSION['username']?>"></input><br>
-									<label ><?php echo $_SESSION['username']?></label><br>
-									Seleccione el tipo de fuente hídrica:        
-									<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFh(this)" required>  
-										<option value="" selected disabled>Tipo</option> 
-										<?php
-										include 'php/conexion.php';
-										$fuente = pg_query("SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM wintig.tipo_fuente_hidrica");
-										while($row_list=pg_fetch_assoc($fuente)){
-											?>                              
-											<option value=<?php echo $row_list["id_tipo_fuente_hidrica"]; ?>>
-												<?php echo $row_list["nom_tipo_fuente_hidrica"];?>  
-											</option>
-											<?php
-										}                        
-										?>
-									</select><br>
-									Nombre:<br>
-									<input type="text" class="form-control" name="nom_fh" required><br>
-									Latitud:<br>
-									<input type="text" class="form-control" name="latitud_fh" required pattern="^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)"><br>
-									Longitud:<br>
-									<input type="text" class="form-control" name="longitud_fh" required pattern="\s*[-]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$"><br>
-									<H4>RANCHERIA</H4>
-									Seleccione la rancheria relacionada a la fuente hídrica:
-									<select name="selectid_rancheria" id="id_rancheria" class="form-control" onChange="getIdRancheria(this)" required>  
-										<option value="" selected disabled>Rancheria</option> 
-										<?php
-										include 'php/conexion.php';
-										$rancheria = pg_query("SELECT id_rancheria, nom_rancheria FROM wintig.rancheria");
-										while($row_list=pg_fetch_assoc($rancheria)){
-											?>                              
-											<option  value=<?php echo $row_list["id_rancheria"]; ?>>
-												<?php echo $row_list["nom_rancheria"];?>  
-											</option>
-											<?php
-										}                        
-										?>
-									</select><br>
-									<H4>USO Y ACCESIBILIDAD</H4>
-									Seleccione el uso de la fuente hídrica:
-									<select name="selectid_uso" id="tipo_uso" class="form-control" onChange="getIdUso(this)" required>  
-										<option value="" selected disabled>Uso</option> 
-										<?php
-										include 'php/conexion.php';
-										$uso = pg_query("SELECT id_tipo_uso, nom_tipo_uso FROM wintig.tipo_uso");
-										while($row_list=pg_fetch_assoc($uso)){
-											?>                              
-											<option value=<?php echo $row_list["id_tipo_uso"]; ?>>
-												<?php echo $row_list["nom_tipo_uso"];?>  
-											</option>
-											<?php
-										}                        
-										?>
-									</select><br>
-									Seleccione la localización de la fuente hídrica:
-									<select name="selectid_acceso" id="tipo_acceso" class="form-control" onChange="getIdAcceso(this)" required>  
-										<option value="" selected disabled>Acceso</option> 
-										<?php
-										include 'php/conexion.php';
-										$acceso = pg_query("SELECT id_tipo_acceso, nom_tipo_acceso FROM wintig.tipo_acceso");
-										while($row_list=pg_fetch_assoc($acceso)){
-											?>                              
-											<option value=<?php echo $row_list["id_tipo_acceso"]; ?>>
-												<?php echo $row_list["nom_tipo_acceso"];?>  
-											</option>
-											<?php
-										}                        
-										?>
-									</select><br>
-									Número de dias que buscan agua por semana:<br>
-									<input type="text" class="form-control" name="num_dias_buscar_agua" required pattern="[0-7]"><br>
-									Número de viajes que se realizan en el día en busca de agua:<br>
-									<input type="number" class="form-control" name="num_viajes" required pattern="[0-9]+"><br>
-									Cantidad de agua recolectada en el dia (Lt):<br>
-									<input type="number" class="form-control" name="cantidad_agua" required><br>
-									Tiempo total para la recolección del agua (Tiempo de ida + espera + regreso):<br>
-									<input type="text" class="form-control" value="01:00" name="tiempo_viaje" required pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"><br>									
+									<div class="tab-content">										
+										<!-- Formulario Fuente Hidrica -->
+										<div class="tab-pane active" role="tabpanel" id="fuente_hidrica">
+											<div class="modal-body">
+												<h3>FUENTE HÍDRICA</h3>
+												<div class="form-group">
+													Usuario:
+													<input type="text" class="form-control" name="nom_usuario" placeholder="<?php echo $_SESSION['username']?>" disabled></input><br>
+													Seleccione el tipo de fuente hídrica:        
+													<select name="selectid_fh" id="s_fh" class="form-control" onChange="getIdFh(this)" required>  
+														<option value="" selected disabled>Tipo</option> 
+														<?php
+														include 'php/conexion.php';
+														$fuente = pg_query("SELECT id_tipo_fuente_hidrica, nom_tipo_fuente_hidrica FROM wintig.tipo_fuente_hidrica");
+														while($row_list=pg_fetch_assoc($fuente)){
+															?>                              
+															<option value=<?php echo $row_list["id_tipo_fuente_hidrica"]; ?>>
+																<?php echo $row_list["nom_tipo_fuente_hidrica"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>
+													Nombre:<br>
+													<input type="text" class="form-control" name="nom_fh" required><br>
+													Latitud:<br>
+													<input type="text" class="form-control" name="latitud_fh" required pattern="^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)"><br>
+													Longitud:<br>
+													<input type="text" class="form-control" name="longitud_fh" required pattern="\s*[-]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$"><br>						
+												</div>
+											</div>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-primary next-step">Continuar</button></li>
+											</ul>
+										</div>
+										<!-- Formulario Rancheria -->
+										<div class="tab-pane" role="tabpanel" id="rancheria">
+											<h3>RANCHERIA</h3>
+											<div class="modal-body">
+												<div class="form-group">
+													Seleccione la rancheria relacionada a la fuente hídrica:
+													<select name="selectid_rancheria" id="id_rancheria" class="form-control" onChange="getIdRancheria(this)" required>  
+														<option value="" selected disabled>Rancheria</option> 
+														<?php
+														include 'php/conexion.php';
+														$rancheria = pg_query("SELECT id_rancheria, nom_rancheria FROM wintig.rancheria");
+														while($row_list=pg_fetch_assoc($rancheria)){
+															?>                              
+															<option  value=<?php echo $row_list["id_rancheria"]; ?>>
+																<?php echo $row_list["nom_rancheria"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>
+													<center><p>¿Desea agregar una nueva rancheria?</p></center>
+													<center><button type="button" id="btn_ag_rc"  class="btn btn-success" href="#añadir_rancheria" data-toggle="modal" title="Añadir una rancheria nueva" style="margin-left: -9px; width: 230px; position: relative;text-align: center;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Rancheria</button></center>	
+												</div>
+											</div>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+												<li><button type="button" class="btn btn-primary next-step">Continuar</button></li>
+											</ul>
+										</div>
+										<div class="tab-pane" role="tabpanel" id="complete">
+											<h3>FORMULARIO COMPLETO</h3>
+											<p>¿Desea almacenar los datos digitados anteriormente?</p>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+												<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i> Guardar Datos</button></li>
+												<script>												
+													$(document).ready(function(){
+														$("#registrar_datos").onclick(function(){
+															$("#form_fuente").modal();
+														});
+													});
+												</script>
+											</ul>	
+										</div>
+										<div class="clearfix"></div>
+									</div>
 								</form>
-							</div>										
-						</div>
+							</div>
+						</section>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i> Guardar Datos</button>
-					<script>												
-						$(document).ready(function(){
-							$("#registrar_datos").onclick(function(){
-								$("#form_variables").modal();
-							});
-						});
-					</script>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+				</div>
+			</div>  
+		</div>
+	</div>
+
+	<!-- Pop-up Accesibilidad  -->
+	<div class="modal fade" id="form_accesibilidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>	
+					<center><h4 class="modal-title">Uso y Accesibilidad</h4></center>
+				</div>
+				<div>
+					<div class="row">
+						<section>
+							<div class="wizard">
+								<div class="wizard-inner">
+									<div class="connecting-line"></div>
+									<ul class="nav nav-tabs" role="tablist">
+
+										<li role="presentation" class="active">
+											<a href="#uso_acceso" data-toggle="tab" aria-controls="uso_acceso" role="tab" title="Datos de Uso y Accesibilidad">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-road"></i>
+												</span>
+											</a>
+										</li>
+
+										<li role="presentation" class="disabled">
+											<a href="#complete3" data-toggle="tab" aria-controls="complete3" role="tab" title="Enviar">
+												<span class="round-tab">
+													<i class="glyphicon glyphicon-ok"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+
+								<form role="form" action="php/insertar_datos_fh.php" method="post">
+									<div class="tab-content">										
+										<!-- Formulario Fuente Hidrica -->
+										<div class="tab-pane active" role="tabpanel" id="uso_acceso">
+											<div class="modal-body">
+												<H3>USO Y ACCESIBILIDAD</H3>
+												<div class="form-group">
+													Seleccione el uso de la fuente hídrica:
+													<select name="selectid_uso" id="tipo_uso" class="form-control" onChange="getIdUso(this)" required>  
+														<option value="" selected disabled>Uso</option> 
+														<?php
+														include 'php/conexion.php';
+														$uso = pg_query("SELECT id_tipo_uso, nom_tipo_uso FROM wintig.tipo_uso");
+														while($row_list=pg_fetch_assoc($uso)){
+															?>                              
+															<option value=<?php echo $row_list["id_tipo_uso"]; ?>>
+																<?php echo $row_list["nom_tipo_uso"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>
+													Seleccione la localización de la fuente hídrica:
+													<select name="selectid_acceso" id="tipo_acceso" class="form-control" onChange="getIdAcceso(this)" required>  
+														<option value="" selected disabled>Acceso</option> 
+														<?php
+														include 'php/conexion.php';
+														$acceso = pg_query("SELECT id_tipo_acceso, nom_tipo_acceso FROM wintig.tipo_acceso");
+														while($row_list=pg_fetch_assoc($acceso)){
+															?>                              
+															<option value=<?php echo $row_list["id_tipo_acceso"]; ?>>
+																<?php echo $row_list["nom_tipo_acceso"];?>  
+															</option>
+															<?php
+														}                        
+														?>
+													</select><br>
+													Número de dias que buscan agua por semana:<br>
+													<input type="number" class="form-control" name="num_dias_buscar_agua" required pattern="[0-7]" title="Ingrese un número del 0 al 7"><br>
+													Número de viajes que se realizan en el día en busca de agua:<br>
+													<input type="number" class="form-control" name="num_viajes" required pattern="[0-9]+" title="Sólo se permiten números"><br>
+													Cantidad de agua recolectada en el dia (Lt):<br>
+													<input type="number" class="form-control" name="cantidad_agua" required title="Sólo se permiten números"><br>
+													Tiempo total para la recolección del agua (Tiempo de ida + espera + regreso - HH:MM:SS):<br>
+													<input type="text" class="form-control" placeholder="2:00:00" name="tiempo_viaje" required pattern="^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(:([0-5]?[0-9]))?$" title="Ingrese una hora en el formato específicado"><br>
+												</div>
+											</div>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-primary next-step">Continuar</button></li>
+											</ul>
+										</div>
+										<div class="tab-pane" role="tabpanel" id="complete3">
+											<h3>FORMULARIO COMPLETO</h3>
+											<p>¿Desea almacenar los datos digitados anteriormente?</p>
+											<ul class="list-inline pull-right">
+												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
+												<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i> Guardar Datos</button></li>
+												<script>												
+													$(document).ready(function(){
+														$("#registrar_datos").onclick(function(){
+															$("#form_accesibilidad").modal();
+														});
+													});
+												</script>
+											</ul>	
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</form>
+							</div>
+						</section>
+					</div>
+				</div>
+				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
 				</div>
 			</div>  
@@ -221,7 +505,7 @@ require_once("php/session.php");
 									<div class="connecting-line"></div>
 									<ul class="nav nav-tabs" role="tablist">
 										<li role="presentation" class="active">
-											<a href="#fuente_hidirica" data-toggle="tab" aria-controls="fuente_hidirica" role="tab" title="Fuente Hídrica">
+											<a href="#m_muestra" data-toggle="tab" aria-controls="m_muestra" role="tab" title="Fuente Hídrica">
 												<span class="round-tab">
 													<i class="glyphicon glyphicon-tint"></i>
 												</span>
@@ -245,7 +529,7 @@ require_once("php/session.php");
 										</li>
 
 										<li role="presentation" class="disabled">
-											<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Enviar">
+											<a href="#complete2" data-toggle="tab" aria-controls="complete2" role="tab" title="Enviar">
 												<span class="round-tab">
 													<i class="glyphicon glyphicon-ok"></i>
 												</span>
@@ -257,12 +541,12 @@ require_once("php/session.php");
 								<form role="form" action="php/insertar_datos_fh.php" method="post">
 									<div class="tab-content">										
 										<!-- Formulario Fuente Hidrica -->
-										<div class="tab-pane active" role="tabpanel" id="fuente_hidirica">
+										<div class="tab-pane active" role="tabpanel" id="m_muestra">
 											<div class="modal-body">
 												<h3>FUENTE HÍDRICA</h3>
 												<div class="form-group">
-													Seleccione el tipo de fuente hídrica:        
-													<select name="select_fuente_hidrica" id="id_fuente_hidrica" class="form-control" onChange="getIdFh(this)" required>  
+													Seleccione una fuente hídrica:        
+													<select name="select_fuente_hidrica" id="id_fuente_hidrica" class="form-control" onChange="getIdFh(this)">  
 														<option value="" selected disabled>Fuente Hidrica</option> 
 														<?php
 														include 'php/conexion.php';
@@ -288,26 +572,26 @@ require_once("php/session.php");
 											<div class="modal-body">
 												<div class="form-group">
 													Oxígeno disuelto (OD):<br>
-													<input type="text" class="form-control" name="oxigeno_disuelto" required placeholder="0"><br>
+													<input type="text" class="form-control" name="oxigeno_disuelto" placeholder="0" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números"><br>
 													Oxígeno de Saturación (OS):<br>
-													<input type="text" class="form-control" name="oxigeno_saturacion" required placeholder="0"><br>
+													<input type="text" class="form-control" name="oxigeno_saturacion" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Sólidos  suspendidos totales (SST):<br>
-													<input type="text" class="form-control" name="solidos_suspendidos" required placeholder="0"><br>
+													<input type="text" class="form-control" name="solidos_suspendidos" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Demanda química de oxígeno (DQO):
-													<input type="text" class="form-control" name="demanda_quimica_oxigeno" required placeholder="0"><br>
+													<input type="text" class="form-control" name="demanda_quimica_oxigeno" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Conductividad eléctrica (C.E):
-													<input type="text" class="form-control" name="conductividad_electrica" required placeholder="0"><br>
+													<input type="text" class="form-control" name="conductividad_electrica" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Nivel de acidez (PH):
-													<input type="text" class="form-control" name="ph_ica" required placeholder="0"><br>
+													<input type="text" class="form-control" name="ph_ica" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Nitrógeno:
-													<input type="text" class="form-control" name="nitrogeno_ica" required placeholder="0"><br>
+													<input type="text" class="form-control" name="nitrogeno_ica" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Fósforo:
-													<input type="text" class="form-control" name="fosforo_ica" required placeholder="0"><br>
+													<input type="text" class="form-control" name="fosforo_ica" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 												</div>
 											</div>
 											<ul class="list-inline pull-right">
 												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
-												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+												<li><button type="button" class="btn btn-primary next-step">Continuar</button></li>
 											</ul>
 										</div>
 										<!-- Formulario IRCA -->
@@ -317,114 +601,114 @@ require_once("php/session.php");
 												<div class="form-group">
 													<h4><b>CARACTERÍSTICAS FÍSICAS</b></h4>
 													Color Aparente (Unidades de PLanito Cobalto - UPC):<br>
-													<input type="text" class="form-control" name="color_aparente" required placeholder="0"><br>
+													<input type="text" class="form-control" name="color_aparente" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													¿Olor aceptable?<br>
 													Aceptable: <input type="checkbox" id="olor_check" name="olor_check" value="0"><br><br>
 													¿Sabor aceptable?<br>
 													Aceptable: <input type="checkbox" id="sabor_check" name="sabor_check" value="0"><br><br>
 													Turbiedad (UNT):
-													<input type="text" class="form-control" name="turbiedad" required placeholder="0"><br>
-													Conductividad eléctrica (C.E):
-													<input type="text" class="form-control" name="conductividad" required placeholder="0"><br>
+													<input type="text" class="form-control" name="turbiedad" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													Conductividad eléctrica (µ/cm):
+													<input type="text" class="form-control" name="conductividad" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Nivel de acidez (PH):
-													<input type="text" class="form-control" name="ph_irca" required placeholder="0""><br>
-													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN RECONOCIDO EFECTO ADVERSO EN LA SALUD HUMANA</b></h4>
+													<input type="text" class="form-control" name="ph_irca" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN RECONOCIDO EFECTO ADVERSO EN LA SALUD HUMANA (mg/L)</b></h4>
 													Antimonio:
-													<input type="text" class="form-control" name="antimonio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="antimonio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Arsénico:
-													<input type="text" class="form-control" name="arsenico" required placeholder="0"><br>
+													<input type="text" class="form-control" name="arsenico" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Barío:
-													<input type="text" class="form-control" name="bario" required placeholder="0"><br>
+													<input type="text" class="form-control" name="bario" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Cadmio:
-													<input type="text" class="form-control" name="cadmio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="cadmio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Cianuro libre y disociable:
-													<input type="text" class="form-control" name="cianuro_libre_disociable" required placeholder="0"><br>
+													<input type="text" class="form-control" name="cianuro_libre_disociable" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Cobre:
-													<input type="text" class="form-control" name="cobre" required placeholder="0"><br>
+													<input type="text" class="form-control" name="cobre" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Cromo:
-													<input type="text" class="form-control" name="cromo" required placeholder="0"><br>
+													<input type="text" class="form-control" name="cromo" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Mercurio:
-													<input type="text" class="form-control" name="mercurio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="mercurio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Niquel:
-													<input type="text" class="form-control" name="niquel" required placeholder="0"><br>
+													<input type="text" class="form-control" name="niquel" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Plomo:
-													<input type="text" class="form-control" name="plomo" required placeholder="0"><br>
+													<input type="text" class="form-control" name="plomo" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Selenio:
-													<input type="text" class="form-control" name="selenio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="selenio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Trihalometanos:
-													<input type="text" class="form-control" name="trihalometanos" required placeholder="0"><br>
+													<input type="text" class="form-control" name="trihalometanos" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Hidrocarburos Aromáticos Policíclicos (HAP):
-													<input type="text" class="form-control" name="hap" required placeholder="0"><br>
-													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN IMPLICACIONES SOBRE LA SALUD HUMANA</b></h4>
+													<input type="text" class="form-control" name="hap" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS DE SUSTANCIAS QUE TIENEN IMPLICACIONES SOBRE LA SALUD HUMANA (mg/L)</b></h4>
 													Carbono Orgánico Total (COT):
-													<input type="text" class="form-control" name="cot" required placeholder="0"><br>
+													<input type="text" class="form-control" name="cot" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Nitritos:
-													<input type="text" class="form-control" name="nitritos" required placeholder="0"><br>
+													<input type="text" class="form-control" name="nitritos" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Nitratos:
-													<input type="text" class="form-control" name="nitratos" required placeholder="0"><br>
+													<input type="text" class="form-control" name="nitratos" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Fluoruros:
-													<input type="text" class="form-control" name="fluoruros" required placeholder="0"><br>
-													<h4><b>CARACTERÍSTICAS QUÍMICAS QUE TIENEN CONSECUENCIAS ECONÓMICAS E INDIRECTAS SOBRE LA SALUD HUMANA</b></h4>
+													<input type="text" class="form-control" name="fluoruros" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS QUE TIENEN CONSECUENCIAS ECONÓMICAS E INDIRECTAS SOBRE LA SALUD HUMANA (mg/L)</b></h4>
 													Calcio:
-													<input type="text" class="form-control" name="calcio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="calcio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Alcalinidad:
-													<input type="text" class="form-control" name="alcalinidad" required placeholder="0"><br>
+													<input type="text" class="form-control" name="alcalinidad" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Cloruros:
-													<input type="text" class="form-control" name="cloruros" required placeholder="0"><br>
+													<input type="text" class="form-control" name="cloruros" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Aluminio:
-													<input type="text" class="form-control" name="aluminio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="aluminio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Dureza:
-													<input type="text" class="form-control" name="dureza" required placeholder="0"><br>
+													<input type="text" class="form-control" name="dureza" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Hierro:
-													<input type="text" class="form-control" name="hierro" required placeholder="0"><br>
+													<input type="text" class="form-control" name="hierro" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Magnesio:
-													<input type="text" class="form-control" name="magnesio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="magnesio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Manganeso:
-													<input type="text" class="form-control" name="manganeso" required placeholder="0"><br>
+													<input type="text" class="form-control" name="manganeso" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Molibdeno:
-													<input type="text" class="form-control" name="molibdeno" required placeholder="0"><br>
+													<input type="text" class="form-control" name="molibdeno" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Sulfatos:
-													<input type="text" class="form-control" name="sulfatos" required placeholder="0"><br>
+													<input type="text" class="form-control" name="sulfatos" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Zinc:
-													<input type="text" class="form-control" name="zinc" required placeholder="0"><br>
+													<input type="text" class="form-control" name="zinc" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Fosfatos:
-													<input type="text" class="form-control" name="fosfatos" required placeholder="0"><br>
-													<h4><b>CARACTERÍSTICAS QUÍMICAS RELACIONADAS CON LOS PLAGUICIDAS Y OTRAS SUSTANCIAS</b></h4>
+													<input type="text" class="form-control" name="fosfatos" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS RELACIONADAS CON LOS PLAGUICIDAS Y OTRAS SUSTANCIAS (mg/L)</b></h4>
 													Cancerígenas, mutagénicas y teratogénicas:
-													<input type="text" class="form-control" name="cmt" required placeholder="0"><br>
+													<input type="text" class="form-control" name="cmt" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Plaguicidas (Sumatoria de los valores de los plaguicidas):
-													<input type="text" class="form-control" name="plaguicidas" required placeholder="0"><br>
+													<input type="text" class="form-control" name="plaguicidas" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													<h4><b>CARACTERÍSTICAS MICROBIOLÓGICAS</b></h4>
 
 													¿Ausencia de Escherichia Coli en 100cm3? <br>
 
 													Ausencia: <input type="checkbox" id="escherichia_coli_check" name="escherichia_coli_check" value="0"><br><br>
 
-													¿Ausencia de Coliformes en 100cm3?C<br>
+													¿Ausencia de Coliformes en 100cm3?<br>
 
 													Ausencia: <input type="checkbox" id="coliformes_check" name="coliformes_check" value="0"><br><br>
 
-													Microorganismos mesofílicos:
-													<input type="text" class="form-control" name="microorganismos_mesofilicos" required placeholder="0"><br>
-													Giardia:
-													<input type="text" class="form-control" name="giardia" required placeholder="0"><br>
-													Cryptosporidium:
-													<input type="text" class="form-control" name="cryptosporidium" required placeholder="0"><br>
-													<h4><b>CARACTERÍSTICAS QUÍMICAS DE OTRAS SUSTANCIAS UTILIZADAS EN LA POTABILIZACIÓN</b></h4>
+													Microorganismos mesofílicos (UFC):
+													<input type="text" class="form-control" name="microorganismos_mesofilicos" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													Giardia (Quistes):
+													<input type="text" class="form-control" name="giardia" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													Cryptosporidium (Ooquistes):
+													<input type="text" class="form-control" name="cryptosporidium" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
+													<h4><b>CARACTERÍSTICAS QUÍMICAS DE OTRAS SUSTANCIAS UTILIZADAS EN LA POTABILIZACIÓN (mg/L)</b></h4>
 													Detergente: Cloro residual libre:
-													<input type="text" class="form-control" name="detergente" required placeholder="0"><br>
+													<input type="text" class="form-control" name="detergente" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Coagulante: Sales de hierro:
-													<input type="text" class="form-control" name="coagulante_sales_hierro" required placeholder="0"><br>
+													<input type="text" class="form-control" name="coagulante_sales_hierro" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 													Coagulante: Aluminio:
-													<input type="text" class="form-control" name="coagulante_aluminio" required placeholder="0"><br>
+													<input type="text" class="form-control" name="coagulante_aluminio" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 												</div>
 											</div>
 											<ul class="list-inline pull-right">
 												<li><button type="button" class="btn btn-default prev-step">Atras</button></li>
-												<li><button type="button" class="btn btn-primary next-step">Salvar y continuar</button></li>
+												<li><button type="button" class="btn btn-primary next-step">Continuar</button></li>
 											</ul>
 										</div>
-										<div class="tab-pane" role="tabpanel" id="complete">
+										<div class="tab-pane" role="tabpanel" id="complete2">
 											<h3>FORMULARIO COMPLETO</h3>
 											<p>¿Desea almacenar los datos digitados anteriormente?</p>
 											<ul class="list-inline pull-right">
@@ -432,8 +716,8 @@ require_once("php/session.php");
 												<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i> Guardar Datos</button></li>
 												<script>												
 													$(document).ready(function(){
-														$("#registrar_ica").onclick(function(){
-															$("#form_variables").modal();
+														$("#registrar_datos").onclick(function(){
+															$("#form_muestra").modal();
 														});
 													});
 												</script>
@@ -516,8 +800,8 @@ require_once("php/session.php");
 				<div class="modal-body">
 					<form name="insertar" action="php/insertar_rancheria.php" method="post"> 
 						<div class="form-group">
-							<label>Seleccione el municipio donde se encuentra la rancheria:</label>
-							<select name="select_id_municipio" id="id_municipio" class="form-control" onChange="getIdMunicipio(this)">  
+							Seleccione el municipio donde se encuentra la rancheria: <span style="color: red" title="Campo obligatorio">*</span>
+							<select name="select_id_municipio" id="id_municipio" class="form-control" onChange="getIdMunicipio(this)" required>  
 								<option value="" selected disabled>Municipio</option> 
 								<?php
 								include 'php/conexion.php';
@@ -531,16 +815,16 @@ require_once("php/session.php");
 								}                        
 								?>
 							</select><br>
-							<label>Nombre de la rancheria:</label>
-							<input type="text" class="form-control" name="nom_rancheria"><br>
-							<label>Cantidad de personas: </label>
-							<input type="text" class="form-control" name="cantidad_personas"><br>
-							<label>Nombre del representante:</label>
-							<input type="text" class="form-control" name="representante"><br>
-							<label>Latitud:</label>
-							<input type="text" class="form-control" name="latitud_r"><br>
-							<label>Longitud:</label>
-							<input type="text" class="form-control" name="longitud_r"><br>							
+							Nombre de la rancheria: <span style="color: red" title="Campo obligatorio">*</span><br>
+							<input type="text" class="form-control" name="nom_rancheria" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
+							Cantidad de personas: <span style="color: red" title="Campo obligatorio">*</span><br>
+							<input type="text" class="form-control" name="cantidad_personas" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" required><br>
+							Nombre del representante: <span style="color: red" title="Campo obligatorio">*</span><br>
+							<input type="text" class="form-control" name="representante" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
+							Latitud: <span style="color: red" title="Campo obligatorio">*</span><br>
+							<input type="text" class="form-control" name="latitud_r" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" title="Ingresa una coordenada válida: ejem 11.759962" required><br>
+							Longitud: <span style="color: red" title="Campo obligatorio">*</span><br>
+							<input type="text" class="form-control" name="longitud_r" pattern="^-?(0|[1-9]\d*)(\.\d+)?$" title="Ingresa una coordenada válida: ejem -72.425952" required><br>					
 						</div>
 
 					</div>
@@ -1059,12 +1343,6 @@ require_once("php/session.php");
 
 	<!--Contenedor-->
 	<div class="container">
-		<!-- Logo 
-		<div id="logo_wintig" style="text-align: center;">
-			<a href="/WIN-TIG/home_recolector.php">
-				<img src="img/LOGO.png" width="15%">
-			</a>
-		</div>-->
 
 		<!--Menu Botones y Filtros-->
 
@@ -1077,21 +1355,6 @@ require_once("php/session.php");
 					<input type="text"  placeholder="Busqueda..." id ="b1" class = "ui-widget" required>
 					<button type="button" class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
 				</form>
-				<!--Agregar FH-->
-				<button type="submit" id="btn_ag_fh"  class="btn btn-success" href="#form_variables" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Fuente Hídrica</button>
-				<br><br>
-				<!--Agregar FH-->
-				<button type="submit" id="btn_ag_muestra"  class="btn btn-success" href="#form_muestra" data-toggle="modal" title="Tienes que loguearte para poder agregar una fuente hídrica" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Registrar muestra</button>
-				<br><br>
-				<!--Editar FH-->
-				<button type="submit" id="btn_edi_fh" class="btn btn-primary" href="#registros_fuente_hidirica" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-edit"></i> Ver Fuentes Hídricas</button>
-				<br><br>
-				<!--Agrear Rancheria-->
-				<button type="submit" id="btn_ag_rc"  class="btn btn-success" href="#añadir_rancheria" data-toggle="modal" title="Tienes que loguearte para poder agregar una Rancheria" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-plus-sign"></i> Agregar Rancheria</button>
-				<br><br>
-				<!--Editar Rancheria-->
-				<button type="submit" id="btn_edi_rc"  class="btn btn-primary" href="#registros_rancheria" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;"><i class="glyphicon glyphicon-edit"></i> Ver Rancherias</button>
-				<br><br>
 			</div>
 
 			<!--Filtros-->
@@ -1224,7 +1487,7 @@ require_once("php/session.php");
 						</div>
 					</li>
 					<li class="list-group-item">
-						Inviable Sanitariamente
+						Sanitariamente Inviable
 						<div class="material-switch pull-right">
 							<input id="inviable" name="mas_personas" type="checkbox" onclick="filtros_irca('Sanitariamente Inviable');"/>
 							<label for="inviable" class="label-danger"></label> 
@@ -1244,8 +1507,12 @@ require_once("php/session.php");
 		</section>
 
 	</div>
-	<script src="js\script_acciones.js"></script>
-	<script src="js\script_recolector.js"></script>
+	<div id="particles-js"></div>
+	<script src="js/particles.js"></script>
+	<script src="js/login.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/script_acciones.js"></script>
+	<script src="js/script_recolector.js"></script>
 </body>
 </html>
 

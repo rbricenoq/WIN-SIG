@@ -85,7 +85,7 @@ div.container {
 
 .panel_filtros{
     width: 230px;
-    max-height: 550px;
+    max-height: 650px;
     background-color: #ddd;
     overflow: scroll;
     margin-left: -8px;
@@ -102,8 +102,6 @@ div.container {
 }
 
 nav ul {
-    list-style-type: none;    
-    height: 100%;
     list-style-type: none;
     padding: 0;
 }
@@ -117,7 +115,7 @@ nav ul a {
 }
 
 #map{
-    height: 850px;
+    height: 753px;
     overflow: hidden;
     padding-bottom: 22.25%;
     padding-top: 30px;

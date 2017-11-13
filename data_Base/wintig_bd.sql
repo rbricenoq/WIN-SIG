@@ -296,29 +296,30 @@ INSERT INTO wintig.irca (color_aparente, olor,sabor, turbiedad, conductividad, p
 	plaguicidas, escherichia_coli, coliformes, microorganismos_mesofilicos, giardia, cryptosporidium,
 	detergente, coagulante_sales_hierro, coagulante_aluminio, calculo_irca, estado_irca) VALUES (1,'Aceptable','No Aceptable',4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,'Presencia en 100cm3','Ausencia en 100cm3',40,41,42,43,44,45,100,'Sanitariamente Inviable');
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (1, 2, 3, 4, '02:00', 6, 7);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (1, 2, 3, 4, '02:00', 6);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (2);   
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (3, 4, 2, 8, '01:32', 9, 11);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (3, 4, 2, 8, '01:32', 9);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (1); 
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (2, 2, 3, 8, '02:47', 7, 4);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (2, 2, 3, 8, '02:47', 7);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (1);
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (3, 1, 2, 5, '00:32', 9, 8);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (3, 1, 2, 5, '00:32', 9);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (2);
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (2, 1, 5, 7, '01:32', 3, 3);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (2, 1, 5, 7, '01:32', 3);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (3);
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (3, 5, 2, 9, '01:32', 4, 15);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (3, 5, 2, 9, '01:32', 4);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (2);
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (1, 4, 3, 1, '01:32', 1, 11);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (1, 4, 3, 1, '01:32', 1);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (3);
 
-INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES (3, 1, 2, 5, '00:47', 9, 8);  
+INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (3, 1, 2, 5, '00:47', 9);  
 INSERT INTO wintig.uso (id_tipo_uso) VALUES (1);
+
 
 INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'Hurashi', 22, 'Martina', 11.759962, -72.425952);
 INSERT INTO wintig.rancheria (id_municipio, nom_rancheria, cantidad_personas, representante, latitud_r, longitud_r) VALUES (1, 'Taradurimahana', 14, 'Martina', 11.752231, -72.415137);
@@ -350,14 +351,14 @@ INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (5,5,'2017-06-8');
 INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (6,6,'2017-07-15');
 INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (7,7,'2017-08-15');
 INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (8,8,'2017-10-20');
-INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (9,9,'2017-11-4');
-INSERT INTO wintig.muestra (id_ica, id_irca, fecha) VALUES (10,10,'2017-10-5');
 
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 2, 2 'Aremashain', 11.7650790499241, -72.4589270353317, 'FH1PMN');
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 4, 2 'Epehuz', 11.497942, -72.428158, 'FH2PMN');
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 7, 2 'Epehin', 11.498993, -72.438694, 'FH3JMN');
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 9, 2 'Yamahain', 11.422820, -72.392875, 'FH4JMN');
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (3, 11, 2 'Yamaluria', 11.420548, -72.383820, 'FH5RMC');
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (3, 13, 2 'Fakimuhana', 11.456573, -72.252018, 'FH6RMC');
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 15, 2 'Huaraurahu', 11.379048, -72.403278, 'FH7PMC');
-INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 16, 2 'Huayahu', 11.381298, -72.403278, 'FH8JMC');
+
+
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 1, 1, 1, 2, 4, 'Aremashain', 11.7650790499241, -72.4589270353317, 'FH1PMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 2, 2, 2, 4, 4, 'Epehuz', 11.497942, -72.428158, 'FH2PMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 3, 3, 3, 7, 4, 'Epehin', 11.498993, -72.438694, 'FH3JMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 4, 4, 4, 9, 4, 'Yamahain', 11.422820, -72.392875, 'FH4JMN');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (3, 5, 5, 5, 11, 4, 'Yamaluria', 11.420548, -72.383820, 'FH5RMC');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (3, 6, 6, 6, 13, 4, 'Fakimuhana', 11.456573, -72.252018, 'FH6RMC');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (1, 7, 7, 7, 15, 4, 'Huaraurahu', 11.379048, -72.403278, 'FH7PMC');
+INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh) VALUES (2, 8, 8, 8, 16, 4, 'Huayahu', 11.381298, -72.403278, 'FH8JMC');

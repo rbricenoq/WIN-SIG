@@ -11,12 +11,9 @@
 	<link href="css/form_var.css" rel="stylesheet">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="js/form_var.js"></script>
-	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-	<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 
 <?php 
@@ -25,22 +22,56 @@ include 'php/conexion.php';
 require_once("php/session.php");
 ?>
 <body>
-	<!--Barra Navegacion-->
-	<div>
-		<ul id="bar_nav">
-			<?php
-			if (isset($_SESSION['username'])) {
+	<!-- Barra Navegación -->
+	<nav class="navbar navbar-default" style="background-color: #e3f2fd; width: 100%;">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/WIN-TIG/Home.php">WIN-TIG</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#contacto" data-toggle="modal">Contacto</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#cuestionario" data-toggle="modal">Cuestionarios</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menú<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a  href="#editar_usuarios" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar Usuario</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Fuente Hídrica</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Rancheria</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Accesibilidad</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Muestra</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<?php
+					if (isset($_SESSION['username'])) {
+						?>
+						<li>
+							<a class="active" style="background: DeepSkyBlue; font-weight: bold; color: SlateGrey ;"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username']?></a>
+						</li>
+						<li>
+							<a class="nav-link" href="php/logout.php" style="align-content: right;"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+						</li>
+					</ul>
+					<?php
+				}
 				?>
-				<li id="lsita_bar_nav"><a class="active" > <?php echo $_SESSION['username']?></a></li>
-				<li id="lsita_bar_nav"><a href="#contacto" data-toggle="modal">Contacto</a></li>
-				<li id="lsita_bar_nav"><a href="#cuestionario" data-toggle="modal">Cuestionarios</a></li>
-				<li id="lsita_bar_nav"><a href="php/logout.php" style="align-content: right">Logout</a></li>				
-				<li id="lsita_bar_nav"><a href="/WIN-TIG/Home_Admin.php"><img src="img/LOGO.png" width="20PX" style="text-align: center;"></a></li>
-			</ul>
-			<?php
-		}
-		?>
-	</div>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
 
 	<!-- Pop-up Contacto  -->
 	<div class="modal fade" id="contacto" role="dialog">
@@ -52,9 +83,8 @@ require_once("php/session.php");
 				</div>
 				<div class="modal-body" >
 					<div id="logo_wintig" style="text-align: center;">
-						<img src="img/LOGO.png" width="50%">
 						<img src="img/LOGO.png" width="30%">
-						<a href="http://www.uelbosque.edu.co/">
+						<a href="http://www.uelbosque.edu.co/">							
 							<img src="img/LOGOU.png" width="50%">
 						</a>
 					</div>
@@ -201,22 +231,14 @@ require_once("php/session.php");
 	<!-- Contenedor Filtro y Mapa-->
 
 	<div class="container">
-		<!--Busqueda
-		<div id="logo_wintig" style="text-align: center;">
-			<a href="/WIN-TIG/home_admin.php">
-				<img src="img/LOGO.png" width="15%">
-			</a>
-		</div>-->
-		<!--Filtros-->
+
+		<!--Busqueda-->
 		<nav class="nav_filtros">	
 			<div>
 				<form class="form-wrapper cf">					
 					<input type="text"  placeholder="Busqueda..." id ="b1" class = "ui-widget" required>
 					<button type="button"  class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
 				</form>
-
-				<button type="submit" id="btn_edi_usu" class="btn btn-primary" href="#editar_usuarios" data-toggle="modal" style="margin-left: -9px; width: 230px; position: relative;" ><i class="glyphicon glyphicon-edit"></i> Editar Usuarios</button>
-				<br><br>
 			</div>
 
 			<!-- Filtros -->
@@ -349,7 +371,7 @@ require_once("php/session.php");
 						</div>
 					</li>
 					<li class="list-group-item">
-						Inviable Sanitariamente
+						Sanitariamente Inviable
 						<div class="material-switch pull-right">
 							<input id="inviable" name="mas_personas" type="checkbox" onclick="filtros_irca('Sanitariamente Inviable');"/>
 							<label for="inviable" class="label-danger"></label> 
@@ -370,13 +392,13 @@ require_once("php/session.php");
 		</section>
 	</div>  
 	
-	<!--<div id="particles-js"></div>
-		<script src="js/particles.js"></script>-->
-		<script src="js/login.js"></script>
-		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/script_usuarios.js"></script>
-		<script src="js\script_recolector.js"></script>
+	
+	<div id="particles-js"></div>
+	<script src="js/particles.js"></script>
+	<script src="js/login.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/script_usuarios.js"></script>
+	<script src="js/script_recolector.js"></script>
 
-	</body>
-	</html>
+</body>
+</html>
