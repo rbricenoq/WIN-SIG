@@ -132,12 +132,6 @@ include 'php/conexion.php';
 	<!-- Contenedor Filtro y Mapa-->
 
 	<div class="container">
-		<!-- Logo 
-		<div id="logo_wintig" style="text-align: center;">
-			<a href="/WIN-TIG/home.php">
-				<img src="img/LOGO.png" width="15%">
-			</a>
-		</div>-->
 
 		<!--Filtros-->
 
@@ -146,9 +140,6 @@ include 'php/conexion.php';
 			<!--Busqueda-->
 			<div>
 				<form class="form-wrapper cf">
-					<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-					<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-					<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 					<input type="text"  placeholder="Busqueda..." id ="b1" class = "ui-widget" required>
 					<button type="button"  class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
 				</form>
