@@ -103,12 +103,12 @@ CREATE TABLE IF NOT EXISTS wintig.irca (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS wintig.accesibilidad (
 	id_accesibilidad SERIAL PRIMARY KEY NOT NULL,
-	id_tipo_acceso INTEGER NOT NULL,
-	num_dias_buscar_agua INTEGER NOT NULL,
-	num_viajes INTEGER NOT NULL,
-	cantidad_agua FLOAT NOT NULL,
-	tiempo_viaje TIME NOT NULL,
-	distancia FLOAT NOT NULL);
+	id_tipo_acceso INTEGER,
+	num_dias_buscar_agua INTEGER,
+	num_viajes INTEGER,
+	cantidad_agua FLOAT,
+	tiempo_viaje TIME,
+	distancia FLOAT);
 
 -- -----------------------------------------------------
 -- Table wintig.tipo_acceso
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS wintig.tipo_acceso (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS wintig.uso (
 	id_uso SERIAL PRIMARY KEY NOT NULL,
-	id_tipo_uso INTEGER NOT NULL);
+	id_tipo_uso INTEGER);
 
 -- -----------------------------------------------------
 -- Table wintig.tipo_uso
@@ -163,9 +163,9 @@ CREATE TABLE IF NOT EXISTS wintig.rancheria (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS wintig.muestra (
 	id_muestra SERIAL PRIMARY KEY NOT NULL,
-	id_ica INTEGER NOT NULL,
-	id_irca INTEGER NOT NULL,
-	fecha DATE NOT NULL);
+	id_ica SERIAL,
+	id_irca SERIAL,
+	fecha DATE);
 
 -- -----------------------------------------------------
 -- Table wintig.fuente_hidrica
@@ -173,8 +173,8 @@ CREATE TABLE IF NOT EXISTS wintig.muestra (
 CREATE TABLE IF NOT EXISTS wintig.fuente_hidrica (
 	id_fuente_hidrica SERIAL PRIMARY KEY,
 	id_tipo_fuente_hidrica INTEGER NOT NULL,
-	id_accesibilidad SERIAL NOT NULL,
-	id_uso SERIAL NOT NULL,
+	id_accesibilidad SERIAL,
+	id_uso SERIAL,
 	id_muestra SERIAL,
 	id_rancheria INTEGER,
     id_usuario INTEGER,
@@ -218,10 +218,12 @@ INSERT INTO wintig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) VALUES ('Pozo')
 INSERT INTO wintig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) VALUES ('Jagüey');
 INSERT INTO wintig.tipo_fuente_hidrica (nom_tipo_fuente_hidrica) VALUES ('Reservorio');
 
+INSERT INTO wintig.tipo_acceso (nom_tipo_acceso) VALUES ('');
 INSERT INTO wintig.tipo_acceso (nom_tipo_acceso) VALUES ('En la rancheria');
 INSERT INTO wintig.tipo_acceso (nom_tipo_acceso) VALUES ('En el terreno');
 INSERT INTO wintig.tipo_acceso (nom_tipo_acceso) VALUES ('Fuera del terreno');
 
+INSERT INTO wintig.tipo_uso (nom_tipo_uso) VALUES ('');
 INSERT INTO wintig.tipo_uso (nom_tipo_uso) VALUES ('Domestico');
 INSERT INTO wintig.tipo_uso (nom_tipo_uso) VALUES ('Economico');
 INSERT INTO wintig.tipo_uso (nom_tipo_uso) VALUES ('Agropecuario');

@@ -33,7 +33,7 @@ require_once("php/session.php");
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/WIN-TIG/Home.php">WIN-TIG</a>
+				<a class="navbar-brand" href="/WIN-TIG/Home_Admin.php">WIN-TIG</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -48,10 +48,10 @@ require_once("php/session.php");
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menú<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a  href="#editar_usuarios" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar Usuario</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Fuente Hídrica</a></li>
+							<!--<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Fuente Hídrica</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Rancheria</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Accesibilidad</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Muestra</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Editar Muestra</a></li>-->
 						</ul>
 					</li>
 				</ul>

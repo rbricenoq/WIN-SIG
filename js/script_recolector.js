@@ -81,7 +81,6 @@ function detalles_fh(id_fuente_hidrica) {
         $("#update_viajes").val(fuente_hidrica.num_viajes);
         $("#update_cantidad").val(fuente_hidrica.cantidad_agua);
         $("#update_tiempo").val(fuente_hidrica.tiempo_viaje);
-        $("#update_acceso").val(fuente_hidrica.poblacion_acceso);
         $("#update_rancheria").val(fuente_hidrica.id_rancheria);
         $("#update_municpio_2").val(fuente_hidrica.id_municipio);
         $("#update_so").val(fuente_hidrica.oxigeno_disuelto);
@@ -252,7 +251,6 @@ function actualizar_detalles_fh() {
         num_viajes: num_viajes,
         cantidad_agua: cantidad_agua,
         tiempo_viaje: tiempo_viaje,
-        poblacion_acceso: poblacion_acceso,
         id_rancheria: id_rancheria,
         id_municipio: id_municipio,
         oxigeno_disuelto: oxigeno_disuelto,

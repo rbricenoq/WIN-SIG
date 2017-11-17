@@ -74,6 +74,7 @@ function enviar_mail($email,$user,$cod_act,$password)
 		echo 'para activar su cuenta, al email que nos facilitó.<br />'; 
 		echo 'Su información fue enviada satisfactoriamente a su correo - ('.$destinatario.')<br />';
 		echo 'por favor abra su email y haga click sobre el link de activación para activar su cuenta.<br />';  
+		echo 'Si el correo no esta en la bandeja principal revise en la sección de spam, gracias.<br />'; 
 		echo "</div></tr>"; 
 		echo "</table>"; 
 	}else {

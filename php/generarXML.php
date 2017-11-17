@@ -3,7 +3,7 @@ $dom = new DOMDocument("1.0");
 $node = $dom->createElement("markers");
 $parnode = $dom->appendChild($node);
 require("conexion.php");
-$result = pg_query("SELECT * FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidrica, wintig.muestra, wintig.ica, wintig.irca, wintig.accesibilidad, wintig.tipo_acceso, wintig.uso, wintig.tipo_uso, wintig.rancheria, wintig.municipio
+$result = pg_query("SELECT * FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidrica, wintig.muestra, wintig.ica, wintig.irca, wintig.accesibilidad, wintig.tipo_acceso, wintig.uso, wintig.tipo_uso, wintig.rancheria, wintig.municipio, wintig.usuario
 	where wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica 
 	and wintig.fuente_hidrica.id_muestra = wintig.muestra.id_muestra
 	and wintig.muestra.id_ica = wintig.ica.id_ica 
@@ -14,6 +14,7 @@ $result = pg_query("SELECT * FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidr
 	and wintig.fuente_hidrica.id_accesibilidad = wintig.accesibilidad.id_accesibilidad 
 	and wintig.accesibilidad.id_tipo_acceso = wintig.tipo_acceso.id_tipo_acceso 
 	and wintig.fuente_hidrica.id_rancheria = wintig.rancheria.id_Rancheria 
+	and wintig.fuente_hidrica.id_usuario = wintig.usuario.id_usuario
 	and wintig.rancheria.id_municipio = wintig.municipio.id_municipio order by id_fuente_hidrica");
 
 header("Content-type: text/xml");
@@ -23,6 +24,7 @@ while ($row = @pg_fetch_assoc($result)){
 	$newnode = $parnode->appendChild($node);
 	$newnode->setAttribute("id", $row['id_fuente_hidrica']);
 	$newnode->setAttribute("codigo", $row['codigo_fh']);
+	$newnode->setAttribute("usuario", $row['nom_usuario']);
 	$newnode->setAttribute("nombre", $row['nom_fh']);
 	$newnode->setAttribute("tipofuente", $row['nom_tipo_fuente_hidrica']);	
 	$newnode->setAttribute("fecha_muestra", $row['fecha']);

@@ -9,15 +9,16 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 $id_fh_m = $_GET["id_fh"]; 
 
-	// Design initial table header 
 $data = '<div style="overflow-x:auto;"><table class="table table-bordered table-striped">
 
 <tr>
 <th>ID</th>
+<th>Codigo</th>
 <th>Nombre</th>
 <th>Latitud</th>
 <th>Longitud</th>
 <th>Tipo</th>
+<th>Fecha Muestra</th>
 <th>OD</th>
 <th>SST</th>
 <th>DQO</th>
@@ -80,22 +81,27 @@ $data = '<div style="overflow-x:auto;"><table class="table table-bordered table-
 <th>Cantidad Agua</th>
 <th>Timepo Viaje</th>
 <th>Distancia</th>
-<th>Población con Acceso</th>
 <th>Uso</th>
 <th>Municipio</th>
 <th>Departamento</th>
 <tr>';
 
 $result = pg_Exec($conexion,"SELECT * 
-	FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidrica, wintig.ica, wintig.irca, wintig.accesibilidad, wintig.tipo_acceso, wintig.uso, wintig.tipo_uso, wintig.rancheria, wintig.municipio, wintig.departamento
+	FROM wintig.fuente_hidrica, wintig.tipo_fuente_hidrica, wintig.muestra, wintig.ica, wintig.irca, wintig.accesibilidad, wintig.tipo_acceso, wintig.uso, wintig.tipo_uso, wintig.rancheria, wintig.municipio, wintig.departamento
 	where 
-	wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica and 
-	wintig.fuente_hidrica.id_ica = wintig.ica.id_ica and wintig.fuente_hidrica.id_irca = wintig.irca.id_irca and 
-	wintig.fuente_hidrica.id_uso = wintig.uso.id_uso and wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica and 
-	wintig.uso.id_tipo_uso = wintig.tipo_uso.id_tipo_uso and wintig.fuente_hidrica.id_accesibilidad = wintig.accesibilidad.id_accesibilidad and 
-	wintig.accesibilidad.id_tipo_acceso = wintig.tipo_acceso.id_tipo_acceso and wintig.fuente_hidrica.id_rancheria = wintig.rancheria.id_Rancheria and 
-	wintig.rancheria.id_municipio = wintig.municipio.id_municipio and wintig.municipio.id_departamento = wintig.departamento.id_departamento and
-	wintig.fuente_hidrica.id_fuente_hidrica = '$id_fh_m'");
+	wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica 
+    and wintig.fuente_hidrica.id_muestra = wintig.muestra.id_muestra 
+    and wintig.fuente_hidrica.id_uso = wintig.uso.id_uso 
+    and wintig.fuente_hidrica.id_tipo_fuente_hidrica = wintig.tipo_fuente_hidrica.id_tipo_fuente_hidrica 
+    and wintig.uso.id_tipo_uso = wintig.tipo_uso.id_tipo_uso 
+    and wintig.fuente_hidrica.id_accesibilidad = wintig.accesibilidad.id_accesibilidad 
+    and wintig.accesibilidad.id_tipo_acceso = wintig.tipo_acceso.id_tipo_acceso 
+    and wintig.fuente_hidrica.id_rancheria = wintig.rancheria.id_Rancheria 
+    and wintig.rancheria.id_municipio = wintig.municipio.id_municipio 
+    and wintig.municipio.id_departamento = wintig.departamento.id_departamento
+    and wintig.muestra.id_ica = wintig.ica.id_ica 
+    and wintig.muestra.id_irca = wintig.irca.id_irca
+    and wintig.fuente_hidrica.id_fuente_hidrica = '$id_fh_m'");
 
 if (!$result) {
 	echo 'Error en la consulta.\n'; 
@@ -107,10 +113,12 @@ if(pg_Num_Rows($result) > 0){
 	while($row = pg_fetch_assoc($result)){
 		$data .= '<tr>	
 		<td>'.$row['id_fuente_hidrica'].'</td>
+		<td>'.$row['codigo_fh'].'</td>
 		<td>'.$row['nom_fh'].'</td>
 		<td>'.$row['latitud_fh'].'</td>
 		<td>'.$row['longitud_fh'].'</td>
 		<td>'.$row['nom_tipo_fuente_hidrica'].'</td>
+		<td>'.$row['fecha'].'</td>
 		<td>'.$row['oxigeno_disuelto'].'</td>
 		<td>'.$row['solidos_suspendidos'].'</td>
 		<td>'.$row['demanda_quimica_oxigeno'].'</td>
@@ -173,13 +181,16 @@ if(pg_Num_Rows($result) > 0){
 		<td>'.$row['cantidad_agua'].'</td>
 		<td>'.$row['tiempo_viaje'].'</td>
 		<td>'.$row['distancia'].'</td>
-		<td>'.$row['poblacion_acceso'].'</td>
 		<td>'.$row['nom_tipo_uso'].'</td>
 		<td>'.$row['nom_municipio'].'</td>
 		<td>'.$row['nom_departamento'].'</td>
 		</tr>';
 		$number++;
 	}
+}
+else{
+    	// records now found 
+	$data .= '<tr><td colspan="72">No hay registros!</td></tr>';
 }
 $data .= '</table></div>';
 echo $data;

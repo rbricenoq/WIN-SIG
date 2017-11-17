@@ -3,22 +3,15 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $db = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
 
-$query_r = pg_Exec($db, "select latitud_r, longitud_r from wintig.rancheria where wintig.rancheria.id_rancheria = '$_POST[selectid_rancheria]'");
-$query_u = pg_Exec($db, "select id_usuario from wintig.usuario where wintig.usuario.nom_usuario = '$_POST[nom_usuario]'");
+$usuario = $_GET["nombre_usuario"];
+
+$query_u = pg_Exec($db, "select id_usuario from wintig.usuario where wintig.usuario.nom_usuario = '$usuario'");
 $query_municipio = pg_Exec($db, "select id_municipio from wintig.municipio where wintig.municipio.id_municipio = '$_POST[selectid_rancheria]'");
 $query_id = pg_Exec($db, "select id_fuente_hidrica from wintig.fuente_hidrica");
 
-
-if(pg_Num_Rows($query_r) > 0){
-	while($row = pg_fetch_assoc($query_r)){
-		$lat_r = $row['latitud_r'];
-		$long_r = $row['longitud_r'];
-	}
-}
-
 if(pg_Num_Rows($query_u) > 0){
 	while($row = pg_fetch_assoc($query_u)){
-		$id_usuario = $row['id_usuario'];
+		$id_usuario = $row['id_usuario'];;
 	}
 }
 
@@ -37,31 +30,11 @@ if(pg_Num_Rows($query_id) > 0){
 //Funciones
 
 $tipo = $_POST[selectid_fh];
-$distancia = calcular_distancia($lat_r,$lon_r,$lat_fh,$lon_fh);
-$codigo_fh = generar_codigo($tipo,$id_municipio,$id_fh);
+$id_ran = $_POST[selectid_rancheria];
+$id_ran = $_POST[selectid_rancheria];
+$codigo = generar_codigo($tipo,$id_municipio,$id_fh);
 
-echo "<h2>Usuario</h2>";
-echo( $id_usuario);
-echo( $_POST[usuario]);
-
-echo "<h2>Codigo</h2>";
-echo( $codigo_fh);
-
-echo "<h2>Codigo</h2>";
-echo( $codigo_fh);
-
-echo "<h2>Distancia:</h2>";
-echo($distancia);
-
-function calcular_distancia($lat_r,$lon_r,$lat_fh,$lon_fh){
-	$radio = 6378137;
-	$dLat = deg2rad($lat_r - $lat_fh);
-	$dLong = deg2rad($lon_r - $lon_fh);
-	$a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat_fh)) * cos(deg2rad($lat_r)) * sin($dLong / 2) * sin($dLong / 2);
-	$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-	$distancia = ($radio * $c)/1000;
-	return $distancia;
-}
+echo "<p> Este es el código que identifica la fuente hídrica que acaba de registrar: <b>" .  $codigo  . "</b>, por favor diligencie los documentos donde recopilo la información.</p>";
 
 function generar_codigo($tipo,$id_municipio,$id_fh){
 	$cod_tipo = "";
@@ -84,25 +57,35 @@ function generar_codigo($tipo,$id_municipio,$id_fh){
 	}
 	$id_fh = $id_fh+1;
 	$fechaactual = getdate();
-	$codigo_fh = "FH-" . $cod_tipo . "-" . $cod_mun . "-" . $id_fh . "-" . $fechaactual[year];
-	return $codigo_fh;
+	$codigo = "FH-" . $cod_tipo . "-" . $cod_mun . "-" . $id_fh . "-" . $fechaactual[year];
+	return $codigo;
 }
 
 // Inserts
 
-$query1 = "INSERT INTO wintig.uso (id_tipo_uso) VALUES ('$_POST[selectid_uso]')"; 
+$ica = "INSERT INTO wintig.ica (oxigeno_disuelto, solidos_suspendidos, demanda_quimica_oxigeno, conductividad_electrica, ph_ica, nitrogeno_ica, fosforo_ica, calculo_ica, estado_ica ) VALUES (null, null,null, null, null, null, null, null, null)";
 
-$query2 = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia, poblacion_acceso) VALUES ('$_POST[selectid_acceso]','$_POST[num_dias_buscar_agua]', '$_POST[num_viajes]','$_POST[cantidad_agua]', '$_POST[tiempo_viaje]', $distancia)";
+$irca = "INSERT INTO wintig.irca (color_aparente, olor, sabor, turbiedad, conductividad, ph_irca, antimonio, 
+arsenico, bario, cadmio, cianuro_libre_disociable, cobre, cromo, mercurio, niquel, plomo, selenio,
+trihalometanos, hap, cot, nitritos, nitratos, fluoruros, calcio, alcalinidad, cloruros, aluminio,
+dureza, hierro, magnesio, manganeso, molibdeno, sulfatos, zinc, fosfatos, cmt, 
+plaguicidas, escherichia_coli, coliformes, microorganismos_mesofilicos, giardia, cryptosporidium,
+detergente, coagulante_sales_hierro, coagulante_aluminio, calculo_irca, estado_irca) VALUES (null, null, null, null, null, null,  null, null, null, null, null, null, null, null, null, null, null, null, null, null,  null, null,  null,  null, null,  null, null, null,  null, null, null,  null, null, null, null, null,  null, null, null, null, null, null, null, null, null, null, null)";
 
-$query3 = "INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh)
-VALUES ('$_POST[selectid_fh]', '$_POST[selectid_rancheria]', $id_usuario,'$_POST[nom_fh]', '$_POST[latitud_fh]', '$_POST[longitud_fh]')";  
+$muestra = "INSERT INTO wintig.muestra (fecha) VALUES (null)"; 
 
-//$result = pg_query($query1); 
-//$result = pg_query($query2); 
-//$result = pg_query($query3);
-// echo '
-// <SCRIPT LANGUAGE="javascript">
-// location.href = "/WIN-TIG/home_recolector.php";
-// </SCRIPT>
-// ';
+$uso = "INSERT INTO wintig.uso (id_tipo_uso) VALUES (1)"; 
+
+$acceso = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (1, null,null, null, null, null)";
+
+$fuente = "INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh)
+VALUES ('$tipo', null, null, null, '$id_ran', '$id_usuario', '$_POST[nom_fh]', '$_POST[latitud_fh]', '$_POST[longitud_fh]', '$codigo')";  
+
+$result = pg_query($ica);
+$result = pg_query($irca);
+$result = pg_query($muestra);
+$result = pg_query($uso);
+$result = pg_query($acceso);
+$result = pg_query($fuente);
+header('Refresh:10; url = http://localhost/WIN-TIG/Home_Recolector.php'); 
 ?>

@@ -36,7 +36,7 @@ require_once("php/session.php");
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/WIN-TIG/Home.php">WIN-TIG</a>
+				<a class="navbar-brand" href="/WIN-TIG/Home_Recolector.php">WIN-TIG</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,12 +44,12 @@ require_once("php/session.php");
 					<li><a href="#instrucciones" data-toggle="modal">Instrucciones de uso</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menú<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#form_fuente" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Insertar Fuente Hídrica</a></li>
-							<li><a href="#form_accesibilidad" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Insertar Accesibilidad</a></li>
-							<li><a href="#form_muestra" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Registrar Muestra</a></li>
-							<li><a href="#registros_fuente_hidirica" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Ver Fuentes Hídricas</a></li>
-							<li><a href="#registros_rancheria" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Ver Rancherias</a></li>
+						<ul class="dropdown-menu" style="text-align: left;">
+							<li><a href="#form_fuente" style="text-align: left;" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Insertar Fuente Hídrica</a></li>
+							<li><a href="#form_accesibilidad" style="text-align: left;" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Insertar Accesibilidad y Uso</a></li>
+							<li><a href="#form_muestra" style="text-align: left;" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Registrar Muestra</a></li>
+							<li><a href="#registros_fuente_hidirica" style="text-align: left;" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Ver Fuentes Hídricas</a></li>
+							<li><a href="#registros_rancheria" style="text-align: left;" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Ver Rancherias</a></li>
 
 						</ul>
 					</li>
@@ -63,10 +63,11 @@ require_once("php/session.php");
 						<a class="nav-link" href="#cuestionario" data-toggle="modal">Cuestionarios</a>
 					</li>
 					<?php
+					$usuario = $_SESSION['username'];
 					if (isset($_SESSION['username'])) {
 						?>
 						<li>
-							<a class="active" style="background: DeepSkyBlue; font-weight: bold; color: SlateGrey ;"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username']?></a>
+							<a class="active" style="background: DeepSkyBlue; font-weight: bold; color: SlateGrey ;"><span class="glyphicon glyphicon-user"></span> <?php echo $usuario?></a>
 						</li>
 						<li>
 							<a class="nav-link" href="php/logout.php" style="align-content: right;"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
@@ -177,7 +178,7 @@ require_once("php/session.php");
 								</div>
 							</div>
 						</div>
-						<div class="row setup-content step hiddenStepInfo" id="Paso-1">
+						<div class="row setup-content step activeStepInfo"  id="Paso-1">
 							<div class="col-xs-12">
 								<div class="col-md-12 well text-center">
 									<h1>1. Registrar Fuente</h1>
@@ -196,7 +197,7 @@ require_once("php/session.php");
 									</div>
 								</div>
 							</div>
-							<div class="row setup-content step activeStepInfo" id="Paso-2">
+							<div class="row setup-content step hiddenStepInfo" id="Paso-2">
 								<div class="col-xs-12">
 									<div class="col-md-12 well text-center">
 										<h1>PASO 2</h1>
@@ -292,7 +293,7 @@ require_once("php/session.php");
 										</ul>
 									</div>
 
-									<form role="form" action="php/insertar_datos_fh.php" method="post">
+									<form role="form" action="php/insertar_datos_fh.php?nombre_usuario=<?php echo $usuario?>" method="post">
 										<div class="tab-content">										
 											<!-- Formulario Fuente Hidrica -->
 											<div class="tab-pane active" role="tabpanel" id="fuente_hidrica">
@@ -425,7 +426,7 @@ require_once("php/session.php");
 										</ul>
 									</div>
 
-									<form role="form" action="php/insertar_datos_fh.php" method="post">
+									<form role="form" action="php/insertar_acceso_uso.php" method="post">
 										<div class="tab-content">	
 											<!-- Formulario Fuente Hidrica -->
 											<div class="tab-pane active" role="tabpanel" id="fh_acc">
@@ -433,7 +434,7 @@ require_once("php/session.php");
 													<h3>FUENTE HÍDRICA</h3>
 													<div class="form-group">
 														Seleccione una fuente hídrica:        
-														<select name="select_fuente_hidrica" id="id_fuente_hidrica" class="form-control" onChange="getIdFh(this)">  
+														<select name="select_id_fuente_hidrica_acceso_uso" id="id_fuente_hidrica" class="form-control" onChange="getIdFh(this)">  
 															<option value="" selected disabled>Fuente Hidrica</option> 
 															<?php
 															include 'php/conexion.php';
@@ -453,7 +454,7 @@ require_once("php/session.php");
 													<li><button type="button" class="btn btn-primary next-step">Continuar</button></li>
 												</ul>
 											</div>									
-											<!-- Formulario Fuente Hidrica -->
+											<!-- Formulario Uso y Acceso -->
 											<div class="tab-pane" role="tabpanel" id="uso_acceso">
 												<div class="modal-body">
 													<H3>USO Y ACCESIBILIDAD</H3>
@@ -463,8 +464,8 @@ require_once("php/session.php");
 															<option value="" selected disabled>Uso</option> 
 															<?php
 															include 'php/conexion.php';
-															$uso = pg_query("SELECT id_tipo_uso, nom_tipo_uso FROM wintig.tipo_uso");
-															while($row_list=pg_fetch_assoc($uso)){
+															$uso = pg_query("SELECT id_tipo_uso, nom_tipo_uso FROM wintig.tipo_uso where id_tipo_uso > 1");
+															while($row_list=pg_fetch_assoc($uso)){																
 																?>                              
 																<option value=<?php echo $row_list["id_tipo_uso"]; ?>>
 																	<?php echo $row_list["nom_tipo_uso"];?>  
@@ -478,7 +479,7 @@ require_once("php/session.php");
 															<option value="" selected disabled>Acceso</option> 
 															<?php
 															include 'php/conexion.php';
-															$acceso = pg_query("SELECT id_tipo_acceso, nom_tipo_acceso FROM wintig.tipo_acceso");
+															$acceso = pg_query("SELECT id_tipo_acceso, nom_tipo_acceso FROM wintig.tipo_acceso where id_tipo_acceso > 1");
 															while($row_list=pg_fetch_assoc($acceso)){
 																?>                              
 																<option value=<?php echo $row_list["id_tipo_acceso"]; ?>>
@@ -489,14 +490,14 @@ require_once("php/session.php");
 															?>
 														</select><br>
 														Número de dias que buscan agua por semana:<br>
-														<input type="number" class="form-control" name="num_dias_buscar_agua"  pattern="[0-7]" title="Ingrese un número del 0 al 7"><br>
+														<input type="number" class="form-control" name="num_dias_buscar_agua" min="1" max="7" title="Ingrese un número del 0 al 7"><br>
 														Número de viajes que se realizan en el día en busca de agua:<br>
-														<input type="number" class="form-control" name="num_viajes"  pattern="[0-9]+" title="Sólo se permiten números"><br>
+														<input type="number" class="form-control" name="num_viajes" min="1" title="Sólo se permiten números"><br>
 														Cantidad de agua recolectada en el dia (Lt):<br>
-														<input type="number" class="form-control" name="cantidad_agua"  title="Sólo se permiten números"><br>
+														<input type="number" class="form-control" name="cantidad_agua" min="0.1" title="Sólo se permiten números"><br>
 														Tiempo total para la recolección del agua [Tiempo de ida + espera + regreso] 
 														(HH:MM:SS):<br>
-														<input type="text" class="form-control" placeholder="2:00:00" name="tiempo_viaje"  pattern="^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(:([0-5]?[0-9]))?$" title="Ingrese una hora en el formato específicado"><br>
+														<input type="text" class="form-control" placeholder="2:00:00" name="tiempo_viaje" pattern="^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(:([0-5]?[0-9]))?$" title="Ingrese una hora en el formato específicado"><br>
 													</div>
 												</div>
 												<ul class="list-inline pull-right">
@@ -581,7 +582,7 @@ require_once("php/session.php");
 										</ul>
 									</div>
 
-									<form role="form" action="php/insertar_datos_fh.php" method="post">
+									<form role="form" action="php/insertar_muestra.php" method="post" novalidate="">
 										<div class="tab-content">										
 											<!-- Formulario Fuente Hidrica -->
 											<div class="tab-pane active" role="tabpanel" id="fh_muestra">
@@ -589,7 +590,7 @@ require_once("php/session.php");
 													<h3>FUENTE HÍDRICA</h3>
 													<div class="form-group">
 														Seleccione una fuente hídrica:        
-														<select name="select_fuente_hidrica" id="id_fuente_hidrica" class="form-control" onChange="getIdFh(this)">  
+														<select name="select_fuente_hidrica_muestra" id="id_fuente_hidrica" class="form-control" onChange="getIdFh(this)">  
 															<option value="" selected disabled>Fuente Hidrica</option> 
 															<?php
 															include 'php/conexion.php';
@@ -615,7 +616,7 @@ require_once("php/session.php");
 												<div class="modal-body">
 													<div class="form-group">
 														Oxígeno disuelto (OD):<br>
-														<input type="text" class="form-control" name="oxigeno_disuelto" placeholder="0" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números"><br>
+														<input type="text" class="form-control" name="oxigeno_disuelto" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 														Oxígeno de Saturación (OS):<br>
 														<input type="text" class="form-control" name="oxigeno_saturacion" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" placeholder="0"><br>
 														Sólidos  suspendidos totales (SST):<br>
@@ -759,7 +760,7 @@ require_once("php/session.php");
 													<li><button type="submit" class="btn btn-primary next-step"><i class="glyphicon glyphicon-save"></i> Guardar Datos</button></li>
 													<script>												
 														$(document).ready(function(){
-															$("#registrar_datos").onclick(function(){
+															$("#registrar_muestra").onclick(function(){
 																$("#form_muestra").modal();
 															});
 														});
@@ -861,7 +862,7 @@ require_once("php/session.php");
 								Nombre de la rancheria: <span style="color: red" title="Campo obligatorio">*</span><br>
 								<input type="text" class="form-control" name="nom_rancheria" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 								Cantidad de personas: <span style="color: red" title="Campo obligatorio">*</span><br>
-								<input type="text" class="form-control" name="cantidad_personas" pattern="/^(0|[1-9]\d*)(\.\d+)?$/" title="Sólo se permiten números" required><br>
+								<input type="text" class="form-control" name="cantidad_personas"  title="Sólo se permiten números" required><br>
 								Nombre del representante: <span style="color: red" title="Campo obligatorio">*</span><br>
 								<input type="text" class="form-control" name="representante" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Sólo se permiten letras y vocales" required><br>
 								Latitud: <span style="color: red" title="Campo obligatorio">*</span><br>
@@ -1048,11 +1049,6 @@ require_once("php/session.php");
 						</div>
 
 						<div class="form-group">
-							<label for="update_acceso">Cantidad de personas que acceden a la Fuente Hídrica</label>
-							<input type="text" id="update_acceso" placeholder="" class="form-control"/>
-						</div>
-
-						<div class="form-group">
 							<label for="update_rancheria">Rancheria</label>
 							<select name="selectid_rancheria_2" id="update_rancheria" class="form-control" onChange="getIdRancheria(this)">  
 								<option value="" selected disabled>Rancheria</option> 
@@ -1067,7 +1063,7 @@ require_once("php/session.php");
 									<?php
 								}                        
 								?>
-							</select><br>
+							</select>
 						</div>	
 
 						<div class="form-group">
@@ -1085,7 +1081,7 @@ require_once("php/session.php");
 									<?php
 								}                        
 								?>
-							</select><br>
+							</select>
 						</div>
 
 						<div class="form-group">
