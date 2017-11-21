@@ -1,241 +1,234 @@
-<!DOCTYPE html >
-<head>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
-<body>
+ var map;
+ var gmarkers_f = [];
+ var nombres_f = [];
+ var codigos_f = [];
+ var markers_f = [];
+ var gmarkers_r = [];
+ var markers_r = [];
 
-  <script>
-    var map;
-    var gmarkers_f = [];
-    var nombres_f = [];
-    var markers_f = [];
-    var gmarkers_r = [];
-    var markers_r = [];
+ var guajira = {lat: 11.413754, lng: -72.169625};
 
-    var guajira = {lat: 11.775, lng: -72.444444};
+ $( document ).ready( function() {
 
-    $( document ).ready( function() {
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: new google.maps.LatLng(11.413754, -72.169625),
+      zoom: 10,
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(11.775, -72.444444),
-          zoom: 10,
+      styles: [
+      {
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#f5f5f5"
+        }
+        ]
+      },
+      {
+        "elementType": "labels.icon",
+        "stylers": [
+        {
+          "visibility": "off"
+        }
+        ]
+      },
+      {
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#616161"
+        }
+        ]
+      },
+      {
+        "elementType": "labels.text.stroke",
+        "stylers": [
+        {
+          "color": "#f5f5f5"
+        }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels.text",
+        "stylers": [
+        {
+          "color": "#bdbdbd"
+        }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#bdbdbd"
+        }
+        ]
+      },
+      {
+        "featureType": "landscape.natural.terrain",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#53bd2f"
+        }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#757575"
+        }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "labels.text",
+        "stylers": [
+        {
+          "visibility": "off"
+        }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#9e9e9e"
+        },
+        {
+          "visibility": "off"
+        }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#ffffff"
+        }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#757575"
+        }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#dadada"
+        }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#616161"
+        }
+        ]
+      },
+      {
+        "featureType": "road.local",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+        ]
+      },
+      {
+        "featureType": "transit.station",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#6697e8"
+        }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [
+        {
+          "color": "#ffffff"
+        },
+        {
+          "weight": 1.5
+        }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#ffffff"
+        }
+        ]
+      }
+      ],
 
-          styles: [
-          {
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-            ]
-          },
-          {
-            "elementType": "labels.icon",
-            "stylers": [
-            {
-              "visibility": "off"
-            }
-            ]
-          },
-          {
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#616161"
-            }
-            ]
-          },
-          {
-            "elementType": "labels.text.stroke",
-            "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-            ]
-          },
-          {
-            "featureType": "administrative.land_parcel",
-            "elementType": "labels.text",
-            "stylers": [
-            {
-              "color": "#bdbdbd"
-            }
-            ]
-          },
-          {
-            "featureType": "administrative.land_parcel",
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#bdbdbd"
-            }
-            ]
-          },
-          {
-            "featureType": "landscape.natural.terrain",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#53bd2f"
-            }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#757575"
-            }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "elementType": "labels.text",
-            "stylers": [
-            {
-              "visibility": "off"
-            }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#9e9e9e"
-            },
-            {
-              "visibility": "off"
-            }
-            ]
-          },
-          {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#ffffff"
-            }
-            ]
-          },
-          {
-            "featureType": "road.arterial",
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#757575"
-            }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#dadada"
-            }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#616161"
-            }
-            ]
-          },
-          {
-            "featureType": "road.local",
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-            ]
-          },
-          {
-            "featureType": "transit.line",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-            ]
-          },
-          {
-            "featureType": "transit.station",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#6697e8"
-            }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "labels",
-            "stylers": [
-            {
-              "color": "#ffffff"
-            },
-            {
-              "weight": 1.5
-            }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [
-            {
-              "color": "#ffffff"
-            }
-            ]
-          }
-          ],
+      zoomControl: false,
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        mapTypeIds: ['roadmap', 'terrain','satellite']
+      }          
+    });
 
-          zoomControl: false,
-          mapTypeControl: true,
-          mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-            mapTypeIds: ['roadmap', 'terrain','satellite']
-          }          
-        });
-var infoWindow = new google.maps.InfoWindow;
+ var infoWindow = new google.maps.InfoWindow;
 
-downloadUrl('php/generarXML.php', function(data) {
+ downloadUrl('http://93.188.162.196/WIN-TIG/php/generarXML.php', function(data) {
   var xml = data.responseXML;
   var centerControlDiv = document.createElement('div');
   var centerControl = new CenterControl(centerControlDiv, map);
@@ -261,7 +254,7 @@ downloadUrl('php/generarXML.php', function(data) {
     var cantidad_agua = markerElem.getAttribute('cantidad_agua');
     var numero_viajes = markerElem.getAttribute('numero_viajes');
     var nom_municipio = markerElem.getAttribute('nom_municipio');
-    var contenido_f = '<b><center> DATOS FUENTE HÍDRICA </center></b>' + '<br><b>Codigo: </b>' + codigo + '<br><b>Usuario: </b>' + usuario + '<br><b>Nombre: </b>' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>Fecha de la muestra: </b>' + fecha + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e + '<b><br><br><center> Accesibilidad </center></b>' + '<br><b>Tipo de acceso: </b>' + tipoacceso + '<br><b>Tipo de viaje: </b>' + tiempo_viaje + '<br><b>Distancia a la Rancheria  (Km): </b>' + distancia + '<br><b>Número de días que se busca agua: </b>' + dias_buscar_agua + '<br><b>Cantidad de Agua (Lt): </b>' + cantidad_agua + '<br><b>Número de viajes: </b>' + numero_viajes +'<br><br><b><center> Uso </center></b>' + '<br><b>Tipo de uso: </b>' + tipouso + '<br><br><b><center> Municipio </center></b>' + '<br><b>Municipio: </b>' + nom_municipio + '<br><br><button type="submit" style="text-align: center;" onclick="readRecordsFHM('+id+');" class="btn btn-primary center-block" href="#fuente_hidirica_mapa" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i> Más información</button>';
+    var contenido_f = '<b><center> DATOS FUENTE HÍDRICA </center></b>' + '<br><b>Codigo: </b>' + codigo + '<br><b>Usuario: </b>' + usuario + '<br><b>Nombre: </b>' + nombre + '<br><b>Tipo de fuente hidrica: </b>' + tipofuente + '<br><b>Fecha de la muestra: </b>' + fecha + '<br><b>ICA: </b>' + ica_c + '<br><b>Estado ICA: </b>'+ ica_e + '<br><b>IRCA: </b>' + irca_c + '<br><b>Estado IRCA: </b>'+ irca_e + '<b><br><br><center> Accesibilidad </center></b>' + '<br><b>Tipo de acceso: </b>' + tipoacceso + '<br><b>Tipo de viaje: </b>' + tiempo_viaje + '<br><b>Distancia a la Rancheria (Km): </b>' + distancia + '<br><b>Número de días que se busca agua: </b>' + dias_buscar_agua + '<br><b>Cantidad de Agua (Lt): </b>' + cantidad_agua + '<br><b>Número de viajes: </b>' + numero_viajes +'<br><br><b><center> Uso </center></b>' + '<br><b>Tipo de uso: </b>' + tipouso + '<br><br><b><center> Municipio </center></b>' + '<br><b>Municipio: </b>' + nom_municipio + '<br><br><button type="submit" style="text-align: center;" onclick="readRecordsFHM('+id+');" class="btn btn-primary center-block" href="#fuente_hidirica_mapa" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i> Más información</button>';
     var point = new google.maps.LatLng(
       parseFloat(markerElem.getAttribute('latitud_fh')),
       parseFloat(markerElem.getAttribute('longitud_fh')));
@@ -269,6 +262,7 @@ downloadUrl('php/generarXML.php', function(data) {
       map: map,
       position: point,
       category: tipofuente,
+      animation: google.maps.Animation.DROP,
       icon: 'img/blue.png'
     });
     gmarkers_f.push(marker_f);
@@ -281,7 +275,7 @@ downloadUrl('php/generarXML.php', function(data) {
   });
 });
 
-downloadUrl('php/generarXML.php', function(data) {
+ downloadUrl('http://93.188.162.196/WIN-TIG/php/generarXML.php', function(data) {
   var xml = data.responseXML;
   markers_r = xml.documentElement.getElementsByTagName('marker_r');
   Array.prototype.forEach.call(markers_r, function(markerElem) {
@@ -297,6 +291,7 @@ downloadUrl('php/generarXML.php', function(data) {
       map: map,
       position: point,
       category: municipio,
+      animation: google.maps.Animation.DROP,
       icon: 'img/brown.png'
 
     });
@@ -310,19 +305,26 @@ downloadUrl('php/generarXML.php', function(data) {
   });
 });
 
-downloadUrl('php/generarXML.php', function(data) {
+ downloadUrl('http://93.188.162.196/WIN-TIG/php/generarXML.php', function(data) {
   var xml = data.responseXML;
+  cod_f = xml.documentElement.getElementsByTagName('marker_f');
   nom_f = xml.documentElement.getElementsByTagName('marker_f');
+  Array.prototype.forEach.call(cod_f, function(markerElem) {
+    var codigo = markerElem.getAttribute('codigo');
+    codigos_f.push(codigo);
+  });
   Array.prototype.forEach.call(nom_f, function(markerElem) {
     var nombre = markerElem.getAttribute('nombre');
     nombres_f.push(nombre);
   });
+  var elecciones = nombres_f.concat(codigos_f);
   $( "#b1" ).autocomplete({
-    source: nombres_f
+    source: elecciones
   });
 });
 
-var iconos = {
+
+ var iconos = {
   fuente: {
     name: 'Fuente Hídrica',
     icon: 'img/blue16.png'
@@ -365,12 +367,8 @@ for (var i in iconos) {
 var log = document.createElement('div');
 log.index = 0;
 var logo = document.createElement('div');
-logo.innerHTML = '<img src="img/LOGO.png" width="120PX" style="text-align: center; cursor: pointer; title="Home"; max-width:100%; height:auto;>';
+logo.innerHTML = '<img src="img/LOGO.png" width="120PX" style="text-align: center; title="WIN-TIG"; max-width:100%; height:auto;>';
 log.appendChild(logo);
-google.maps.event.addDomListener(logo, 'click', function() {
-  window.location = '/WIN-TIG/Home.php'; 
-});
-
 map.controls[google.maps.ControlPosition.LEFT_TOP].push(log);
 map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(legend);
 }
@@ -399,6 +397,7 @@ function CenterControl(controlDiv, map) {
 
   controlUI.addEventListener('click', function() {
     map.setCenter(guajira);
+    map.setZoom(10);
   });
 
 }
@@ -550,10 +549,10 @@ filterMarkers = function (category) {
 }
 
 filtro_busqueda = function () {
-  console.log(document.getElementById("b1").value);
+
   for (i = 0; i<markers_f.length; i++) {
     marker_f = gmarkers_f[i];
-    if (markers_f[i].getAttribute('nombre') == document.getElementById("b1").value || document.getElementById("b1").value == '' ) {
+    if (markers_f[i].getAttribute('nombre') == document.getElementById("b1").value || markers_f[i].getAttribute('codigo') == document.getElementById("b1").value || document.getElementById("b1").value == '' ) {
       marker_f.setVisible(true);
     }
     else {
@@ -574,6 +573,3 @@ function doNothing() {
 
 google.maps.event.addDomListener(window, 'load', initMap);
 });
-</script>
-</body>
-</html>

@@ -33,13 +33,13 @@ include 'php/conexion.php';
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/WIN-TIG/Home.php">WIN-TIG</a>
+				<a class="navbar-brand" href="http://93.188.162.196/WIN-TIG/Home.php">WIN-TIG</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="/WIN-TIG/login.php"><span class="glyphicon glyphicon-log-in"></span><?php echo ' Login '?></a>
+						<a class="nav-link" href="/WIN-TIG/Login.php"><span class="glyphicon glyphicon-log-in"></span><?php echo ' Login '?></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#contacto" data-toggle="modal">Contacto</a>
@@ -140,8 +140,8 @@ include 'php/conexion.php';
 			<!--Busqueda-->
 			<div>
 				<form class="form-wrapper cf">
-					<input type="text"  placeholder="Busqueda..." id ="b1" class = "ui-widget" required>
-					<button type="button"  class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
+					<input type="text"  placeholder="Busqueda..." id ="b1" class = "ui-widget" onkeypress="Javascript: if (event.keyCode===13) event.preventDefault(); filtro_busqueda();">
+					<button type="button" class="btn btn-primary" onclick="filtro_busqueda();" ><i class="glyphicon glyphicon-search"></i></button>
 				</form>
 			</div>
 
@@ -290,14 +290,16 @@ include 'php/conexion.php';
 			<div id="map_container"></div>
 			<div id="map">
 				<?php include("mapa.html");?>
-			</div>
-			<div id="leyenda"><h3>Leyenda</h3></div>
-			<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
+			</div>			
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4yA0gaGzQ9GJgwJ784kt1kUXyeVqZ634&callback=initMap"></script>
+			<div id="leyenda"><h3>Leyenda</h3></div>			
 		</section>
 	</div>
 	<div id="particles-js"></div>
 	<script src="js/particles.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js\script_recolector.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/mapa.js"></script>
 </body>
 </html>

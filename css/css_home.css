@@ -84,11 +84,11 @@ div.container {
 }
 
 .panel_filtros{
-    width: 230px;
+    width: 241px;
     max-height: 650px;
     background-color: #ddd;
     overflow: scroll;
-    margin-left: -8px;
+    margin-left: -12px;
 }
 
 .panel_heading{

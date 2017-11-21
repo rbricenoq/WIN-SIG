@@ -14,7 +14,7 @@ if(trim($_POST["usuario"]) != "" && trim($_POST["password"]) != ""){
      echo'Debe Activar Su Cuenta Para Poder Recolectar Información'; 
      echo '
      <SCRIPT LANGUAGE="javascript">
-     location.href = "/WIN-TIG/Login.php";
+     location.href = "http://93.188.162.196/WIN-TIG/Login.php";
      </SCRIPT>';
    } else{
      if($row["password"] == $pass){
@@ -23,13 +23,13 @@ if(trim($_POST["usuario"]) != "" && trim($_POST["password"]) != ""){
        if($row["id_tipo_de_usuario"] == 1){
          echo '
          <SCRIPT LANGUAGE="javascript">
-         location.href = "/WIN-TIG/Home_Admin.php";
+         location.href = "http://93.188.162.196/WIN-TIG/Home_Admin.php";
          </SCRIPT>';
        }
        else{
         echo '
         <SCRIPT LANGUAGE="javascript">
-        location.href = "/WIN-TIG/Home_Recolector.php";
+        location.href = "http://93.188.162.196/WIN-TIG/Home_Recolector.php";
         </SCRIPT>';
       } 
 
@@ -38,7 +38,7 @@ if(trim($_POST["usuario"]) != "" && trim($_POST["password"]) != ""){
       echo 'Password incorrecto';
       echo '
       <SCRIPT LANGUAGE="javascript">
-      location.href = "/WIN-TIG/Login.php";
+      location.href = "http://93.188.162.196/WIN-TIG/Login.php";
       </SCRIPT>';
     }
   }
@@ -47,7 +47,7 @@ else{
   echo 'Usuario no existente en la base de datos';
   echo '
   <SCRIPT LANGUAGE="javascript">
-  location.href = "/WIN-TIG/Login.php";
+  location.href = "http://93.188.162.196/WIN-TIG/Login.php";
   </SCRIPT>';
 }
 pg_free_result($result);
@@ -56,7 +56,7 @@ else{
   echo 'Debe especificar un usuario y password';
   echo '
   <SCRIPT LANGUAGE="javascript">
-  location.href = "/WIN-TIG/Login.php";
+  location.href = "http://93.188.162.196/WIN-TIG/Login.php";
   </SCRIPT>';
 }
 pg_close();

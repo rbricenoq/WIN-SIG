@@ -6,7 +6,8 @@ $db = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=
 $id_fh = $_POST[select_id_fuente_hidrica_acceso_uso];
 
 $query_r = pg_Exec($db, "select r.latitud_r, r.longitud_r from wintig.rancheria as r, wintig.fuente_hidrica as f
-	where f.id_rancheria = '$_POST[select_id_fuente_hidrica_acceso_uso]' and r.id_rancheria = '$_POST[select_id_fuente_hidrica_acceso_uso]'");
+	where f.id_fuente_hidrica = '$_POST[select_id_fuente_hidrica_acceso_uso]' and f.id_rancheria = r.id_rancheria");
+
 $query_f = pg_Exec($db, "select latitud_fh, longitud_fh from wintig.fuente_hidrica where id_fuente_hidrica = '$_POST[select_id_fuente_hidrica_acceso_uso]'");
 
 if(pg_Num_Rows($query_r) > 0){
@@ -18,14 +19,12 @@ if(pg_Num_Rows($query_r) > 0){
 
 if(pg_Num_Rows($query_f) > 0){
 	while($row = pg_fetch_assoc($query_f)){
-		$lat_f = $row['latitud_fh'];
-		$long_f = $row['longitud_fh'];
+		$lat_fh = $row['latitud_fh'];
+		$long_fh = $row['longitud_fh'];
 	}
 }
 
-
 //Funciones
-
 
 $distancia = calcular_distancia($lat_r,$lon_r,$lat_fh,$lon_fh);
 
@@ -35,7 +34,7 @@ function calcular_distancia($lat_r,$lon_r,$lat_fh,$lon_fh){
 	$dLong = deg2rad($lon_r - $lon_fh);
 	$a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat_fh)) * cos(deg2rad($lat_r)) * sin($dLong / 2) * sin($dLong / 2);
 	$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-	$distancia = ($radio * $c)/1000;
+	$distancia = round(($radio * $c)/1000,3);
 	return $distancia;
 }
 
@@ -50,7 +49,7 @@ $result = pg_query($query1);
 $result = pg_query($query2);
 echo '
 <SCRIPT LANGUAGE="javascript">
-location.href = "/WIN-TIG/Home_Recolector.php";
+location.href = "http://93.188.162.196/WIN-TIG/Home_Recolector.php";
 </SCRIPT>
 ';
 ?>

@@ -20,7 +20,7 @@ function enviar_mail($email,$user,$cod_act,$password)
 	$email_origen     = "wintig2016ii@gmail.com"; 
 	$email_copia      = "wintig2016ii@gmail.com"; 
 	$email_ocultos    = "wintig2016ii@gmail.com"; 
-	$link = "http://localhost/WIN-TIG/php/validar.php?user=$user&cod=$cod_act";
+	$link = "http://93.188.162.196/WIN-TIG/php/Validar.php?user=$user&cod=$cod_act";
 
 	$asunto = "Validacion De Cuenta En WIN-TIG"; 
 
@@ -74,7 +74,7 @@ function enviar_mail($email,$user,$cod_act,$password)
 		echo 'para activar su cuenta, al email que nos facilitó.<br />'; 
 		echo 'Su información fue enviada satisfactoriamente a su correo - ('.$destinatario.')<br />';
 		echo 'por favor abra su email y haga click sobre el link de activación para activar su cuenta.<br />';  
-		echo 'Si el correo no esta en la bandeja principal revise en la sección de spam, gracias.<br />'; 
+		echo '<b>Si el correo no esta en la bandeja principal revise en la sección de spam, gracias.</b><br/>'; 
 		echo "</div></tr>"; 
 		echo "</table>"; 
 	}else {

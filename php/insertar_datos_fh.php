@@ -1,5 +1,4 @@
 <?php  
-
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $db = pg_connect("host=localhost port=5432 dbname=wintig user=postgres password=root");
 
@@ -31,10 +30,10 @@ if(pg_Num_Rows($query_id) > 0){
 
 $tipo = $_POST[selectid_fh];
 $id_ran = $_POST[selectid_rancheria];
-$id_ran = $_POST[selectid_rancheria];
 $codigo = generar_codigo($tipo,$id_municipio,$id_fh);
 
-echo "<p> Este es el código que identifica la fuente hídrica que acaba de registrar: <b>" .  $codigo  . "</b>, por favor diligencie los documentos donde recopilo la información.</p>";
+echo "<p> Este es el código que identifica la fuente hídrica que acaba de registrar: <b>" .  $codigo  . "</b>, por favor diligencie este codigo en los documentos donde recopilo la información para identificarlos.</p>";
+echo "<p> En unos segundos sera redirigido a la pagina.</p>";
 
 function generar_codigo($tipo,$id_municipio,$id_fh){
 	$cod_tipo = "";
@@ -78,8 +77,8 @@ $uso = "INSERT INTO wintig.uso (id_tipo_uso) VALUES (1)";
 
 $acceso = "INSERT INTO wintig.accesibilidad (id_tipo_acceso, num_dias_buscar_agua, num_viajes, cantidad_agua, tiempo_viaje, distancia) VALUES (1, null,null, null, null, null)";
 
-$fuente = "INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_accesibilidad, id_uso, id_muestra, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh)
-VALUES ('$tipo', null, null, null, '$id_ran', '$id_usuario', '$_POST[nom_fh]', '$_POST[latitud_fh]', '$_POST[longitud_fh]', '$codigo')";  
+$fuente = "INSERT INTO wintig.fuente_hidrica (id_tipo_fuente_hidrica, id_rancheria, id_usuario, nom_fh, latitud_fh, longitud_fh, codigo_fh)
+VALUES ('$tipo','$id_ran', '$id_usuario', '$_POST[nom_fh]', '$_POST[latitud_fh]', '$_POST[longitud_fh]', '$codigo')"; 
 
 $result = pg_query($ica);
 $result = pg_query($irca);
@@ -87,5 +86,5 @@ $result = pg_query($muestra);
 $result = pg_query($uso);
 $result = pg_query($acceso);
 $result = pg_query($fuente);
-header('Refresh:10; url = http://localhost/WIN-TIG/Home_Recolector.php'); 
+header('Refresh:10; url = http://93.188.162.196/WIN-TIG/Home_Recolector.php'); 
 ?>

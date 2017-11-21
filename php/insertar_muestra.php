@@ -141,29 +141,29 @@ $c_irca=calcular_irca($color_aparente, $turbiedad, $ph_irca, $antimonio, $arseni
 $e_irca=estado_irca($c_irca);
 
 
-echo "<h2>ICA</h2>";
-echo( $c_ica);
+// echo "<h2>ICA</h2>";
+// echo( $c_ica);
 
-echo "<h2>IRCA</h2>";
-echo( $c_irca);
+// echo "<h2>IRCA</h2>";
+// echo( $c_irca);
 
-echo "<h2>E ICA</h2>";
-echo( $e_ica);
+// echo "<h2>E ICA</h2>";
+// echo( $e_ica);
 
-echo "<h2>E IRCA</h2>";
-echo( $e_irca);
+// echo "<h2>E IRCA</h2>";
+// echo( $e_irca);
 
-echo "<h2>Id ica</h2>";
-echo($id_ica);
+// echo "<h2>Id ica</h2>";
+// echo($id_ica);
 
-echo "<h2>Id irca</h2>";
-echo($id_irca);
+// echo "<h2>Id irca</h2>";
+// echo($id_irca);
 
-echo "<h2>Id muestra</h2>";
-echo($id_muestra);
+// echo "<h2>Id muestra</h2>";
+// echo($id_muestra);
 
-echo "<h2>Fecha</h2>";
-echo($fecha);
+// echo "<h2>Fecha</h2>";
+// echo($fecha);
 
 //------------------------------------
 //            Funciones ICA
@@ -257,7 +257,7 @@ function calcular_ica($i_ox, $i_stt, $i_do, $i_ce, $i_ph, $i_ntf){
 
 function estado_ica($c_ica){
 	if ($c_ica >= 0 and $c_ica <= 0.25) {
-		$e_ica = 'Muy mala';
+		$e_ica = 'Muy Mala';
 	}
 	elseif ($c_ica > 0.26 and $c_ica <= 0.50) {
 		$e_ica = "Mala";
@@ -398,7 +398,7 @@ $result = pg_query($query2);
 $result = pg_query($query3); 
 echo '
 <SCRIPT LANGUAGE="javascript">
-location.href = "/WIN-TIG/Home_Recolector.php";
+location.href = "http://93.188.162.196/WIN-TIG/Home_Recolector.php";
 </SCRIPT>
 ';
 ?>

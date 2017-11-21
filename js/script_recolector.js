@@ -11,6 +11,7 @@ function readRecordsFH() {
 }
 
 function readRecordsFHM(id) {
+//alert('mostrando id'+id);
     $.get("php/registros_fh_mapa.php?id_fh="+id+"", {}, function (data, status) {
         $(".records_content_f_mapa").html(data);
     });
